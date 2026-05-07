@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "versao": "3.0",
+    "aula": 3,
+    "descricao": "Corpus jurídico expandido para Advanced RAG — inclui documentos da Aula 2 + 5 novos documentos para reranking e query rewriting",
+    "total_documentos": 13,
+    "total_queries_baseline": 10,
+    "criado_em": "2026-04",
+    "nota": "Corpus fictício para fins didáticos. Não usar como fonte jurídica real."
+  },
+  "documentos": [
+    {
+      "id": "doc_001",
+      "tipo": "acordao",
+      "tribunal": "STF",
+      "numero": "HC 127.186/SP",
+      "data": "2015-08-28",
+      "ementa": "HABEAS CORPUS. PRISÃO EM FLAGRANTE. TRÁFICO DE DROGAS. FLAGRANTE PREPARADO. AUSÊNCIA DE CRIME. TEORIA DA IMPUTAÇÃO OBJETIVA. HC CONCEDIDO.",
+      "texto": "O Tribunal Pleno do Supremo Tribunal Federal, por unanimidade, concedeu habeas corpus para declarar nula a prisão em flagrante realizada mediante flagrante preparado, conhecido como 'flagrante provocado' ou 'delito putativo por obra do agente provocador'. A teoria da imputação objetiva impede a punição de conduta que não cria risco juridicamente proibido ou não realiza o risco no resultado. No caso concreto, agentes policiais induziram o réu à prática delitiva, tornando impossível a consumação do crime por força da própria intervenção estatal. Aplicação da Súmula 145 do STF: não há crime quando a preparação do flagrante pela polícia torna impossível a sua consumação.",
+      "palavras_chave": ["flagrante preparado", "flagrante provocado", "agente provocador", "Súmula 145 STF", "imputação objetiva", "tráfico de drogas"],
+      "relevante_para_queries": ["q_001", "q_002", "q_007"]
+    },
+    {
+      "id": "doc_002",
+      "tipo": "acordao",
+      "tribunal": "STJ",
+      "numero": "RHC 99.735/MG",
+      "data": "2018-11-13",
+      "ementa": "PROCESSO PENAL. INTERROGATÓRIO. DIREITO AO SILÊNCIO. NEMO TENETUR SE DETEGERE. AUSÊNCIA DE ADVERTÊNCIA. NULIDADE RELATIVA.",
+      "texto": "O direito ao silêncio, constitucionalmente garantido pelo art. 5º, LXIII, da Constituição Federal, deve ser observado no interrogatório policial e judicial. O investigado ou acusado não é obrigado a produzir prova contra si mesmo, princípio derivado do nemo tenetur se detegere. A ausência de advertência sobre o direito ao silêncio antes do interrogatório constitui nulidade relativa, dependendo de demonstração de prejuízo para o reconhecimento. O STJ consolidou entendimento de que a confissão obtida sem a prévia advertência dos direitos constitucionais deve ser excluída do conjunto probatório como prova ilícita, sendo nula por derivação todas as provas dela decorrentes (teoria dos frutos da árvore envenenada).",
+      "palavras_chave": ["direito ao silêncio", "nemo tenetur", "interrogatório", "prova ilícita", "frutos da árvore envenenada", "nulidade"],
+      "relevante_para_queries": ["q_003", "q_004", "q_008"]
+    },
+    {
+      "id": "doc_003",
+      "tipo": "lei",
+      "orgao": "Presidência da República",
+      "numero": "Lei 12.654/2012",
+      "data": "2012-05-28",
+      "ementa": "Prevê a coleta de perfil genético como forma de identificação criminal.",
+      "texto": "Art. 1º. Esta Lei prevê a coleta de perfil genético como forma de identificação criminal. Art. 3º. A Lei no 7.210, de 11 de julho de 1984 - Lei de Execução Penal, passa a vigorar com as seguintes alterações: Art. 9-A. Os condenados por crime praticado, dolosamente, com violência de natureza grave contra pessoa, ou por qualquer dos crimes previstos no art. 1o da Lei no 8.072, de 25 de julho de 1990, serão submetidos, obrigatoriamente, à identificação do perfil genético, mediante extração de DNA - ácido desoxirribonucleico, por técnica adequada e indolor. § 1o A identificação do perfil genético será armazenada em banco de dados sigiloso, conforme regulamento a ser expedido pelo Poder Executivo. § 3o É vedada a utilização dos perfis genéticos para fins de investigação ou identificação de parentesco.",
+      "palavras_chave": ["DNA forense", "perfil genético", "identificação criminal", "banco de dados genético", "Lei 12.654"],
+      "relevante_para_queries": ["q_005", "q_009"]
+    },
+    {
+      "id": "doc_004",
+      "tipo": "acordao",
+      "tribunal": "STF",
+      "numero": "RE 603.616/RO",
+      "data": "2015-05-05",
+      "ementa": "RECURSO EXTRAORDINÁRIO. INVIOLABILIDADE DO DOMICÍLIO. ENTRADA FORÇADA EM DOMICÍLIO SEM MANDADO JUDICIAL. TRÁFICO DE DROGAS. FUNDADAS RAZÕES. FLAGRANTE DELITO.",
+      "texto": "O Supremo Tribunal Federal, em sede de repercussão geral, fixou a seguinte tese: 'A entrada forçada em domicílio sem mandado judicial só é lícita, mesmo em período noturno, quando amparada em fundadas razões, devidamente justificadas a posteriori, que indiquem que dentro da casa ocorre situação de flagrante delito, sob pena de responsabilidade disciplinar, civil e penal do agente ou da autoridade e de nulidade dos atos praticados.' O simples alegação genérica de 'denúncia anônima' não constitui fundada razão para ingresso forçado em domicílio. A autoridade policial deve documentar os elementos concretos que justificam a suspeita de flagrante.",
+      "palavras_chave": ["inviolabilidade do domicílio", "entrada forçada", "mandado judicial", "fundadas razões", "flagrante delito", "denúncia anônima"],
+      "relevante_para_queries": ["q_001", "q_006", "q_010"]
+    },
+    {
+      "id": "doc_005",
+      "tipo": "sumula_vinculante",
+      "tribunal": "STF",
+      "numero": "Súmula Vinculante 14",
+      "data": "2009-02-09",
+      "ementa": "É direito do defensor, no interesse do representado, ter acesso amplo aos elementos de prova que, já documentados em procedimento investigatório realizado por órgão com competência de polícia judiciária, digam respeito ao exercício do direito de defesa.",
+      "texto": "É direito do defensor, no interesse do representado, ter acesso amplo aos elementos de prova que, já documentados em procedimento investigatório realizado por órgão com competência de polícia judiciária, digam respeito ao exercício do direito de defesa. O acesso ao inquérito policial pelo advogado constituído é garantia constitucional vinculada ao direito de defesa e à ampla defesa. O descumprimento desta súmula vinculante enseja reclamação ao STF. Não se aplica às diligências em andamento ou a elementos não documentados.",
+      "palavras_chave": ["Súmula Vinculante 14", "advogado", "inquérito policial", "direito de defesa", "acesso às provas", "defensor"],
+      "relevante_para_queries": ["q_004", "q_008"]
+    },
+    {
+      "id": "doc_006",
+      "tipo": "laudo_pericial",
+      "orgao": "Instituto de Criminalística — PCSP",
+      "numero": "LP-2024-00423",
+      "data": "2024-03-15",
+      "ementa": "LAUDO PERICIAL — EXAME DE LOCAL DE CRIME CONTRA A VIDA — HOMICÍDIO DOLOSO",
+      "texto": "Em atenção à Portaria de Nomeação, os peritos signatários procederam ao exame do local de crime situado na Rua Fictícia, nº 123, São Paulo/SP. Constatou-se a presença de projétil alojado na parede sul do cômodo, a 1,20m de altura, compatível com disparo horizontal realizado da entrada do imóvel. A trajetória balística, reconstruída com uso de hastes direcionais, indica ângulo de entrada de 5° descendente, sugerindo atirador em posição elevada ou vítima em posição agachada no momento do disparo. Não foram encontrados sinais de luta corporal prévia. A posição do corpo, com pés voltados para a porta, indica que a vítima estava em movimento de fuga. Conclusão: morte violenta por projétil de arma de fogo, com elementos compatíveis com homicídio doloso consumado.",
+      "palavras_chave": ["laudo pericial", "criminalística", "balística", "homicídio doloso", "trajetória balística", "local de crime"],
+      "relevante_para_queries": ["q_005", "q_009", "q_010"]
+    },
+    {
+      "id": "doc_007",
+      "tipo": "acordao",
+      "tribunal": "STJ",
+      "numero": "HC 598.886/SC",
+      "data": "2020-11-18",
+      "ementa": "BUSCA E APREENSÃO. APARELHO CELULAR. DADOS DIGITAIS. AUSÊNCIA DE AUTORIZAÇÃO JUDICIAL. ILICITUDE DA PROVA.",
+      "texto": "O Superior Tribunal de Justiça, em importante precedente, firmou entendimento de que o acesso ao conteúdo de aparelho celular apreendido por policiais sem autorização judicial configura prova ilícita, ainda que o aparelho tenha sido obtido lícita e validamente em prisão em flagrante. A proteção constitucional à intimidade e à vida privada (art. 5º, X, CF/88) abrange os dados digitais armazenados em dispositivos pessoais. A justificativa de urgência ou necessidade não autoriza o acesso autônomo pela autoridade policial. Necessário, portanto, requerimento judicial para acesso ao conteúdo do celular, mesmo que já apreendido.",
+      "palavras_chave": ["busca e apreensão", "celular", "dados digitais", "prova ilícita", "autorização judicial", "intimidade digital"],
+      "relevante_para_queries": ["q_002", "q_006", "q_007"]
+    },
+    {
+      "id": "doc_008",
+      "tipo": "resolucao",
+      "orgao": "CNJ",
+      "numero": "Resolução CNJ 213/2015",
+      "data": "2015-12-15",
+      "ementa": "Dispõe sobre a apresentação de toda pessoa presa à autoridade judicial no prazo de 24 horas — Audiência de Custódia.",
+      "texto": "Art. 1°. Determinar que toda pessoa presa em flagrante delito, independentemente da motivação ou natureza do ato, seja obrigatoriamente apresentada, em até 24 horas da comunicação do flagrante, à autoridade judicial competente, e, na falta desta, ao substituto legal. § 1°. A apresentação à autoridade judicial é direito da pessoa presa e dever da autoridade policial, do Ministério Público e do Poder Judiciário. Art. 8°. Na audiência de custódia, a autoridade judicial entrevistará a pessoa presa em flagrante, devendo: I - esclarecer o que é a audiência de custódia e sua finalidade; II - assegurar que a pessoa presa não esteja algemada, salvo em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia; III - perguntar sobre as circunstâncias da sua prisão; IV - perguntar se foi informado sobre seus direitos constitucionais.",
+      "palavras_chave": ["audiência de custódia", "prisão em flagrante", "24 horas", "autoridade judicial", "Resolução CNJ 213", "apresentação do preso"],
+      "relevante_para_queries": ["q_001", "q_003"]
+    },
+    {
+      "id": "doc_009",
+      "tipo": "codigo",
+      "orgao": "Presidência da República",
+      "numero": "Código de Processo Penal — Arts. 282-316",
+      "data": "1941-12-03",
+      "ementa": "Medidas cautelares diversas da prisão e prisão preventiva.",
+      "texto": "Art. 282. As medidas cautelares previstas neste Título deverão ser aplicadas observando-se a: I - necessidade para aplicação da lei penal, para a investigação ou a instrução criminal e, nos casos expressamente previstos, para evitar a prática de infrações penais; II - adequação da medida à gravidade do crime, circunstâncias do fato e condições pessoais do indiciado ou acusado. Art. 312. A prisão preventiva poderá ser decretada como garantia da ordem pública, da ordem econômica, por conveniência da instrução criminal ou para assegurar a aplicação da lei penal, quando houver prova da existência do crime e indício suficiente de autoria e de perigo gerado pelo estado de liberdade do imputado. Art. 313. Nos termos do art. 312 deste Código, será admitida a decretação da prisão preventiva: I - nos crimes dolosos punidos com pena privativa de liberdade máxima superior a 4 (quatro) anos. Parágrafo único. Também será admitida a prisão preventiva quando houver dúvida sobre a identidade civil da pessoa ou quando esta não fornecer elementos suficientes para esclarecê-la.",
+      "palavras_chave": ["prisão preventiva", "medidas cautelares", "art. 312 CPP", "garantia da ordem pública", "instrução criminal", "fumus comissi delicti"],
+      "relevante_para_queries": ["q_001", "q_003", "q_010"]
+    },
+    {
+      "id": "doc_010",
+      "tipo": "acordao",
+      "tribunal": "TJSP",
+      "numero": "APL 1234567-89.2023.8.26.0100",
+      "data": "2024-01-22",
+      "ementa": "APELAÇÃO. TRÁFICO DE DROGAS. DOLO. DESCONHECIMENTO DA SUBSTÂNCIA. AUSÊNCIA DE ELEMENTO SUBJETIVO DO TIPO. ABSOLVIÇÃO.",
+      "texto": "A caracterização do tráfico de drogas exige a presença do elemento subjetivo do tipo, qual seja, o dolo — consciência e vontade de realizar a conduta típica. No caso em tela, a defesa comprovou mediante documentos e testemunhos que o apelante desconhecia a natureza entorpecente da substância transportada, tendo sido arregimentado como entregador de encomenda mediante pagamento. A ausência de conhecimento sobre o conteúdo da embalagem afasta o dolo, elemento subjetivo essencial para a configuração do crime de tráfico. A simples guarda ou transporte físico da substância, sem o elemento volitivo consciente, não configura o tipo penal do art. 33 da Lei 11.343/2006. Provimento do recurso para absolver o apelante nos termos do art. 386, III, do CPP.",
+      "palavras_chave": ["tráfico de drogas", "dolo", "elemento subjetivo", "animus", "desconhecimento", "absolvição", "art. 33 Lei 11.343"],
+      "relevante_para_queries": ["q_005", "q_009"]
+    },
+    {
+      "id": "doc_011",
+      "tipo": "doutrina",
+      "autor": "NUCCI, Guilherme de Souza",
+      "obra": "Código de Processo Penal Comentado",
+      "edicao": "22ª ed.",
+      "data": "2023-01-01",
+      "ementa": "Comentários sobre interceptação telefônica e cadeia de custódia das provas digitais.",
+      "texto": "A interceptação telefônica, regulada pela Lei 9.296/1996, constitui medida excepcional e invasiva que exige autorização judicial fundamentada. Os requisitos cumulativos são: (i) indícios razoáveis de autoria ou participação em infração penal; (ii) impossibilidade de obtenção da prova por outros meios; (iii) o fato investigado deve ser punido com reclusão. A cadeia de custódia das provas digitais, inserida expressamente no CPP pelos artigos 158-A a 158-F pela Lei 13.964/2019 (Pacote Anticrime), estabelece o conjunto de procedimentos utilizados para manter e documentar a história cronológica do vestígio coletado, desde seu reconhecimento até o descarte. A quebra da cadeia de custódia não implica automaticamente nulidade da prova, dependendo de avaliação sobre a integridade dos dados e o prejuízo à defesa.",
+      "palavras_chave": ["interceptação telefônica", "Lei 9.296/1996", "cadeia de custódia", "provas digitais", "Pacote Anticrime", "vestígio"],
+      "relevante_para_queries": ["q_007", "q_009"]
+    },
+    {
+      "id": "doc_012",
+      "tipo": "acordao",
+      "tribunal": "STF",
+      "numero": "ADI 5.526/DF",
+      "data": "2017-10-11",
+      "ementa": "AÇÃO DIRETA DE INCONSTITUCIONALIDADE. SUSPENSÃO DE DIREITOS POLÍTICOS. MEMBROS DO CONGRESSO NACIONAL. PODERES DO STF.",
+      "texto": "O Supremo Tribunal Federal possui competência para impor, cautelarmente, as medidas cautelares diversas da prisão previstas no art. 319 do CPP aos membros do Congresso Nacional, afastando o exercício do mandato parlamentar. A prerrogativa de foro e a imunidade parlamentar não impedem a imposição de medidas cautelares que não impliquem privação de liberdade. O STF pode, em caráter excepcional e mediante decisão fundamentada, determinar o afastamento cautelar de parlamentar do exercício do mandato quando tal medida for necessária para a instrução criminal ou para evitar reiteração delitiva.",
+      "palavras_chave": ["medidas cautelares", "imunidade parlamentar", "afastamento de mandato", "STF", "prerrogativa de foro", "art. 319 CPP"],
+      "relevante_para_queries": ["q_003", "q_010"]
+    },
+    {
+      "id": "doc_013",
+      "tipo": "boletim_ocorrencia",
+      "orgao": "Delegacia de Furtos e Roubos — PCSP",
+      "numero": "BO-2024-SP-10043421",
+      "data": "2024-06-10",
+      "ementa": "BOLETIM DE OCORRÊNCIA — ROUBO CIRCUNSTANCIADO — EMPREGO DE ARMA DE FOGO E CONCURSO DE AGENTES",
+      "texto": "Aos dez dias do mês de junho de dois mil e vinte e quatro, comparecem nesta Delegacia a vítima FULANO DA SILVA, informando que foi abordado por dois indivíduos, ambos portando armas de fogo, que anunciaram o assalto e subtraíram bens avaliados em R$ 3.500,00. A vítima descreve um dos autores: masculino, estatura mediana, usando boné azul e camiseta branca. Foram acionadas viaturas para patrulhamento na área. Um dos suspeitos foi detido a três quarteirões do local, portando objeto compatível com a descrição da vítima. Instaurado flagrante delito pela prática do crime de roubo circunstanciado (art. 157, § 2º, I e II, CP). O preso foi apresentado ao Plantão Policial para ratificação do auto de prisão em flagrante.",
+      "palavras_chave": ["roubo circunstanciado", "arma de fogo", "concurso de agentes", "flagrante delito", "boletim de ocorrência", "art. 157 CP"],
+      "relevante_para_queries": ["q_001", "q_006", "q_010"]
+    }
+  ],
+  "queries_baseline": [
+    {
+      "id": "q_001",
+      "query_original": "Podem prender alguém sem mandado?",
+      "query_tecnica": "Quais são os requisitos legais para prisão em flagrante delito sem mandado judicial?",
+      "query_hyde": "A prisão sem mandado judicial é autorizada nos casos de flagrante delito, conforme o art. 302 do CPP, que elenca as hipóteses de flagrante próprio, impróprio e presumido. A Constituição Federal no art. 5º, LXI, estabelece que ninguém será preso senão em flagrante delito ou por ordem escrita e fundamentada de autoridade judiciária competente.",
+      "query_stepback": "Quais são as modalidades de prisão no direito processual penal brasileiro?",
+      "resposta_esperada": "A prisão sem mandado é permitida em caso de flagrante delito (art. 302 CPP) ou quando há ingresso em domicílio com fundadas razões de flagrante (RE 603.616/RO). Após a prisão, o preso deve ser apresentado ao juiz em até 24 horas (audiência de custódia — Resolução CNJ 213/2015).",
+      "documentos_relevantes": ["doc_004", "doc_008", "doc_009", "doc_013"],
+      "dificuldade": "media"
+    },
+    {
+      "id": "q_002",
+      "query_original": "Policial pode ler mensagens do celular do suspeito?",
+      "query_tecnica": "O acesso ao conteúdo de dispositivo móvel apreendido em flagrante exige autorização judicial?",
+      "query_hyde": "O Superior Tribunal de Justiça pacificou entendimento de que o acesso aos dados digitais armazenados em celular apreendido, mesmo em flagrante lícito, exige autorização judicial específica, sendo ilícita a prova obtida sem tal autorização por violação ao art. 5º, X, da Constituição Federal.",
+      "query_stepback": "Quais são os limites constitucionais na apreensão e acesso a dados digitais pela autoridade policial?",
+      "resposta_esperada": "Não. Conforme HC 598.886/SC (STJ), o acesso ao conteúdo do celular sem autorização judicial é prova ilícita, mesmo que o aparelho tenha sido apreendido licitamente em flagrante.",
+      "documentos_relevantes": ["doc_007", "doc_001"],
+      "dificuldade": "alta"
+    },
+    {
+      "id": "q_003",
+      "query_original": "O suspeito é obrigado a falar na delegacia?",
+      "query_tecnica": "O investigado tem direito ao silêncio durante interrogatório policial e quais são as consequências processuais do exercício desse direito?",
+      "query_hyde": "O art. 5º, LXIII, da Constituição Federal assegura ao preso o direito de permanecer calado, sendo esta garantia extensível ao investigado em liberdade. O interrogatório é meio de defesa, não de prova, razão pela qual o silêncio do acusado não pode ser interpretado em seu desfavor.",
+      "query_stepback": "Quais são os direitos constitucionais do investigado ou acusado no processo penal brasileiro?",
+      "resposta_esperada": "Não. O direito ao silêncio é garantia constitucional (art. 5º, LXIII, CF). O investigado não é obrigado a falar e o silêncio não pode ser usado contra ele. Conforme STJ (RHC 99.735/MG), confissão sem advertência dos direitos é prova ilícita.",
+      "documentos_relevantes": ["doc_002", "doc_008", "doc_009"],
+      "dificuldade": "baixa"
+    },
+    {
+      "id": "q_004",
+      "query_original": "O advogado pode ver o inquérito policial?",
+      "query_tecnica": "Qual é o alcance do direito de acesso do defensor ao inquérito policial conforme a Súmula Vinculante 14 do STF?",
+      "query_hyde": "A Súmula Vinculante 14 do Supremo Tribunal Federal garante ao defensor constituído acesso amplo aos elementos de prova já documentados no procedimento investigatório. O acesso abrange documentos, laudos e depoimentos documentados, mas não se estende às diligências em andamento.",
+      "query_stepback": "Quais são as garantias do direito de defesa na fase de inquérito policial?",
+      "resposta_esperada": "Sim. A Súmula Vinculante 14 do STF garante ao defensor acesso amplo aos elementos de prova já documentados no inquérito. O descumprimento enseja reclamação ao STF.",
+      "documentos_relevantes": ["doc_005", "doc_002"],
+      "dificuldade": "baixa"
+    },
+    {
+      "id": "q_005",
+      "query_original": "Como provar que o réu tinha intenção de matar?",
+      "query_tecnica": "Quais são os elementos probatórios para comprovação do dolo homicida (animus necandi) e do elemento subjetivo do tipo penal?",
+      "query_hyde": "A comprovação do dolo homicida, denominado animus necandi, decorre de elementos objetivos e circunstanciais analisados pelo perito e pelo julgador: a localização dos ferimentos, a potência letal do instrumento utilizado, a trajetória balística no caso de arma de fogo, e o comportamento do agente antes e após o fato.",
+      "query_stepback": "Como se prova o elemento subjetivo do tipo penal nos crimes dolosos?",
+      "resposta_esperada": "O dolo homicida (animus necandi) é provado por elementos objetivos: localização dos ferimentos, trajetória balística (conforme LP-2024-00423), instrumento utilizado. O laudo pericial é central. Nos crimes de tráfico (doc_010), o dolo exige que o agente soubesse da natureza da substância.",
+      "documentos_relevantes": ["doc_006", "doc_010", "doc_011"],
+      "dificuldade": "alta"
+    },
+    {
+      "id": "q_006",
+      "query_original": "Precisa de mandado para entrar na casa do suspeito?",
+      "query_tecnica": "Quais são as condições para entrada forçada em domicílio sem mandado judicial conforme jurisprudência do STF?",
+      "query_hyde": "O Supremo Tribunal Federal, no RE 603.616/RO, fixou tese em repercussão geral estabelecendo que a entrada forçada em domicílio sem mandado judicial somente é lícita quando amparada em fundadas razões, devidamente justificadas, que indiquem ocorrência de flagrante delito no interior da residência.",
+      "query_stepback": "Qual é a proteção constitucional ao domicílio e suas exceções no direito brasileiro?",
+      "resposta_esperada": "Em regra, sim. O domicílio é inviolável (art. 5º, XI, CF). A exceção para flagrante delito exige fundadas razões concretas (RE 603.616/RO). Mera denúncia anônima não é suficiente.",
+      "documentos_relevantes": ["doc_004", "doc_007", "doc_013"],
+      "dificuldade": "media"
+    },
+    {
+      "id": "q_007",
+      "query_original": "Polícia pode grampear o telefone sem autorização?",
+      "query_tecnica": "Quais são os requisitos legais para interceptação telefônica e consequências da interceptação sem autorização judicial?",
+      "query_hyde": "A Lei 9.296/1996 estabelece os requisitos para autorização judicial de interceptação telefônica. A interceptação sem autorização judicial constitui crime (art. 10 da Lei 9.296/1996) e produz prova ilícita, inadmissível no processo (art. 5º, LVI, CF/88).",
+      "query_stepback": "Quais são as regras para produção de prova mediante interceptação de comunicações no processo penal brasileiro?",
+      "resposta_esperada": "Não. A interceptação telefônica exige autorização judicial (Lei 9.296/1996) com requisitos cumulativos. Sem autorização, a prova é ilícita (art. 5º, LVI, CF) e constitui crime.",
+      "documentos_relevantes": ["doc_001", "doc_007", "doc_011"],
+      "dificuldade": "media"
+    },
+    {
+      "id": "q_008",
+      "query_original": "Posso ser interrogado sem meu advogado presente?",
+      "query_tecnica": "O investigado tem direito à presença de advogado durante o interrogatório policial e quais são as consequências da ausência do defensor?",
+      "query_hyde": "A presença de advogado no interrogatório policial, embora não seja requisito de validade formal do ato, é direito do investigado conforme a Súmula Vinculante 14 e o art. 5º, LXIII, da Constituição. A ausência do defensor, combinada com a ausência de advertência sobre o direito ao silêncio, pode ensejar nulidade da prova colhida.",
+      "query_stepback": "Quais são as garantias processuais do investigado durante a fase policial?",
+      "resposta_esperada": "Tecnicamente sim, mas com ressalvas. O STJ (RHC 99.735/MG) entende que confissão sem advertência prévia dos direitos é ilícita. O advogado tem direito de acesso ao inquérito (SV 14). A ausência do advogado combinada com falta de advertência pode anular a prova.",
+      "documentos_relevantes": ["doc_002", "doc_005"],
+      "dificuldade": "alta"
+    },
+    {
+      "id": "q_009",
+      "query_original": "Como garantir que a prova não foi adulterada?",
+      "query_tecnica": "Quais são os procedimentos de cadeia de custódia para garantir a integridade dos vestígios coletados conforme o Pacote Anticrime?",
+      "query_hyde": "A Lei 13.964/2019 (Pacote Anticrime) inseriu os arts. 158-A a 158-F no CPP, regulamentando a cadeia de custódia dos vestígios. O procedimento abrange desde o reconhecimento do vestígio até o descarte, incluindo coleta, acondicionamento, transporte, recebimento, processamento, armazenamento e descarte documentados.",
+      "query_stepback": "Quais são os procedimentos de preservação e documentação de provas no processo penal brasileiro?",
+      "resposta_esperada": "A cadeia de custódia (arts. 158-A a 158-F CPP — Pacote Anticrime) documenta toda a história do vestígio. O laudo pericial (como o LP-2024-00423) é peça central. Para dados digitais, aplica-se protocolo específico descrito por Nucci (doc_011).",
+      "documentos_relevantes": ["doc_006", "doc_010", "doc_011"],
+      "dificuldade": "media"
+    },
+    {
+      "id": "q_010",
+      "query_original": "Quando o juiz pode decretar prisão preventiva?",
+      "query_tecnica": "Quais são os pressupostos e requisitos para decretação de prisão preventiva conforme o art. 312 do CPP?",
+      "query_hyde": "O art. 312 do Código de Processo Penal, com redação dada pela Lei 13.964/2019, estabelece que a prisão preventiva poderá ser decretada como garantia da ordem pública, da ordem econômica, por conveniência da instrução criminal ou para assegurar a aplicação da lei penal, quando houver prova da existência do crime, indício suficiente de autoria e perigo gerado pelo estado de liberdade do imputado.",
+      "query_stepback": "Quais são as modalidades e fundamentos das medidas cautelares pessoais no processo penal brasileiro?",
+      "resposta_esperada": "A prisão preventiva exige: (i) fumus comissi delicti (prova do crime + indícios de autoria) e (ii) periculum libertatis (um dos fundamentos do art. 312 CPP). Após o Pacote Anticrime, a mera gravidade abstrata do crime não basta. É sempre subsidiária às cautelares do art. 319.",
+      "documentos_relevantes": ["doc_009", "doc_012", "doc_013"],
+      "dificuldade": "alta"
+    }
+  ]
+}
