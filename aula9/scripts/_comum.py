@@ -51,7 +51,7 @@ def config_groq():
     NAO usamos GROQ_LLM_MODEL aqui; use AULA9_LLM_MODEL se quiser trocar.
     """
     return (os.getenv("GROQ_API_KEY", ""),
-            os.getenv("GROQ_LLM_MODEL", "llama-3.1-8b-instant"),
+            os.getenv("GROQ_LLM_MODEL", "llama-3.3-70b-versatile"),
             os.getenv("GROQ_LLM_HOST", "https://api.groq.com/openai/v1"))
 
 
