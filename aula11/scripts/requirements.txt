@@ -17,7 +17,8 @@ requests>=2.31
 llmlingua>=0.2               # baixa um encoder multilingue (~560MB); roda em CPU
 
 # --- 04 ColBERT (late interaction) ---
-ragatouille>=0.0.8           # puxa torch + faiss; baixa colbertv2 (~440MB)
+pylate>=1.1                  # ColBERT em PyTorch puro (Windows/CPU, SEM compilador C++)
+                            # (substitui o ragatouille, que exige MSVC/cl.exe no Windows)
 
 # --- 05 Multimodal (OCR + CLIP sobre PDFs) ---
 sentence-transformers>=3.0   # CLIP clip-ViT-B-32 (puxa torch; baixa ~600MB)

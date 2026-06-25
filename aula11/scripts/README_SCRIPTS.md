@@ -61,11 +61,15 @@ pip install llmlingua
 python 03_compressao_llmlingua.py --pergunta "o que caracteriza o crime de roubo?" --taxa 0.5
 ```
 
-### `04_colbert_ragatouille.py` — ColBERT vs busca densa · pesado
-Indexa com ColBERTv2 (RAGatouille) e compara com a busca densa para a mesma query.
+### `04_colbert_ragatouille.py` — ColBERT vs busca densa · médio
+ColBERT (late interaction) via **PyLate** (PyTorch puro) comparado com a busca densa.
+Usa `pylate.rank.rerank` (sem índice PLAID, pois o corpus é pequeno) — **roda em
+Windows/CPU sem compilador C++**, ao contrário do ragatouille/colbert clássico (que exige
+o MSVC `cl.exe`).
 ```bash
-pip install ragatouille
+pip install pylate
 python 04_colbert_ragatouille.py --pergunta "prazo de recurso de apelacao"
+# ColBERT moderno (melhor em CPU): AULA11_COLBERT_MODEL=lightonai/GTE-ModernColBERT-v1
 ```
 
 ### `05_multimodal_clip.py` — OCR + CLIP + ColPali sobre PDFs · pesado
@@ -112,7 +116,7 @@ python 06_dspy_otimizacao.py --n-treino 5
 | 02_time_aware | Time-Aware | leve | — (OpenSearch puro) |
 | 03_compressao_llmlingua | Compressão | médio | llmlingua |
 | 06_dspy_otimizacao | DSPy | médio | dspy-ai |
-| 04_colbert_ragatouille | ColBERT | pesado | ragatouille (torch+faiss) |
+| 04_colbert_ragatouille | ColBERT | médio | pylate (torch; sem compilador) |
 | 05_multimodal_clip | Multimodal | pesado | sentence-transformers + pillow |
 
 > `_comum.py` não é executado: carrega o `.env`, o corpus benchmark, e os blocos comuns
@@ -128,7 +132,11 @@ python 06_dspy_otimizacao.py --n-treino 5
   didático e robusto a mapeamento de data.
 - **As técnicas pesadas baixam modelos grandes na 1ª execução** (ColBERTv2 ~440MB, CLIP
   ~600MB, LLMLingua-2 ~560MB). Rode com internet e espaço em disco.
-- **`faiss` no Windows** (ColBERT) pode exigir `pip install faiss-cpu` à parte se a
-  instalação da ragatouille não o trouxer.
+- **ColBERT no Windows/CPU:** usamos **PyLate** (PyTorch puro) justamente para evitar o
+  erro do `ragatouille`/`colbert` clássico, que compila uma extensão C++ em runtime e
+  exige o Visual Studio Build Tools (`cl.exe`). PyLate não precisa de compilador.
+- **ColPali (modo `--modo colpali` do 05) precisa de GPU na prática:** é um VLM de ~3B; em
+  CPU é muito lento e o `flash-attn` não instala no Windows sem CUDA. Sem GPU, rode o
+  ColPali no Google Colab ou use os modos `visual`/`texto`/`hibrido`.
 - **Não são exclusivas:** em produção dá para combinar (ex.: ColBERT + Time-Aware +
   Compressão no mesmo pipeline).

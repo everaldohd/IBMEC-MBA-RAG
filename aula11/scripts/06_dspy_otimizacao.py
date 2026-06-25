@@ -100,6 +100,8 @@ def main():
     print("\nLeitura: o DSPy injeta instrucoes/exemplos escolhidos por bootstrapping. "
           "Use dspy.inspect_history(n=1) para ver o prompt final compilado.")
 
+    print(dspy.inspect_history(n=1))
+
 
 if __name__ == "__main__":
     main()

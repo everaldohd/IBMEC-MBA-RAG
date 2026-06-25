@@ -83,8 +83,9 @@ def checar_opcionais():
     print("-" * 60)
     print("Libs OPCIONAIS (cada uma so e necessaria para o seu script):")
     print(f"  [03 Compressao] llmlingua          : {'OK' if tem('llmlingua') else 'faltando -> pip install llmlingua'}")
-    print(f"  [04 ColBERT]    ragatouille+torch  : {'OK' if tem('ragatouille') and tem('torch') else 'faltando -> pip install ragatouille'}")
-    print(f"  [05 Multimodal] sentence-transformers+PIL : {'OK' if tem('sentence_transformers') and tem('PIL') else 'faltando -> pip install sentence-transformers pillow'}")
+    print(f"  [04 ColBERT]    pylate             : {'OK' if tem('pylate') else 'faltando -> pip install pylate'}")
+    print(f"  [05 Multimodal] sentence-transformers+PIL+pymupdf : {'OK' if tem('sentence_transformers') and tem('PIL') and (tem('fitz') or tem('pymupdf')) else 'faltando -> pip install sentence-transformers pillow pymupdf docling'}")
+    print(f"  [05 ColPali]    byaldi             : {'OK' if tem('byaldi') else 'faltando -> pip install byaldi (pesado/GPU; ver README)'}")
     print(f"  [06 DSPy]       dspy               : {'OK' if tem('dspy') else 'faltando -> pip install dspy-ai'}")
 
 
