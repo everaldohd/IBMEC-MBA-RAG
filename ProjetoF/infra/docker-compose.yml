@@ -10,8 +10,6 @@
 # Pré-requisito: criar arquivo .env com as variáveis abaixo.
 # Template: copie .env.example para .env e preencha.
 
-version: "3.8"
-
 services:
 
   # ---- OpenSearch: Vector DB + BM25 ----
@@ -20,9 +18,9 @@ services:
     container_name: opensearch
     environment:
       - discovery.type=single-node
-      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Admin@RAG1234!
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Cust0dia!RAG2026
       - plugins.security.disabled=true          # SOMENTE DESENVOLVIMENTO
-      - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
+      - OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g
     volumes:
       - opensearch_data:/usr/share/opensearch/data
     ports:
@@ -65,7 +63,7 @@ services:
       - OPENSEARCH_HOST=opensearch
       - OPENSEARCH_PORT=9200
       - OPENSEARCH_USER=admin
-      - OPENSEARCH_PASS=Admin@RAG1234!
+      - OPENSEARCH_PASS=Cust0dia!RAG2026
       - OPENSEARCH_INDEX=rag_juridico_v1
       - LANGFUSE_PUBLIC_KEY=${LANGFUSE_PUBLIC_KEY}
       - LANGFUSE_SECRET_KEY=${LANGFUSE_SECRET_KEY}

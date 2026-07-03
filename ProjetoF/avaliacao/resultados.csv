@@ -1,0 +1,2 @@
+exp,fase,mudanca,tecnica,top_k,hit@5,recall@5,mrr,ndcg@10,ragas_faith,ragas_ans_rel,ragas_ctx_recall,latencia_media_s,n_queries,n_falhas,observacao
+exp01_baseline,Fase 0,"baseline: chunking=auto (hierarquico), embedding=nomic-embed-text, busca=baseline, top_k=10",baseline,10,0.6333,0.4222,0.3512,0.3381,,,,2.721,30,0,

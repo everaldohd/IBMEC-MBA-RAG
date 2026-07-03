@@ -13,3 +13,6 @@ aula12/projeto_final/rag_storage/
 *.log
 ProjetoF/RESUMO_DIRETORIOS.md
 CLAUDE.md
+ProjetoF/.venv_pf/
+ProjetoF/rag_storage/
+ProjetoF/uploads/
