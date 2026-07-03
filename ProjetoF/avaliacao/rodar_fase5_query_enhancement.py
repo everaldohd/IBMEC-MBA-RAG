@@ -11,6 +11,18 @@ NAO reindexa nada: a extracao/chunking/embedding continuam os mesmos da Fase 4
 busca. Por isso este script nao tem etapa de limpar/reindexar OpenSearch, so roda a
 avaliacao de retrieval 3 vezes.
 
+IMPORTANTE (licao da 1a tentativa desta fase): o indice no OpenSearch continua na
+dimensao da Fase 4 (2560, qwen3-embedding:4b) porque nunca foi apagado - mas a variavel
+de ambiente EMBEDDING_MODEL que o app usa para saber COM QUAL MODELO EMBEDAR A QUERY
+(app/config.py::config_ollama) so foi setada dentro do processo Python do script da
+Fase 4 (rodar_fase4_hibrida_topk.py) e nao persiste em .env nem no SO - cada novo
+processo (como este script) volta a usar o default 'nomic-embed-text' (768d) se
+ninguem setar de novo. Isso causa erro do OpenSearch ("Query vector has invalid
+dimension: 768. Dimension should be: 2560"), porque a query e embedada com 768d contra
+um indice de 2560d. Por isso este script mede a dimensao e seta EMBEDDING_MODEL de
+novo no INICIO, antes de qualquer chamada a avaliar_recuperacao - e as Fases 6-8 (que
+tambem herdam esta mesma base) precisam repetir esse mesmo cuidado.
+
 Diferenca importante em relacao as Fases 1-4: multi_query/rag_fusion/step_back fazem
 1 chamada de LLM (Groq) por pergunta para reescrever/gerar variacoes da query - isso e
 intrinseco a tecnica (ver avaliar_recuperacao.py::construir_retrieval_only). Sao 30
@@ -30,6 +42,7 @@ Uso (de dentro de ProjetoF/, venv ativado, precisa de OpenSearch + Ollama + Groq
 """
 
 import csv
+import os
 import sys
 from pathlib import Path
 
@@ -38,7 +51,28 @@ PASTA_PROJETO = PASTA_AVAL.parent
 sys.path.insert(0, str(PASTA_PROJETO))
 
 TOP_K = 10
+MODELO_BASE = "qwen3-embedding:4b"   # herdado da Fase 4 - precisa ser re-setado no env
 BASE_DESCRICAO = "Docling+hierarquico+qwen3-embedding:4b (mesma base da Fase 4)"
+
+
+def medir_dimensao(tag):
+    from app import config
+    from haystack_integrations.components.embedders.ollama import OllamaTextEmbedder
+    base_url, _ = config.config_ollama()
+    emb = OllamaTextEmbedder(model=tag, url=base_url)
+    vetor = emb.run(text="teste de dimensao do embedding")["embedding"]
+    return len(vetor)
+
+
+def preparar_ambiente_embedding():
+    """Reseta EMBEDDING_MODEL/DIMENSAO_EMBEDDING neste processo (ver docstring do
+    modulo) - o indice no OpenSearch ja esta na base certa desde a Fase 4, so o
+    processo Python precisa ser lembrado de qual modelo embedar a query."""
+    from app import config
+    dim = medir_dimensao(MODELO_BASE)
+    config.DIMENSAO_EMBEDDING[MODELO_BASE.split(":")[0].lower()] = dim
+    os.environ["EMBEDDING_MODEL"] = MODELO_BASE
+    print(f"Ambiente preparado: EMBEDDING_MODEL={MODELO_BASE} (dimensao={dim})\n")
 
 # (tecnica, top_k) -> nome do experimento
 COMBINACOES = [
@@ -60,6 +94,8 @@ def exps_ja_registrados(caminho_csv):
 def main():
     print("== Fase 5: query enhancement (multi_query / rag_fusion / step_back) ==")
     print(f"   Base (sem reindexar - herdada da Fase 4): {BASE_DESCRICAO}\n")
+
+    preparar_ambiente_embedding()
 
     import avaliar_recuperacao as av
 
