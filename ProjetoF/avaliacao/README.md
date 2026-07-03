@@ -99,10 +99,22 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase4_hibrida_topk.py
   ```
+- `rodar_fase5_query_enhancement.py` — Fase 5 (Seção 7): testa as 3 técnicas de
+  query enhancement já implementadas em `app/busca_avancada.py` (`multi_query`,
+  `rag_fusion`, `step_back`) contra a busca densa pura (`exp10`, mesma base), no
+  `top_k=10` (ponto de equilíbrio confirmado na Fase 4). **Não reindexa nada** —
+  extração/chunking/embedding continuam os da Fase 4
+  (Docling+`hierarquico`+`qwen3-embedding:4b`); a única variável é a técnica de
+  busca. Diferença das fases anteriores: `multi_query`/`rag_fusion`/`step_back`
+  fazem 1 chamada de LLM (Groq) por pergunta para reescrever a query (intrínseco
+  à técnica, sem geração de resposta final). Uso:
+  ```
+  python avaliacao/rodar_fase5_query_enhancement.py
+  ```
 - `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
   Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
 - `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
   scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
   `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`/
-  `rodar_fase4_hibrida_topk.py`; colunas seguem o template da Seção 7 do
-  `Roteiro_Final.md`).
+  `rodar_fase4_hibrida_topk.py`/`rodar_fase5_query_enhancement.py`; colunas
+  seguem o template da Seção 7 do `Roteiro_Final.md`).

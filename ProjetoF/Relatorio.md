@@ -277,9 +277,21 @@ experimentos (que já tinham completado 30/30) foram pulados.)*
 Docling+hierárquico+qwen3-embedding:4b para a Fase 5 em diante, por causa da mudança
 de metodologia isolada→progressiva, ver Seção 8.1.)*
 
-### Fase 5 — Query enhancement
+### Fase 5 — Query enhancement (`exp17`–`exp19`)
 
-`[PENDENTE]`
+**Hipótese:** reescrever a pergunta original (gerar variações ou uma versão mais
+genérica) deveria ajudar a recuperar trechos que a formulação original, sozinha, não
+acha — sobretudo nas perguntas `reformulável` (linguagem coloquial) e `multihop`
+(Seção 2).
+
+**Mudança:** testadas as 3 técnicas de query enhancement já implementadas em
+`app/busca_avancada.py` — `multi_query` (LLM gera variações, funde por dedup),
+`rag_fusion` (mesma ideia, funde por RRF) e `step_back` (LLM gera uma pergunta mais
+geral, busca [específica + geral]) — contra a busca densa pura (`exp10`), todas em
+`top_k=10` (ponto de equilíbrio confirmado na Fase 4). Nenhuma reindexação: a base
+segue Docling + `hierárquico` + `qwen3-embedding:4b`, herdada da Fase 4
+(`avaliacao/rodar_fase5_query_enhancement.py`). `[PENDENTE]` resultado — script criado
+mas ainda não executado.
 
 ### Fase 6 — Reranking
 
