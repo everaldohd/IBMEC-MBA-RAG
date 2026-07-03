@@ -290,8 +290,36 @@ acha — sobretudo nas perguntas `reformulável` (linguagem coloquial) e `multih
 geral, busca [específica + geral]) — contra a busca densa pura (`exp10`), todas em
 `top_k=10` (ponto de equilíbrio confirmado na Fase 4). Nenhuma reindexação: a base
 segue Docling + `hierárquico` + `qwen3-embedding:4b`, herdada da Fase 4
-(`avaliacao/rodar_fase5_query_enhancement.py`). `[PENDENTE]` resultado — script criado
-mas ainda não executado.
+(`avaliacao/rodar_fase5_query_enhancement.py`).
+
+**Resultado (parcial — `exp17_multi_query` ainda pendente, ver nota técnica):**
+
+| Combinação | Hit@5 | Recall@5 | MRR | NDCG@10 |
+|---|---|---|---|---|
+| densa top_k=10 (exp10, referência) | 0,933 | 0,700 | 0,661 | 0,775 |
+| multi_query (exp17) | `[PENDENTE]` | `[PENDENTE]` | `[PENDENTE]` | `[PENDENTE]` |
+| rag_fusion (exp18) | 0,933 | 0,706 | 0,579 | 0,723 |
+| step_back (exp19) | 0,900 | 0,706 | 0,624 | 0,756 |
+
+**Análise (parcial):** de novo o padrão da Fase 4 se repete — as técnicas de query
+enhancement medidas até agora ficaram **abaixo** da busca densa pura no MRR e no
+NDCG@10, com ganho só marginal em Recall@5 (0,706 vs 0,700). Hipótese: com a busca
+densa já tão forte (`qwen3-embedding:4b`), somar consultas extras (variações do
+`rag_fusion`, a pergunta genérica do `step_back`) traz para o ranking documentos mais
+diversos mas em média menos precisos, diluindo a posição dos acertos certeiros da
+consulta original — o mesmo mecanismo observado na busca híbrida. Entre as duas
+técnicas medidas, `step_back` (só 2 consultas: original + genérica, fusão por dedup)
+perdeu menos que `rag_fusion` (5 consultas: original + 4 variações, fusão por RRF) —
+reforça a leitura de que "mais consultas fundidas" dilui mais o ranking, não menos.
+
+*(Nota técnica: `multi_query` (`exp17`) falhou duas vezes seguidas por motivos
+diferentes — 1ª tentativa esgotou a cota diária de tokens do Groq (TPD) no meio da
+rodada (11/30 antes de travar); numa nova tentativa, já com uma chave de API nova,
+só 2/30 perguntas passaram (latência média de 30s sugere timeout/retentativas, não
+apenas erro de limite) e a causa exata ainda não foi diagnosticada. Ambas as linhas
+malformadas foram descartadas do `resultados.csv` — `rag_fusion`/`step_back`
+completaram 30/30 normalmente nas mesmas rodadas. `multi_query` precisa ser rodado de
+novo antes de fechar a análise desta fase.)*
 
 ### Fase 6 — Reranking
 
@@ -325,6 +353,10 @@ mas ainda não executado.
 | exp14_hibrida_top5 | Fase 4 | tecnica=híbrida (BM25+densa/RRF), top_k=5, base=Docling+hierárquico+qwen3-embedding:4b | 0,800 | 0,633 | 0,548 | 0,599 | 3,25 |
 | exp15_hibrida_top10 | Fase 4 | tecnica=híbrida (BM25+densa/RRF), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,900 | 0,683 | 0,587 | 0,682 | 3,27 |
 | exp16_hibrida_top20 | Fase 4 | tecnica=híbrida (BM25+densa/RRF), top_k=20, base=Docling+hierárquico+qwen3-embedding:4b | 0,800 | 0,600 | 0,569 | 0,660 | 3,27 |
+| exp18_rag_fusion | Fase 5 | tecnica=rag_fusion (5 consultas, RRF), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,933 | 0,706 | 0,579 | 0,723 | 7,40 |
+| exp19_step_back | Fase 5 | tecnica=step_back (2 consultas, dedup), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,900 | 0,706 | 0,624 | 0,756 | 4,81 |
+
+*(exp17_multi_query pendente — ver nota técnica na Seção 5, Fase 5)*
 
 *(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
 
