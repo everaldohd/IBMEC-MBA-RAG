@@ -37,6 +37,14 @@ requests>=2.31                # interface -> API
 # --- Utilidades ---
 python-dotenv>=1.0
 
+# --- Avaliacao RAGAS (Fase 8, avaliacao/rodar_fase8_ragas.py) ---
+ragas>=0.2                    # Faithfulness/ResponseRelevancy/ContextPrecision/ContextRecall
+datasets>=2.0                 # usado internamente pelo RAGAS
+langchain-groq>=0.2           # ChatGroq como juiz LLM do RAGAS
+langchain-ollama>=0.2         # OllamaEmbeddings do RAGAS (fallback: langchain-community)
+langchain-community==0.4.1    # PIN: versoes mais novas quebram o import do ragas
+                               # (langchain_community.chat_models.vertexai) - Aula 5/8
+
 # Notas:
 # - LLM (Groq): llama-3.3-70b-versatile (tool calling) -> nao usar gpt-oss (reasoning).
 # - Embedding: nomic-embed-text (Ollama) -> ollama pull nomic-embed-text.

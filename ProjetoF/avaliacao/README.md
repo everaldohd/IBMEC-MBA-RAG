@@ -135,11 +135,28 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase7_hyde.py
   ```
-- `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
-  Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
+- `rodar_fase8_ragas.py` — Fase 8 (Seção 7, avaliação da geração): roda o RAG
+  COMPLETO (busca + geração, via `app/busca_avancada.py::construir`, técnica
+  `baseline`/densa, `top_k=10`) e mede 4 métricas RAGAS (juiz Groq, padrão das
+  Aulas 5/8): `Faithfulness`, `ResponseRelevancy(strictness=1)`,
+  `LLMContextPrecisionWithReference`, `LLMContextRecall`. Roda em 2
+  configurações — `exp23_ragas_baseline` (reindexa para
+  Docling+hierárquico+**nomic-embed-text**, a Fase 0 exata) e
+  `exp24_ragas_melhor` (Docling+hierárquico+**qwen3-embedding:4b**, a melhor
+  config confirmada em todas as fases de recuperação) — e ao final restaura o
+  índice para a melhor config. `context_precision` não tem coluna própria em
+  `resultados.csv` (o template da Seção 7 só prevê `ragas_faith`/
+  `ragas_ans_rel`/`ragas_ctx_recall`) — fica registrado no campo `observacao`.
+  Requer `pip install -r requirements.txt` (adiciona `ragas`, `langchain-groq`,
+  `langchain-ollama`, `langchain-community==0.4.1` — ver nota de pin na Aula 5).
+  Uso:
+  ```
+  python avaliacao/rodar_fase8_ragas.py
+  python avaliacao/rodar_fase8_ragas.py --limite 5   # teste rapido, nao reindexa/nao salva
+  ```
 - `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
   scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
   `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`/
   `rodar_fase4_hibrida_topk.py`/`rodar_fase5_query_enhancement.py`/
-  `rodar_fase6_reranking.py`/`rodar_fase7_hyde.py`; colunas seguem o template
-  da Seção 7 do `Roteiro_Final.md`).
+  `rodar_fase6_reranking.py`/`rodar_fase7_hyde.py`/`rodar_fase8_ragas.py`;
+  colunas seguem o template da Seção 7 do `Roteiro_Final.md`).

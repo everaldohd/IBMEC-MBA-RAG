@@ -438,9 +438,27 @@ com `qwen3-embedding:4b` neste corpus — mas HyDE tem o segundo melhor NDCG@10 
 todas as técnicas alternativas testadas (atrás só do `step_back`), o que o torna a
 técnica avançada mais competitiva da jornada, mesmo perdendo para a referência.
 
-### Fase 8 — RAGAS (avaliação da geração)
+### Fase 8 — RAGAS (avaliação da geração) (`exp23`–`exp24`)
 
-`[PENDENTE]`
+**Hipótese:** melhor contexto recuperado deveria se traduzir em resposta mais fiel e
+relevante — a Fase 3 já mostrou que `qwen3-embedding:4b` recupera muito melhor que
+`nomic-embed-text` (Hit@5 0,933 vs 0,633); a Fase 8 testa se esse ganho de
+*recuperação* também aparece nas métricas de *geração*.
+
+**Mudança:** novo script `avaliacao/rodar_fase8_ragas.py` — roda o RAG completo
+(busca + geração, via `app/busca_avancada.py::construir`, técnica `baseline`/densa,
+`top_k=10`) e mede 4 métricas RAGAS com juiz Groq (padrão das Aulas 5/8):
+`Faithfulness`, `ResponseRelevancy(strictness=1)`, `LLMContextPrecisionWithReference`,
+`LLMContextRecall`. Diferente das Fases 4-7 (que reaproveitavam o índice sem
+reindexar), esta fase reindexa DUAS vezes: `exp23_ragas_baseline` reproduz a Fase 0
+exata (Docling + hierárquico + `nomic-embed-text`) e `exp24_ragas_melhor` usa a
+melhor configuração confirmada em toda a jornada (Docling + hierárquico +
+`qwen3-embedding:4b`) — ao final o índice é restaurado para esta última, estado
+final do projeto. `context_precision` não tem coluna própria em `resultados.csv`
+(o template da Seção 7 do Roteiro só prevê `ragas_faith`/`ragas_ans_rel`/
+`ragas_ctx_recall`); fica registrado no campo `observacao` de cada linha.
+
+`[PENDENTE]` resultado — script criado mas ainda não executado.
 
 ## 6. Tabela consolidada
 
