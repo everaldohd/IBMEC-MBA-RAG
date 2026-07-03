@@ -14,6 +14,11 @@ Tecnicas selecionaveis no /consulta (parametro 'tecnica'):
                   default max(2*top_k, 20)) -> TransformersSimilarityRanker
                   (cross-encoder BAAI/bge-reranker-v2-m3, Aula 3 -> Fase 6 do
                   Roteiro_Final.md) reordena e corta no top_k final pedido.
+  - hyde        : HyDE (Hypothetical Document Embeddings, Aula 6 -> Fase 7 do
+                  Roteiro_Final.md). LLM gera um "documento hipotetico" (um trecho
+                  que PARECE a resposta, no estilo do corpus) -> embeda esse trecho
+                  hipotetico (em vez da pergunta original) -> busca densa com esse
+                  embedding. So 1 chamada de LLM, sem fusao (uma unica busca).
 
 Tudo roda DENTRO de um pipeline Haystack, entao a auto-instrumentacao do LangFuse captura
 ate as chamadas de LLM que reescrevem a pergunta (no mesmo trace).
@@ -28,7 +33,7 @@ from .log import obter_logger
 
 log = obter_logger(__name__)
 
-TECNICAS = ("baseline", "multi_query", "rag_fusion", "step_back", "hibrida", "rerank")
+TECNICAS = ("baseline", "multi_query", "rag_fusion", "step_back", "hibrida", "rerank", "hyde")
 
 MODELO_RERANKER = "BAAI/bge-reranker-v2-m3"   # cross-encoder multilingue (Aula 3)
 
@@ -113,6 +118,34 @@ class BuscarMultiplas:
         return {"documents": docs}
 
 
+@component
+class BuscarPorHyde:
+    """HyDE: embeda o DOCUMENTO HIPOTETICO gerado pelo LLM (nao a pergunta original) e
+    busca no OpenSearch. Usa so a 1a resposta do LLM (sem fusao - uma unica busca)."""
+
+    def __init__(self, document_store, top_k=10):
+        from haystack_integrations.components.embedders.ollama import OllamaTextEmbedder
+        from haystack_integrations.components.retrievers.opensearch import (
+            OpenSearchEmbeddingRetriever,
+        )
+
+        base_url, modelo = config.config_ollama()
+        self.embedder = OllamaTextEmbedder(model=modelo, url=base_url)
+        self.retriever = OpenSearchEmbeddingRetriever(document_store=document_store, top_k=top_k)
+
+    def warm_up(self):
+        if hasattr(self.embedder, "warm_up"):
+            self.embedder.warm_up()
+
+    @component.output_types(documents=List[Document])
+    def run(self, textos: List[str]):
+        hipotetico = textos[0].strip() if textos else ""
+        emb = self.embedder.run(text=hipotetico)["embedding"]
+        docs = self.retriever.run(query_embedding=emb)["documents"]
+        log.info("HyDE: documento hipotetico (%d chars) -> %d docs", len(hipotetico), len(docs))
+        return {"documents": docs}
+
+
 # ---------------------------------------------------------------------------
 # Builder do pipeline por tecnica
 # ---------------------------------------------------------------------------
@@ -184,6 +217,16 @@ def construir(tecnica, top_k, pergunta, top_k_inicial=None):
         inputs = {"embedder": {"text": pergunta}, "ranker": {"query": pergunta},
                   "prompt": {"pergunta": pergunta}}
         return pipe, inputs, "ranker"
+
+    if tecnica == "hyde":
+        pipe.add_component("hyde_prompt", PromptBuilder(template=p["hyde"], required_variables="*"))
+        pipe.add_component("hyde_llm", novo_llm(0.3, 300))
+        pipe.add_component("buscar", BuscarPorHyde(store, top_k=top_k))
+        pipe.connect("hyde_prompt.prompt", "hyde_llm.prompt")
+        pipe.connect("hyde_llm.replies", "buscar.textos")
+        pipe.connect("buscar.documents", "prompt.documents")
+        inputs = {"hyde_prompt": {"pergunta": pergunta}, "prompt": {"pergunta": pergunta}}
+        return pipe, inputs, "buscar"
 
     # tecnicas com reescrita de query
     if tecnica == "step_back":

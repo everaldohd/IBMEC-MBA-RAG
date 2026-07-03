@@ -8,6 +8,7 @@ Chaves:
   - rag             : prompt FINAL da busca (usa {{ documents }} e {{ pergunta }}).
   - variacoes       : gera variacoes da pergunta (multi_query / rag_fusion) - usa {{ pergunta }}.
   - stepback        : gera a pergunta mais geral (step_back) - usa {{ pergunta }}.
+  - hyde            : gera um documento hipotetico (tecnica HyDE, Fase 7) - usa {{ pergunta }}.
   - extracao_system : system prompt do agente que escolhe a tecnica de extracao (texto puro).
 
 IMPORTANTE: os marcadores {{ documents }} / {{ pergunta }} sao obrigatorios nos prompts de
@@ -39,6 +40,14 @@ DEFAULTS = {
         "Dada a pergunta especifica abaixo, escreva UMA pergunta mais ampla e geral "
         "(step-back) que ajude a recuperar contexto de fundo. Responda APENAS com a "
         "pergunta.\n\nPergunta: {{ pergunta }}"
+    ),
+    "hyde": (
+        "Escreva um trecho curto (2 a 4 frases), no estilo de um artigo juridico/academico "
+        "sobre cadeia de custodia da prova pericial, que responda diretamente a pergunta "
+        "abaixo como se fosse um paragrafo extraido do proprio documento. Nao inclua "
+        "ressalvas, nao diga que e uma suposicao ou que voce nao tem certeza - escreva "
+        "como se fosse o trecho real do texto.\n\n"
+        "Pergunta: {{ pergunta }}\nTrecho hipotetico:"
     ),
     "extracao_system": (
         "Voce e um classificador de documentos. A partir dos sinais fornecidos, selecione a "

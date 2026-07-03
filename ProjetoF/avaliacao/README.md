@@ -123,11 +123,23 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase6_reranking.py
   ```
+- `rodar_fase7_hyde.py` — Fase 7 (Seção 7, técnica avançada): testa a nova
+  técnica `hyde` (`app/busca_avancada.py`/`avaliar_recuperacao.py`) — HyDE
+  (Hypothetical Document Embeddings, Aula 6): o LLM gera um documento
+  hipotético (um trecho que PARECE a resposta, no estilo do corpus) e a busca
+  densa é feita pelo embedding desse trecho hipotético, em vez da pergunta
+  original — contra a busca densa pura (`exp10`, mesma base), no `top_k=10`.
+  **Não reindexa nada** — mesma base da Fase 4/5/6. Faz 1 chamada de LLM
+  (Groq) por pergunta para gerar o documento hipotético (intrínseco à
+  técnica, sem geração de resposta final). Uso:
+  ```
+  python avaliacao/rodar_fase7_hyde.py
+  ```
 - `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
   Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
 - `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
   scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
   `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`/
   `rodar_fase4_hibrida_topk.py`/`rodar_fase5_query_enhancement.py`/
-  `rodar_fase6_reranking.py`; colunas seguem o template da Seção 7 do
-  `Roteiro_Final.md`).
+  `rodar_fase6_reranking.py`/`rodar_fase7_hyde.py`; colunas seguem o template
+  da Seção 7 do `Roteiro_Final.md`).

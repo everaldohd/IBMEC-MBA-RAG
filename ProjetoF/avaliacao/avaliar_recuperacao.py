@@ -35,8 +35,8 @@ RECUPERACAO, essa geracao e desperdicio de tokens/tempo - e foi o que estourou o
 limite diario do Groq (TPD) numa rodada anterior. construir_retrieval_only() replica a
 logica de busca_avancada.py SEM os componentes finais de geracao: as tecnicas 'baseline',
 'hibrida' e 'rerank' ficam 100% locais (Ollama + cross-encoder via transformers/torch,
-sem chamada de LLM), so 'multi_query'/'rag_fusion'/'step_back' ainda usam 1 chamada de
-LLM (a reescrita da query, que e intrinseca a tecnica).
+sem chamada de LLM), 'multi_query'/'rag_fusion'/'step_back'/'hyde' usam 1 chamada de LLM
+(a reescrita da query ou a geracao do documento hipotetico, intrinseca a cada tecnica).
 """
 
 import argparse
@@ -110,6 +110,21 @@ def construir_retrieval_only(tecnica, top_k, pergunta, top_k_inicial=None):
         pipe.connect("embedder.embedding", "retriever.query_embedding")
         pipe.connect("retriever.documents", "ranker.documents")
         return pipe, {"embedder": {"text": pergunta}, "ranker": {"query": pergunta}}, "ranker"
+
+    if tecnica == "hyde":
+        # LLM gera um documento hipotetico -> embeda ESSE texto (nao a pergunta) -> busca.
+        # 1 chamada de LLM (intrinseca a tecnica), sem geracao final de resposta.
+        p = prompts.get_prompts()
+        api_key, gmodelo, llm_base = config.config_llm()
+        hyde_llm = OpenAIGenerator(api_key=Secret.from_token(api_key), model=gmodelo,
+                                    api_base_url=llm_base,
+                                    generation_kwargs={"temperature": 0.3, "max_tokens": 300})
+        pipe.add_component("hyde_prompt", PromptBuilder(template=p["hyde"], required_variables="*"))
+        pipe.add_component("hyde_llm", hyde_llm)
+        pipe.add_component("buscar", busca_avancada.BuscarPorHyde(store, top_k=top_k))
+        pipe.connect("hyde_prompt.prompt", "hyde_llm.prompt")
+        pipe.connect("hyde_llm.replies", "buscar.textos")
+        return pipe, {"hyde_prompt": {"pergunta": pergunta}}, "buscar"
 
     # multi_query / rag_fusion / step_back: 1 chamada de LLM p/ reescrever a query
     # (intrinseca a tecnica) - mas SEM a geracao final de resposta.
@@ -256,7 +271,8 @@ def main():
     ap.add_argument("--fase", default="", help='ex.: "Fase 0"')
     ap.add_argument("--mudanca", default="", help="o que mudou nesta rodada (texto livre)")
     ap.add_argument("--tecnica", default="baseline",
-                     choices=["baseline", "multi_query", "rag_fusion", "step_back", "hibrida", "rerank"])
+                     choices=["baseline", "multi_query", "rag_fusion", "step_back", "hibrida",
+                              "rerank", "hyde"])
     ap.add_argument("--top-k", type=int, default=10,
                      help="chunks recuperados por consulta (usa 10 p/ cobrir hit@5/recall@5 e ndcg@10)")
     ap.add_argument("--top-k-inicial", type=int, default=None,

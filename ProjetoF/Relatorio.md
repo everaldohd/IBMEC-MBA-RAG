@@ -388,9 +388,22 @@ pura). Reinstalação do torch com build CUDA
 (`--index-url https://download.pytorch.org/whl/cu126`) foi iniciada em paralelo,
 para acelerar fases futuras que dependam de modelos locais pesados.)*
 
-### Fase 7 — Técnica avançada
+### Fase 7 — Técnica avançada: HyDE (`exp22`)
 
-`[PENDENTE]`
+**Hipótese:** o descasamento de vocabulário entre a pergunta (curta, em linguagem
+natural) e o chunk (trecho de texto jurídico-acadêmico) limita a busca densa pura —
+gerar um "documento hipotético" (um trecho que já se parece com a resposta, no
+estilo do corpus) e embedar ESSE trecho, em vez da pergunta, deveria aproximar o
+vetor de busca do espaço semântico onde os chunks relevantes realmente estão.
+
+**Mudança:** nova técnica `hyde` em `app/busca_avancada.py`/`avaliar_recuperacao.py`
+(HyDE — Hypothetical Document Embeddings, Aula 6) — o LLM (Groq) gera um trecho
+hipotético de 2-4 frases respondendo a pergunta no estilo do artigo, esse trecho é
+embedado com `qwen3-embedding:4b` (não a pergunta original) e usado numa única busca
+densa — sem fusão de múltiplas consultas, ao contrário de `multi_query`/`rag_fusion`
+(Fase 5). Testada contra a busca densa pura (`exp10`, mesma base), em `top_k=10`.
+Nenhuma reindexação: mesma base da Fase 4/5/6 (`avaliacao/rodar_fase7_hyde.py`).
+`[PENDENTE]` resultado — script criado mas ainda não executado.
 
 ### Fase 8 — RAGAS (avaliação da geração)
 
