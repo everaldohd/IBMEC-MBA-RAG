@@ -33,9 +33,9 @@ busca_avancada.construir() monta um pipeline que TERMINA numa geracao de respost
 (o Haystack roda o grafo inteiro, geracao inclusa). Como este script so mede
 RECUPERACAO, essa geracao e desperdicio de tokens/tempo - e foi o que estourou o
 limite diario do Groq (TPD) numa rodada anterior. construir_retrieval_only() replica a
-logica de busca_avancada.py SEM os componentes finais de geracao: a tecnica 'baseline'
-fica 100% local (Ollama), so 'multi_query'/'rag_fusion'/'step_back' ainda usam 1
-chamada de LLM (a reescrita da query, que e intrinseca a tecnica).
+logica de busca_avancada.py SEM os componentes finais de geracao: as tecnicas 'baseline'
+e 'hibrida' ficam 100% locais (Ollama), so 'multi_query'/'rag_fusion'/'step_back' ainda
+usam 1 chamada de LLM (a reescrita da query, que e intrinseca a tecnica).
 """
 
 import argparse
@@ -69,7 +69,8 @@ def construir_retrieval_only(tecnica, top_k, pergunta):
     from haystack.components.generators import OpenAIGenerator
     from haystack.utils import Secret
     from haystack_integrations.components.embedders.ollama import OllamaTextEmbedder
-    from haystack_integrations.components.retrievers.opensearch import OpenSearchEmbeddingRetriever
+    from haystack_integrations.components.retrievers.opensearch import (
+        OpenSearchEmbeddingRetriever, OpenSearchHybridRetriever)
 
     from app import busca_avancada, config, indexacao, prompts
 
@@ -85,6 +86,15 @@ def construir_retrieval_only(tecnica, top_k, pergunta):
         pipe.add_component("retriever", OpenSearchEmbeddingRetriever(document_store=store, top_k=top_k))
         pipe.connect("embedder.embedding", "retriever.query_embedding")
         return pipe, {"embedder": {"text": pergunta}}, "retriever"
+
+    if tecnica == "hibrida":
+        # BM25 (lexico) + denso, fundidos por RRF - tambem 100% local (sem LLM).
+        embedder_hib = OllamaTextEmbedder(model=modelo_emb, url=base_ollama)
+        pipe.add_component("retriever", OpenSearchHybridRetriever(
+            document_store=store, embedder=embedder_hib,
+            top_k_bm25=top_k, top_k_embedding=top_k, top_k=top_k,
+            join_mode="reciprocal_rank_fusion"))
+        return pipe, {"retriever": {"query": pergunta}}, "retriever"
 
     # multi_query / rag_fusion / step_back: 1 chamada de LLM p/ reescrever a query
     # (intrinseca a tecnica) - mas SEM a geracao final de resposta.
@@ -231,7 +241,7 @@ def main():
     ap.add_argument("--fase", default="", help='ex.: "Fase 0"')
     ap.add_argument("--mudanca", default="", help="o que mudou nesta rodada (texto livre)")
     ap.add_argument("--tecnica", default="baseline",
-                     choices=["baseline", "multi_query", "rag_fusion", "step_back"])
+                     choices=["baseline", "multi_query", "rag_fusion", "step_back", "hibrida"])
     ap.add_argument("--top-k", type=int, default=10,
                      help="chunks recuperados por consulta (usa 10 p/ cobrir hit@5/recall@5 e ndcg@10)")
     ap.add_argument("--observacao", default="")

@@ -6,6 +6,10 @@ Tecnicas selecionaveis no /consulta (parametro 'tecnica'):
   - multi_query : LLM gera N variacoes da pergunta -> busca cada uma -> DEDUP por id/score.
   - rag_fusion  : igual ao multi_query, mas funde os rankings com RRF (Reciprocal Rank Fusion).
   - step_back   : LLM gera uma pergunta mais GERAL -> busca [especifica + geral] -> dedup.
+  - hibrida     : busca LEXICA (BM25) + busca DENSA (embedding), fundidas por RRF
+                  (Aula 4 -> Fase 4 do Roteiro_Final.md). Usa o super-componente
+                  OpenSearchHybridRetriever (embute BM25Retriever + EmbeddingRetriever +
+                  DocumentJoiner(join_mode='reciprocal_rank_fusion') internamente).
 
 Tudo roda DENTRO de um pipeline Haystack, entao a auto-instrumentacao do LangFuse captura
 ate as chamadas de LLM que reescrevem a pergunta (no mesmo trace).
@@ -20,7 +24,7 @@ from .log import obter_logger
 
 log = obter_logger(__name__)
 
-TECNICAS = ("baseline", "multi_query", "rag_fusion", "step_back")
+TECNICAS = ("baseline", "multi_query", "rag_fusion", "step_back", "hibrida")
 
 # Os prompts (rag / variacoes / stepback) sao lidos EM RUNTIME de prompts.get_prompts(),
 # para refletirem o que o aluno editar na aba Configuracoes do Gradio.
@@ -113,7 +117,8 @@ def construir(tecnica, top_k, pergunta):
     from haystack.components.generators import OpenAIGenerator
     from haystack.utils import Secret
     from haystack_integrations.components.embedders.ollama import OllamaTextEmbedder
-    from haystack_integrations.components.retrievers.opensearch import OpenSearchEmbeddingRetriever
+    from haystack_integrations.components.retrievers.opensearch import (
+        OpenSearchEmbeddingRetriever, OpenSearchHybridRetriever)
 
     if tecnica not in TECNICAS:
         tecnica = "baseline"
@@ -142,6 +147,17 @@ def construir(tecnica, top_k, pergunta):
         pipe.connect("embedder.embedding", "retriever.query_embedding")
         pipe.connect("retriever.documents", "prompt.documents")
         inputs = {"embedder": {"text": pergunta}, "prompt": {"pergunta": pergunta}}
+        return pipe, inputs, "retriever"
+
+    if tecnica == "hibrida":
+        # super-componente: embute BM25Retriever + EmbeddingRetriever + DocumentJoiner(RRF)
+        embedder_hib = OllamaTextEmbedder(model=modelo_emb, url=base_ollama)
+        pipe.add_component("retriever", OpenSearchHybridRetriever(
+            document_store=store, embedder=embedder_hib,
+            top_k_bm25=top_k, top_k_embedding=top_k, top_k=top_k,
+            join_mode="reciprocal_rank_fusion"))
+        pipe.connect("retriever.documents", "prompt.documents")
+        inputs = {"retriever": {"query": pergunta}, "prompt": {"pergunta": pergunta}}
         return pipe, inputs, "retriever"
 
     # tecnicas com reescrita de query

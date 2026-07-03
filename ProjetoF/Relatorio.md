@@ -220,7 +220,10 @@ tentou de novo só esse modelo.)*
 
 ### Fase 4 — Recuperação base (top_k e busca híbrida)
 
-`[PENDENTE]`
+`[PENDENTE]` — a partir desta fase, a base fixa passa a ser Docling + `hierárquico` +
+`qwen3-embedding:4b` (jornada progressiva, ver Seção 8.1). Testa `hibrida` (BM25 +
+densa via RRF, `OpenSearchHybridRetriever` — nova técnica em `app/busca_avancada.py`)
+contra a busca densa pura, em `top_k` 5/10/20 (`avaliacao/rodar_fase4_hibrida_topk.py`).
 
 ### Fase 5 — Query enhancement
 
@@ -276,6 +279,16 @@ tentou de novo só esse modelo.)*
   `avaliar_recuperacao.py` foi escrito para não rodar a etapa de geração de resposta
   (desnecessária para medir apenas retrieval) — evita gasto de tokens do Groq e o
   risco de estourar o limite diário no meio de uma rodada de 30 perguntas.
+- **A partir da Fase 4, a jornada passou de "isolada" para "progressiva"
+  (decisão do autor, confirmada explicitamente):** as Fases 1-3 testaram cada
+  variável isolada contra o baseline original (exp01, `nomic-embed-text`). A
+  Fase 3 achou um ganho grande (`qwen3-embedding:4b`). Da Fase 4 em diante, a
+  base fixa de cada fase passa a ser a melhor combinação confirmada até ali
+  (Docling + `hierárquico` + `qwen3-embedding:4b`), em vez de continuar
+  isolando contra `nomic-embed-text`. Trade-off consciente: ganhos das
+  próximas fases podem não ser diretamente comparáveis aos ganhos das Fases
+  1-3 (bases diferentes) — por isso cada tabela de fase deixa explícito
+  contra qual base o `Δ` foi medido.
 
 ## 9. Conclusão
 

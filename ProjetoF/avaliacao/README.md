@@ -88,9 +88,21 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase3_embedding.py
   ```
+- `rodar_fase4_hibrida_topk.py` — Fase 4 (Seção 7): a partir daqui a jornada
+  fica PROGRESSIVA — a base fixa passa a ser Docling + `hierarquico` +
+  `qwen3-embedding:4b` (vencedora da Fase 3), em vez de continuar isolando
+  contra `nomic-embed-text`. Testa a nova técnica `hibrida` (BM25 + densa via
+  RRF, `OpenSearchHybridRetriever` — adicionada em
+  `app/busca_avancada.py`/`avaliacao/avaliar_recuperacao.py`) contra a busca
+  densa pura, em `top_k` 5/10/20. **Não restaura o índice ao final** — deixa
+  na nova base para a Fase 5 em diante. Uso:
+  ```
+  python avaliacao/rodar_fase4_hibrida_topk.py
+  ```
 - `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
   Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
 - `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
   scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
-  `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`; colunas seguem o
-  template da Seção 7 do `Roteiro_Final.md`).
+  `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`/
+  `rodar_fase4_hibrida_topk.py`; colunas seguem o template da Seção 7 do
+  `Roteiro_Final.md`).
