@@ -67,8 +67,19 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase1_extracao.py
   ```
+- `rodar_fase2_chunking.py` — Fase 2 (Seção 7): compara as 5 técnicas de
+  chunking (`app/indexacao.py::chunkar`) sobre o MESMO texto extraído
+  (Docling, extração fica fixa). `hierarquico` já foi medido no exp01 e não é
+  reindexado de novo; as outras 4 técnicas geram `exp03_chunk_fixo`,
+  `exp04_chunk_recursivo`, `exp05_chunk_sentenca_janela`,
+  `exp06_chunk_semantico`. Ao final restaura o índice para `hierarquico`
+  (baseline) antes de terminar. Uso:
+  ```
+  python avaliacao/rodar_fase2_chunking.py
+  ```
 - `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
   Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
-- `resultados.csv` — uma linha por experimento (gerado automaticamente pelo
-  `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`; colunas seguem o
-  template da Seção 7 do `Roteiro_Final.md`).
+- `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
+  scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
+  `rodar_fase2_chunking.py`; colunas seguem o template da Seção 7 do
+  `Roteiro_Final.md`).

@@ -1,3 +1,7 @@
 exp,fase,mudanca,tecnica,top_k,hit@5,recall@5,mrr,ndcg@10,ragas_faith,ragas_ans_rel,ragas_ctx_recall,latencia_media_s,n_queries,n_falhas,observacao
 exp01_baseline,Fase 0,"baseline: chunking=auto (hierarquico), embedding=nomic-embed-text, busca=baseline, top_k=10",baseline,10,0.6333,0.4222,0.3512,0.3381,,,,2.721,30,0,
 exp02_extracao_pymupdf,Fase 1,"extracao=PyMuPDF (vs Docling no exp01), chunking=hierarquico fixo p/ isolar a variavel",baseline,10,0.7,0.4889,0.4356,0.4147,,,,2.584,30,0,11 titulos(Docling) vs 0(PyMuPDF); 76146 vs 78430 caracteres
+exp03_chunk_fixo,Fase 2,"chunking=fixo (vs hierarquico no exp01), extracao=Docling fixa",baseline,10,0.4667,0.3056,0.2869,0.3121,,,,2.568,30,0,72 chunks gerados
+exp04_chunk_recursivo,Fase 2,"chunking=recursivo (vs hierarquico no exp01), extracao=Docling fixa",baseline,10,0.6,0.3722,0.4179,0.426,,,,2.902,30,0,81 chunks gerados
+exp05_chunk_sentenca_janela,Fase 2,"chunking=sentenca_janela (vs hierarquico no exp01), extracao=Docling fixa",baseline,10,0.5333,0.3833,0.3382,0.4155,,,,2.582,30,0,240 chunks gerados
+exp06_chunk_semantico,Fase 2,"chunking=semantico (vs hierarquico no exp01), extracao=Docling fixa",baseline,10,0.4,0.3167,0.3361,0.3577,,,,2.567,30,0,96 chunks gerados

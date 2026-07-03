@@ -130,9 +130,46 @@ do PyMuPDF nesta fase ainda não foi "adotado" como configuração corrente; dec
 sobre qual extração vira a base das fases seguintes fica para a Seção 7 deste
 relatório, ao consolidar tudo.)*
 
-### Fase 2 — Chunking
+### Fase 2 — Chunking (`exp03`–`exp06`)
 
-`[PENDENTE]`
+**Hipótese:** a granularidade do chunk muda o que é recuperável.
+
+**Mudança:** com a extração fixa em Docling (a mesma do baseline/exp01), testadas as
+outras 4 técnicas de chunking do projeto — `fixo`, `recursivo`, `sentença_janela`,
+`semântico` — cada uma reindexando do zero (`avaliacao/rodar_fase2_chunking.py`).
+`hierárquico` não foi reindexado de novo: é exatamente a configuração do exp01.
+
+**Resultado:**
+
+| Técnica | Hit@5 | Recall@5 | MRR | NDCG@10 | Chunks |
+|---|---|---|---|---|---|
+| hierárquico (exp01) | 0,633 | 0,422 | 0,351 | 0,338 | 143 |
+| fixo (exp03) | 0,467 | 0,306 | 0,287 | 0,312 | 72 |
+| recursivo (exp04) | 0,600 | 0,372 | **0,418** | **0,426** | 81 |
+| sentença_janela (exp05) | 0,533 | 0,383 | 0,338 | 0,416 | 240 |
+| semântico (exp06) | 0,400 | 0,317 | 0,336 | 0,358 | 96 |
+
+**Análise:** nenhuma técnica domina em tudo — há um trade-off entre *cobertura* e
+*qualidade do ranking*. `hierárquico` continua sendo o melhor em Hit@5/Recall@5 (traz
+o relevante no top-5 com mais frequência), mas `recursivo` tem o melhor MRR e NDCG@10
+(quando acerta, acerta mais perto do topo do ranking) — apesar de gerar só 81 chunks
+(bem menos que os 143 do hierárquico), sugerindo que blocos de ~200 palavras
+respeitando frase/parágrafo capturam o suficiente de contexto sem diluir a
+similaridade com blocos grandes demais. `fixo` (chunks cegos de 200 palavras, sem
+respeitar limites de frase) e `semântico` (corte por mudança de tópico, 96 chunks)
+saíram piores em todas as métricas — no caso do `semântico`, possivelmente porque o
+artigo é curto e coeso o bastante para o corte por tópico não trazer benefício real,
+só reduzir a granularidade. `sentença_janela` gerou muito mais chunks (240, blocos de
+3 sentenças) e teve o 2º melhor NDCG@10, mas ficou atrás em Hit@5/Recall@5.
+
+Como o roteiro pede otimizar recuperação (cobertura) antes de geração, e Hit@5/Recall@5
+são as métricas de cobertura, `hierárquico` segue como chunking de referência para as
+próximas fases — mas `recursivo` fica marcado como candidato forte a reavaliar quando
+somarmos reranking (Fase 6), já que reranking tende a amplificar o benefício de um MRR
+melhor.
+
+*(Índice restaurado para `hierárquico` ao final da fase, para a Fase 3 partir do
+mesmo estado do baseline.)*
 
 ### Fase 3 — Modelo de embedding
 
@@ -164,6 +201,10 @@ relatório, ao consolidar tudo.)*
 |---|---|---|---|---|---|---|---|
 | exp01_baseline | Fase 0 | baseline (Docling, hierárquico, nomic-embed-text, busca=baseline) | 0,633 | 0,422 | 0,351 | 0,338 | 2,72 |
 | exp02_extracao_pymupdf | Fase 1 | extração=PyMuPDF (vs Docling), chunking fixo=hierárquico | 0,700 | 0,489 | 0,436 | 0,415 | 2,58 |
+| exp03_chunk_fixo | Fase 2 | chunking=fixo (vs hierárquico) | 0,467 | 0,306 | 0,287 | 0,312 | 2,57 |
+| exp04_chunk_recursivo | Fase 2 | chunking=recursivo (vs hierárquico) | 0,600 | 0,372 | 0,418 | 0,426 | 2,90 |
+| exp05_chunk_sentenca_janela | Fase 2 | chunking=sentença_janela (vs hierárquico) | 0,533 | 0,383 | 0,338 | 0,416 | 2,58 |
+| exp06_chunk_semantico | Fase 2 | chunking=semântico (vs hierárquico) | 0,400 | 0,317 | 0,336 | 0,358 | 2,57 |
 
 *(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
 
