@@ -20,6 +20,14 @@ Pública), ter estrutura mista — texto corrido, seções tituladas, referênci
 de lei e a jurisprudência (Corte Interamericana de Direitos Humanos) — o que permite
 testar diferentes técnicas de chunking e recuperação ao longo da jornada.
 
+Motivação prática: o autor integra uma equipe de **Peritos Criminais**, para quem a
+cadeia de custódia da prova pericial é um tema central da rotina profissional (rastreio
+e integridade de vestígios do local de crime até o laudo). O caso de uso real de um
+sistema RAG sobre esse tema seria apoiar peritos e operadores do direito a consultar
+rapidamente a legislação e a doutrina sobre cadeia de custódia — o que também orienta
+o tipo de pergunta incluído no gabarito (Seção 2): dúvidas práticas de procedimento
+(lacre, embalagem, central de custódia), não só teóricas.
+
 ## 2. O dataset de avaliação (gabarito)
 
 `avaliacao/dataset.json` — construído manualmente sobre o artigo:
