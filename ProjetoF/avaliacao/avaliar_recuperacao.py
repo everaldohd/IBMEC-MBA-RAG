@@ -33,9 +33,10 @@ busca_avancada.construir() monta um pipeline que TERMINA numa geracao de respost
 (o Haystack roda o grafo inteiro, geracao inclusa). Como este script so mede
 RECUPERACAO, essa geracao e desperdicio de tokens/tempo - e foi o que estourou o
 limite diario do Groq (TPD) numa rodada anterior. construir_retrieval_only() replica a
-logica de busca_avancada.py SEM os componentes finais de geracao: as tecnicas 'baseline'
-e 'hibrida' ficam 100% locais (Ollama), so 'multi_query'/'rag_fusion'/'step_back' ainda
-usam 1 chamada de LLM (a reescrita da query, que e intrinseca a tecnica).
+logica de busca_avancada.py SEM os componentes finais de geracao: as tecnicas 'baseline',
+'hibrida' e 'rerank' ficam 100% locais (Ollama + cross-encoder via transformers/torch,
+sem chamada de LLM), so 'multi_query'/'rag_fusion'/'step_back' ainda usam 1 chamada de
+LLM (a reescrita da query, que e intrinseca a tecnica).
 """
 
 import argparse
@@ -63,7 +64,7 @@ CAMPOS_CSV = ["exp", "fase", "mudanca", "tecnica", "top_k", "hit@5", "recall@5",
 # ---------------------------------------------------------------------------
 # Pipeline de RECUPERACAO (sem geracao de resposta) - espelha busca_avancada.py
 # ---------------------------------------------------------------------------
-def construir_retrieval_only(tecnica, top_k, pergunta):
+def construir_retrieval_only(tecnica, top_k, pergunta, top_k_inicial=None):
     from haystack import Pipeline
     from haystack.components.builders import PromptBuilder
     from haystack.components.generators import OpenAIGenerator
@@ -95,6 +96,20 @@ def construir_retrieval_only(tecnica, top_k, pergunta):
             top_k_bm25=top_k, top_k_embedding=top_k, top_k=top_k,
             join_mode="reciprocal_rank_fusion"))
         return pipe, {"retriever": {"query": pergunta}}, "retriever"
+
+    if tecnica == "rerank":
+        # busca densa (pool maior) -> cross-encoder local (BGE-reranker-v2-m3) -> top_k.
+        # 100% local: sem nenhuma chamada de LLM (o reranker roda via transformers/torch).
+        from haystack.components.rankers import TransformersSimilarityRanker
+
+        pool = top_k_inicial or max(2 * top_k, 20)
+        pipe.add_component("embedder", OllamaTextEmbedder(model=modelo_emb, url=base_ollama))
+        pipe.add_component("retriever", OpenSearchEmbeddingRetriever(document_store=store, top_k=pool))
+        pipe.add_component("ranker", TransformersSimilarityRanker(
+            model=busca_avancada.MODELO_RERANKER, top_k=top_k))
+        pipe.connect("embedder.embedding", "retriever.query_embedding")
+        pipe.connect("retriever.documents", "ranker.documents")
+        return pipe, {"embedder": {"text": pergunta}, "ranker": {"query": pergunta}}, "ranker"
 
     # multi_query / rag_fusion / step_back: 1 chamada de LLM p/ reescrever a query
     # (intrinseca a tecnica) - mas SEM a geracao final de resposta.
@@ -175,7 +190,7 @@ def metricas_query(ids_recuperados, gold_relevancia, k5=5, k10=10):
 # ---------------------------------------------------------------------------
 # Execucao (resiliente: 1 falha nao derruba as outras 29; salva o que der)
 # ---------------------------------------------------------------------------
-def rodar(tecnica, top_k):
+def rodar(tecnica, top_k, top_k_inicial=None):
     dados = carregar_dataset()
     documentos, queries = dados["documentos"], dados["queries_benchmark"]
 
@@ -188,7 +203,7 @@ def rodar(tecnica, top_k):
         print(f"[{i:02d}/{len(queries)}] ({q['tipo']}) {q['query'][:70]}...", flush=True)
         try:
             t0 = time.perf_counter()
-            pipe, inputs, chave_docs = construir_retrieval_only(tecnica, top_k, q["query"])
+            pipe, inputs, chave_docs = construir_retrieval_only(tecnica, top_k, q["query"], top_k_inicial)
             saida = pipe.run(inputs, include_outputs_from={chave_docs})
             docs = saida[chave_docs]["documents"]
             dt = time.perf_counter() - t0
@@ -241,15 +256,17 @@ def main():
     ap.add_argument("--fase", default="", help='ex.: "Fase 0"')
     ap.add_argument("--mudanca", default="", help="o que mudou nesta rodada (texto livre)")
     ap.add_argument("--tecnica", default="baseline",
-                     choices=["baseline", "multi_query", "rag_fusion", "step_back", "hibrida"])
+                     choices=["baseline", "multi_query", "rag_fusion", "step_back", "hibrida", "rerank"])
     ap.add_argument("--top-k", type=int, default=10,
                      help="chunks recuperados por consulta (usa 10 p/ cobrir hit@5/recall@5 e ndcg@10)")
+    ap.add_argument("--top-k-inicial", type=int, default=None,
+                     help="so p/ --tecnica rerank: tamanho do pool antes do cross-encoder cortar em top-k")
     ap.add_argument("--observacao", default="")
     args = ap.parse_args()
 
     print(f"== avaliar_recuperacao: exp={args.exp} tecnica={args.tecnica} top_k={args.top_k} ==")
     try:
-        resumo, detalhes, falhas = rodar(args.tecnica, args.top_k)
+        resumo, detalhes, falhas = rodar(args.tecnica, args.top_k, args.top_k_inicial)
     except Exception:
         traceback.print_exc()
         print("\nNada foi salvo (falha antes de completar nenhuma query). Rode de novo.")

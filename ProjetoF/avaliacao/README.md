@@ -111,10 +111,23 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase5_query_enhancement.py
   ```
+- `rodar_fase6_reranking.py` — Fase 6 (Seção 7): testa a nova técnica `rerank`
+  (`app/busca_avancada.py`/`avaliar_recuperacao.py`) — busca densa recupera um
+  pool maior de candidatos (`top_k_inicial`) e um cross-encoder
+  (`TransformersSimilarityRanker`, modelo `BAAI/bge-reranker-v2-m3`, Aula 3)
+  reordena e corta no `top_k=10` final — contra a busca densa pura (`exp10`,
+  mesma base), em 2 tamanhos de pool (20 e 40). **Não reindexa nada** — mesma
+  base da Fase 4/5. 100% local (sem chamada de LLM/Groq — o cross-encoder roda
+  via `transformers`/`torch`), mas mais lento que a busca densa pura (reranqueia
+  `top_k_inicial` pares pergunta+chunk por pergunta). Uso:
+  ```
+  python avaliacao/rodar_fase6_reranking.py
+  ```
 - `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
   Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
 - `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
   scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
   `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`/
-  `rodar_fase4_hibrida_topk.py`/`rodar_fase5_query_enhancement.py`; colunas
-  seguem o template da Seção 7 do `Roteiro_Final.md`).
+  `rodar_fase4_hibrida_topk.py`/`rodar_fase5_query_enhancement.py`/
+  `rodar_fase6_reranking.py`; colunas seguem o template da Seção 7 do
+  `Roteiro_Final.md`).

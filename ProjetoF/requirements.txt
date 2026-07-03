@@ -15,7 +15,8 @@ openai>=1.40                  # cliente Groq (LLM)
 
 # --- Extracao de documentos ---
 docling>=2.0                  # PDF/DOCX + OCR (do_ocr=True) para figuras/escaneados
-transformers>=4.49,<5         # layout do Docling usa rt_detr_v2 (>=4.49); <5 evita quebra
+transformers>=4.49,<5         # layout do Docling usa rt_detr_v2 (>=4.49); tambem usado pelo
+                               # TransformersSimilarityRanker (Fase 6, reranking); <5 evita quebra
 pymupdf>=1.24                 # probe do PDF (camada de texto, imagens) -> import fitz
 pandas>=2.0                   # planilhas (XLSX/CSV)
 openpyxl>=3.1                 # leitura de .xlsx

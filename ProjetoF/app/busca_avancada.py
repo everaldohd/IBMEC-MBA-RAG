@@ -10,6 +10,10 @@ Tecnicas selecionaveis no /consulta (parametro 'tecnica'):
                   (Aula 4 -> Fase 4 do Roteiro_Final.md). Usa o super-componente
                   OpenSearchHybridRetriever (embute BM25Retriever + EmbeddingRetriever +
                   DocumentJoiner(join_mode='reciprocal_rank_fusion') internamente).
+  - rerank      : busca DENSA recupera um pool maior de candidatos (top_k_inicial,
+                  default max(2*top_k, 20)) -> TransformersSimilarityRanker
+                  (cross-encoder BAAI/bge-reranker-v2-m3, Aula 3 -> Fase 6 do
+                  Roteiro_Final.md) reordena e corta no top_k final pedido.
 
 Tudo roda DENTRO de um pipeline Haystack, entao a auto-instrumentacao do LangFuse captura
 ate as chamadas de LLM que reescrevem a pergunta (no mesmo trace).
@@ -24,7 +28,9 @@ from .log import obter_logger
 
 log = obter_logger(__name__)
 
-TECNICAS = ("baseline", "multi_query", "rag_fusion", "step_back", "hibrida")
+TECNICAS = ("baseline", "multi_query", "rag_fusion", "step_back", "hibrida", "rerank")
+
+MODELO_RERANKER = "BAAI/bge-reranker-v2-m3"   # cross-encoder multilingue (Aula 3)
 
 # Os prompts (rag / variacoes / stepback) sao lidos EM RUNTIME de prompts.get_prompts(),
 # para refletirem o que o aluno editar na aba Configuracoes do Gradio.
@@ -110,8 +116,13 @@ class BuscarMultiplas:
 # ---------------------------------------------------------------------------
 # Builder do pipeline por tecnica
 # ---------------------------------------------------------------------------
-def construir(tecnica, top_k, pergunta):
-    """Monta o pipeline Haystack da tecnica e devolve (pipe, inputs, chave_dos_docs)."""
+def construir(tecnica, top_k, pergunta, top_k_inicial=None):
+    """Monta o pipeline Haystack da tecnica e devolve (pipe, inputs, chave_dos_docs).
+
+    top_k_inicial: so usado pela tecnica 'rerank' - tamanho do pool de candidatos
+    recuperado pela busca densa ANTES do cross-encoder reordenar e cortar em top_k.
+    Default (None): max(2*top_k, 20), conforme sugestao do Roteiro_Final.md (Fase 6).
+    """
     from haystack import Pipeline
     from haystack.components.builders import PromptBuilder
     from haystack.components.generators import OpenAIGenerator
@@ -159,6 +170,20 @@ def construir(tecnica, top_k, pergunta):
         pipe.connect("retriever.documents", "prompt.documents")
         inputs = {"retriever": {"query": pergunta}, "prompt": {"pergunta": pergunta}}
         return pipe, inputs, "retriever"
+
+    if tecnica == "rerank":
+        from haystack.components.rankers import TransformersSimilarityRanker
+
+        pool = top_k_inicial or max(2 * top_k, 20)
+        pipe.add_component("embedder", OllamaTextEmbedder(model=modelo_emb, url=base_ollama))
+        pipe.add_component("retriever", OpenSearchEmbeddingRetriever(document_store=store, top_k=pool))
+        pipe.add_component("ranker", TransformersSimilarityRanker(model=MODELO_RERANKER, top_k=top_k))
+        pipe.connect("embedder.embedding", "retriever.query_embedding")
+        pipe.connect("retriever.documents", "ranker.documents")
+        pipe.connect("ranker.documents", "prompt.documents")
+        inputs = {"embedder": {"text": pergunta}, "ranker": {"query": pergunta},
+                  "prompt": {"pergunta": pergunta}}
+        return pipe, inputs, "ranker"
 
     # tecnicas com reescrita de query
     if tecnica == "step_back":
