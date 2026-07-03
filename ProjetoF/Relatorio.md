@@ -403,7 +403,40 @@ embedado com `qwen3-embedding:4b` (não a pergunta original) e usado numa única
 densa — sem fusão de múltiplas consultas, ao contrário de `multi_query`/`rag_fusion`
 (Fase 5). Testada contra a busca densa pura (`exp10`, mesma base), em `top_k=10`.
 Nenhuma reindexação: mesma base da Fase 4/5/6 (`avaliacao/rodar_fase7_hyde.py`).
-`[PENDENTE]` resultado — script criado mas ainda não executado.
+
+**Resultado:**
+
+| Combinação | Hit@5 | Recall@5 | MRR | NDCG@10 |
+|---|---|---|---|---|
+| densa top_k=10 (exp10, referência) | 0,933 | 0,700 | 0,661 | 0,775 |
+| hyde (exp22) | 0,800 | 0,650 | 0,598 | 0,747 |
+
+**Análise:** mesmo padrão de todas as fases anteriores — o HyDE também ficou
+**abaixo** da busca densa pura em todas as métricas —, mas com a menor perda
+relativa da jornada até aqui, exceto pelo query enhancement da Fase 5. Em
+Hit@5/Recall@5, o HyDE (0,800/0,650) foi pior que o `step_back` (0,900/0,706), mas
+melhor que o reranking (0,767–0,733/0,617 nas duas rodadas da Fase 6). O dado mais
+importante é o NDCG@10 (0,747): muito mais próximo da referência (0,775) do que
+qualquer técnica das Fases 4-6 — reranking caiu para 0,637/0,607 e a busca híbrida
+para 0,599-0,682 —, ou seja, quando o HyDE erra a cobertura, ele ainda mantém um
+ranking fino relativamente bom nos acertos. Hipótese: ao contrário do reranking
+(que reordena candidatos já recuperados pela query original) e do multi_query/
+rag_fusion (que fundem várias buscas), o HyDE substitui a query por um único
+documento hipotético gerado pelo LLM — se esse documento se afasta do vocabulário
+real do corpus (alucinação de detalhes plausíveis mas não exatamente os do
+artigo), a busca densa erra a recuperação logo na largada, sem chance de
+recuperação por uma segunda consulta ou por reordenação.
+
+Vale notar a diferença de custo: o HyDE rodou em ~4,8s/pergunta (1 chamada de LLM
+curta + 1 busca densa), muito mais rápido que o reranking (25-33s/pergunta, modelo
+local pesado) e comparável ao `step_back` (4,8s) — mais barato que `multi_query`/
+`rag_fusion` (~7,4-7,5s, 5 consultas cada).
+
+Conclusão da fase: HyDE não superou a busca densa pura de referência, confirmando
+pela sétima vez (Fases 4-7) que nenhuma técnica testada bate a busca densa simples
+com `qwen3-embedding:4b` neste corpus — mas HyDE tem o segundo melhor NDCG@10 entre
+todas as técnicas alternativas testadas (atrás só do `step_back`), o que o torna a
+técnica avançada mais competitiva da jornada, mesmo perdendo para a referência.
 
 ### Fase 8 — RAGAS (avaliação da geração)
 
@@ -434,6 +467,7 @@ Nenhuma reindexação: mesma base da Fase 4/5/6 (`avaliacao/rodar_fase7_hyde.py`
 | exp19_step_back | Fase 5 | tecnica=step_back (2 consultas, dedup), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,900 | 0,706 | 0,624 | 0,756 | 4,81 |
 | exp20_rerank_pool20 | Fase 6 | tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=20, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,767 | 0,617 | 0,487 | 0,637 | 25,28 |
 | exp21_rerank_pool40 | Fase 6 | tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=40, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,733 | 0,617 | 0,473 | 0,607 | 32,53 |
+| exp22_hyde | Fase 7 | tecnica=hyde (documento hipotético via Groq), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,800 | 0,650 | 0,598 | 0,747 | 4,78 |
 
 *(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
 
