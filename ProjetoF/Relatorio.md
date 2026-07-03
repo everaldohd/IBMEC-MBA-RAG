@@ -328,9 +328,24 @@ malformadas foram descartadas do `resultados.csv` antes da rodada final, que
 completou 30/30 sem falhas — a causa exata das 2 tentativas anteriores não foi
 diagnosticada a fundo, mas não se repetiu na rodada final.)*
 
-### Fase 6 — Reranking
+### Fase 6 — Reranking (`exp20`–`exp21`)
 
-`[PENDENTE]`
+**Hipótese:** reordenar os top-N candidatos com um cross-encoder (que vê pergunta e
+chunk juntos, ao contrário do bi-encoder da busca densa) deveria subir o relevante
+para posições mais altas do ranking — o MRR e o NDCG@10 são as métricas que mais
+devem se beneficiar.
+
+**Mudança:** nova técnica `rerank` em `app/busca_avancada.py`/`avaliar_recuperacao.py`
+— a busca densa recupera um pool maior de candidatos (`top_k_inicial`), um
+cross-encoder (`TransformersSimilarityRanker`, modelo `BAAI/bge-reranker-v2-m3`,
+Aula 3) reordena esse pool e corta no `top_k=10` final — testada contra a busca densa
+pura (`exp10`, mesma base), em 2 tamanhos de pool (20 e 40), para medir sensibilidade
+ao tamanho do pool antes do corte. O Roteiro sugere "recupere top-20 → reranqueie →
+top-5"; aqui o corte final ficou em `top_k=10` (em vez de 5) para manter
+comparabilidade direta com a referência `exp10` e com as Fases 4/5 (todas medidas em
+`top_k=10`). Nenhuma reindexação: mesma base da Fase 4/5
+(`avaliacao/rodar_fase6_reranking.py`). `[PENDENTE]` resultado — script criado mas
+ainda não executado.
 
 ### Fase 7 — Técnica avançada
 
