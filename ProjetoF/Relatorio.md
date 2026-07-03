@@ -344,8 +344,49 @@ ao tamanho do pool antes do corte. O Roteiro sugere "recupere top-20 → reranqu
 top-5"; aqui o corte final ficou em `top_k=10` (em vez de 5) para manter
 comparabilidade direta com a referência `exp10` e com as Fases 4/5 (todas medidas em
 `top_k=10`). Nenhuma reindexação: mesma base da Fase 4/5
-(`avaliacao/rodar_fase6_reranking.py`). `[PENDENTE]` resultado — script criado mas
-ainda não executado.
+(`avaliacao/rodar_fase6_reranking.py`).
+
+**Resultado:**
+
+| Combinação | Hit@5 | Recall@5 | MRR | NDCG@10 |
+|---|---|---|---|---|
+| densa top_k=10 (exp10, referência) | 0,933 | 0,700 | 0,661 | 0,775 |
+| rerank pool=20 (exp20) | 0,767 | 0,617 | 0,487 | 0,637 |
+| rerank pool=40 (exp21) | 0,733 | 0,617 | 0,473 | 0,607 |
+
+**Análise:** o resultado negativo mais forte da jornada até aqui. Diferente da busca
+híbrida (Fase 4) e do query enhancement (Fase 5), que perdiam só no MRR/NDCG@10 mas
+mantinham Hit@5/Recall@5 praticamente intactos, o reranking piorou em **todas** as
+métricas, inclusive cobertura (Hit@5 caiu de 0,933 para 0,767/0,733). Isso é
+significativo: os candidatos relevantes já estavam no pool recuperado pela busca
+densa (senão o `exp10` não teria Hit@5=0,933) — então o cross-encoder está ativamente
+empurrando chunks relevantes pra fora do top-10 final, substituindo-os por candidatos
+que ele julga mais parecidos com a pergunta mas que não são, de fato, relevantes pelo
+gabarito. Hipótese principal: descasamento de domínio/idioma — o
+`BAAI/bge-reranker-v2-m3` é multilíngue mas treinado majoritariamente em dados
+gerais de ranking de passagens (tipo mMARCO), não em texto jurídico-pericial em
+português; combinado com a marcação markdown do Docling nos chunks (mesma hipótese
+usada para explicar o resultado da Fase 1, onde o markdown também prejudicou a
+similaridade do embedder), o cross-encoder pode estar julgando mal a relevância
+desse vocabulário específico.
+
+Confirma-se de novo o padrão desta jornada (visto na híbrida da Fase 4 e no
+rag_fusion/multi_query da Fase 5): pool **maior** piora, não melhora — `pool=40`
+(exp21) ficou pior que `pool=20` (exp20) em quase todas as métricas (só empatou em
+Recall@5). Mais candidatos dão ao reranker mais chances de errar.
+
+Conclusão da fase: o cross-encoder não ajudou neste corpus — a busca densa pura com
+`qwen3-embedding:4b` segue, de longe, a melhor configuração de recuperação medida
+até agora em todas as fases.
+
+*(Nota técnica: esta rodada foi executada na CPU do laptop — o torch instalado por
+padrão via `requirements.txt` não tem suporte CUDA (build `+cpu`), então o
+cross-encoder (2,27GB, `BAAI/bge-reranker-v2-m3`) rodou sem aceleração de GPU, com
+throttling térmico visível ao longo da rodada (latência por pergunta subindo de ~14s
+para ~50s) — daí a latência média alta registrada (25-33s, vs ~3s da busca densa
+pura). Reinstalação do torch com build CUDA
+(`--index-url https://download.pytorch.org/whl/cu126`) foi iniciada em paralelo,
+para acelerar fases futuras que dependam de modelos locais pesados.)*
 
 ### Fase 7 — Técnica avançada
 
@@ -378,6 +419,8 @@ ainda não executado.
 | exp17_multi_query | Fase 5 | tecnica=multi_query (5 consultas, dedup), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,933 | 0,722 | 0,616 | 0,705 | 7,49 |
 | exp18_rag_fusion | Fase 5 | tecnica=rag_fusion (5 consultas, RRF), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,933 | 0,706 | 0,579 | 0,723 | 7,40 |
 | exp19_step_back | Fase 5 | tecnica=step_back (2 consultas, dedup), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,900 | 0,706 | 0,624 | 0,756 | 4,81 |
+| exp20_rerank_pool20 | Fase 6 | tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=20, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,767 | 0,617 | 0,487 | 0,637 | 25,28 |
+| exp21_rerank_pool40 | Fase 6 | tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=40, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,733 | 0,617 | 0,473 | 0,607 | 32,53 |
 
 *(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
 
