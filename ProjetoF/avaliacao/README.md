@@ -77,9 +77,20 @@ parecer estranho.
   ```
   python avaliacao/rodar_fase2_chunking.py
   ```
+- `rodar_fase3_embedding.py` — Fase 3 (Seção 7): compara os modelos de
+  embedding instalados no Ollama local (descobertos automaticamente via
+  `/api/tags` — `bge-m3`, `mxbai-embed-large`, `qwen3-embedding` em qualquer
+  tamanho instalado) contra `nomic-embed-text` (baseline, exp01), com
+  extração e chunking fixos (Docling + `hierarquico`). Mede a dimensão real
+  de cada embedding em runtime (em vez de supor pela tabela de
+  `app/config.py::DIMENSAO_EMBEDDING`, que não cobre os modelos Qwen3) antes
+  de indexar. Ao final restaura o índice para `nomic-embed-text`. Uso:
+  ```
+  python avaliacao/rodar_fase3_embedding.py
+  ```
 - `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
   Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
 - `resultados.csv` — uma linha por experimento (gerado automaticamente pelos
   scripts `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`/
-  `rodar_fase2_chunking.py`; colunas seguem o template da Seção 7 do
-  `Roteiro_Final.md`).
+  `rodar_fase2_chunking.py`/`rodar_fase3_embedding.py`; colunas seguem o
+  template da Seção 7 do `Roteiro_Final.md`).

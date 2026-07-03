@@ -171,9 +171,52 @@ melhor.
 *(Índice restaurado para `hierárquico` ao final da fase, para a Fase 3 partir do
 mesmo estado do baseline.)*
 
-### Fase 3 — Modelo de embedding
+### Fase 3 — Modelo de embedding (`exp07`–`exp11`)
 
-`[PENDENTE]`
+**Hipótese:** o modelo de embedding define o teto da busca densa.
+
+**Mudança:** com extração (Docling) e chunking (`hierárquico`) fixos, testados todos
+os modelos de embedding baixados no Ollama local além do baseline
+(`nomic-embed-text`): `bge-m3`, `mxbai-embed-large` e as 3 variantes de tamanho do
+`qwen3-embedding` (0.6b/4b/8b). Dimensão de cada modelo medida em runtime — os Qwen3
+não estavam mapeados em `app/config.py::DIMENSAO_EMBEDDING`
+(`avaliacao/rodar_fase3_embedding.py`).
+
+**Resultado:**
+
+| Modelo | Dim. | Hit@5 | Recall@5 | MRR | NDCG@10 |
+|---|---|---|---|---|---|
+| nomic-embed-text (exp01, baseline) | 768 | 0,633 | 0,422 | 0,351 | 0,338 |
+| bge-m3 (exp07) | 1024 | 0,733 | 0,572 | 0,505 | 0,618 |
+| mxbai-embed-large (exp08) | 1024 | 0,467 | 0,328 | 0,269 | 0,253 |
+| qwen3-embedding:0.6b (exp09) | 1024 | 0,833 | 0,639 | 0,527 | 0,618 |
+| qwen3-embedding:4b (exp10) | 2560 | **0,933** | 0,700 | **0,661** | 0,775 |
+| qwen3-embedding:8b "latest" (exp11) | 4096 | **0,933** | **0,733** | 0,615 | **0,775** |
+
+**Análise:** de longe a fase com maior ganho da jornada até aqui. A família
+Qwen3-Embedding varre o baseline em todas as métricas, mesmo na menor variante
+(0.6b): Hit@5 salta de 0,633 para 0,833–0,933, e o MRR praticamente dobra. Dentro da
+família Qwen3, o ganho de 0.6b → 4b é grande (MRR 0,527 → 0,661), mas de 4b → 8b o
+ganho é marginal e misto (8b vence em Recall@5, mas *perde* em MRR para o 4b) — mais
+que dobrar a dimensão (2560 → 4096) e o tamanho do modelo não se traduziu em ganho
+proporcional. Custo-benefício: **qwen3-embedding:4b** parece o melhor equilíbrio
+(dimensão bem menor que o 8b, latência parecida, métricas equivalentes ou melhores).
+
+`bge-m3` também superou o baseline com folga (2º melhor colocado no geral) — resultado
+esperado, é um modelo multilíngue forte e mais recente que o `nomic-embed-text`.
+`mxbai-embed-large`, por outro lado, ficou **abaixo do baseline** em todas as
+métricas — resultado negativo relevante: nem todo modelo "maior"/mais recente
+supera o `nomic-embed-text` neste corpus; dimensão (1024) não é garantia de
+qualidade — vale registrar como contraexemplo no relatório final.
+
+`qwen3-embedding:4b` é o forte candidato a entrar na configuração final (Seção 7);
+a decisão de **quando** passar a usá-lo como base fixa das próximas fases (em vez de
+seguir isolando tudo contra o `nomic-embed-text` do exp01) está registrada em
+"8.1 Decisões técnicas relevantes já tomadas".
+
+*(Nota técnica: `qwen3-embedding:0.6b` falhou na primeira tentativa por um erro de
+conexão com o Ollama local — resolvido rodando o script de novo, que é resumível e
+tentou de novo só esse modelo.)*
 
 ### Fase 4 — Recuperação base (top_k e busca híbrida)
 
@@ -205,6 +248,11 @@ mesmo estado do baseline.)*
 | exp04_chunk_recursivo | Fase 2 | chunking=recursivo (vs hierárquico) | 0,600 | 0,372 | 0,418 | 0,426 | 2,90 |
 | exp05_chunk_sentenca_janela | Fase 2 | chunking=sentença_janela (vs hierárquico) | 0,533 | 0,383 | 0,338 | 0,416 | 2,58 |
 | exp06_chunk_semantico | Fase 2 | chunking=semântico (vs hierárquico) | 0,400 | 0,317 | 0,336 | 0,358 | 2,57 |
+| exp07_embed_bge_m3 | Fase 3 | embedding=bge-m3 (vs nomic-embed-text) | 0,733 | 0,572 | 0,505 | 0,618 | 3,44 |
+| exp08_embed_mxbai_embed_large | Fase 3 | embedding=mxbai-embed-large (vs nomic-embed-text) | 0,467 | 0,328 | 0,269 | 0,253 | 2,60 |
+| exp09_embed_qwen3_embedding_0.6b | Fase 3 | embedding=qwen3-embedding:0.6b (vs nomic-embed-text) | 0,833 | 0,639 | 0,527 | 0,618 | 3,15 |
+| exp10_embed_qwen3_embedding_4b | Fase 3 | embedding=qwen3-embedding:4b (vs nomic-embed-text) | 0,933 | 0,700 | 0,661 | 0,775 | 3,17 |
+| exp11_embed_qwen3_embedding_8b | Fase 3 | embedding=qwen3-embedding:8b "latest" (vs nomic-embed-text) | 0,933 | 0,733 | 0,615 | 0,770 | 3,42 |
 
 *(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
 
