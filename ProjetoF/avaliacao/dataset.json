@@ -1,0 +1,334 @@
+{
+  "_meta": {
+    "fonte": "GIACOMOLLI, Nereu José; AMARAL, Maria Eduarda Azambuja. A cadeia de custódia da prova pericial na Lei nº 13.964/2019. Revista Duc In Altum Cadernos de Direito, vol. 12, nº 27, mai-ago. 2020, p. 67-100.",
+    "arquivo_pdf": "CadeiaCustódiaProvaPericial_lei13.964-2019.pdf",
+    "descricao": "Gabarito de avaliação de recuperação (retrieval) e de geração (RAGAS) para o Trabalho Final. Os 18 'documentos' abaixo são segmentos temáticos do artigo (não os chunks reais gerados pela ingestão automática do projeto). Cada segmento traz a pagina_pdf para permitir mapear, após a Fase 0 (ingestão real via Docling), quais chunks efetivamente recuperados correspondem a qual D-id (por sobreposição de página/conteúdo). Ver avaliacao/README.md.",
+    "distribuicao_perguntas": {
+      "factual_1_documento": "Q01-Q12 (12 perguntas)",
+      "reformulavel_vocabulario_coloquial": "Q13-Q22 (10 perguntas)",
+      "tematica_multihop": "Q23-Q30 (8 perguntas)"
+    }
+  },
+  "documentos": [
+    {
+      "id": "D01",
+      "pagina_pdf": "67-69",
+      "titulo": "Introdução — a prova no processo penal",
+      "texto": "A prova no processo penal reconstrói os fatos e sustenta a atividade cognitiva do julgador. Ela tem uma funcionalidade cognoscitiva-reconstrutiva (introduzir fatos e circunstâncias da infração) e uma funcionalidade persuasiva (formar o convencimento do julgador)."
+    },
+    {
+      "id": "D02",
+      "pagina_pdf": "69-71",
+      "titulo": "Aproximação entre prova penal e ciências duras",
+      "texto": "A aproximação entre o processo penal e as ciências naturais gera o chamado 'mito da infalibilidade da prova pericial': a ciência passa a gozar de prestígio e poder na esfera penal. Isso exige um aparato de controles epistêmicos para subsidiar o convencimento judicial, entre eles a observância da cadeia de custódia."
+    },
+    {
+      "id": "D03",
+      "pagina_pdf": "71",
+      "titulo": "Objetivo, problemas de pesquisa e metodologia do artigo",
+      "texto": "O artigo analisa a regulamentação da cadeia de custódia da prova pericial introduzida pela Lei nº 13.964/2019 no CPP, sem tratar dos efeitos da quebra da cadeia de custódia. Pergunta: qual o objeto, função e finalidade da cadeia de custódia; sua importância no processo penal; se cadeia de custódia equivale a documentação da prova; se a Lei 13.964/2019 é o primeiro diploma a tratar do tema; e se o regramento é suficiente para garantir a fiabilidade da prova pericial. Metodologia hermenêutica, com raciocínio dedutivo."
+    },
+    {
+      "id": "D04",
+      "pagina_pdf": "71-73",
+      "titulo": "Conceito de cadeia de custódia (doutrina)",
+      "texto": "Adota-se a definição de Claudemir Dias Filho: cadeia de custódia é uma sucessão de eventos concatenados que protege a integridade de um vestígio desde o local de crime até seu reconhecimento como prova material, até o trânsito em julgado, documentados de forma pormenorizada para validar e rastrear a evidência, garantindo que a prova em juízo tenha as mesmas propriedades do vestígio coletado."
+    },
+    {
+      "id": "D05",
+      "pagina_pdf": "73-76",
+      "titulo": "Função e finalidade da cadeia de custódia — lei da mesmidade",
+      "texto": "A função da cadeia de custódia é assegurar, de maneira fiável, a autenticidade da prova, fundamentada na 'lei da mesmidade' (o elemento coletado é o mesmo usado na decisão judicial). A finalidade é propiciar maior grau de precisão ao decisum e potencializar o contraditório. A quebra da cadeia de custódia gera questionamentos sobre a fiabilidade dos resultados periciais, com impacto na admissibilidade e/ou valoração da prova."
+    },
+    {
+      "id": "D06",
+      "pagina_pdf": "76-77",
+      "titulo": "Elemento temporal — início e fim da cadeia de custódia",
+      "texto": "Para Dias Filho, a cadeia de custódia inicia na coleta do vestígio no local do crime e finaliza com o trânsito em julgado da decisão de mérito — não bastando custodiar apenas a coleta e a análise pericial. Há divergência doutrinária: alguns autores defendem um período mais restrito, que não alcançaria o trânsito em julgado."
+    },
+    {
+      "id": "D07",
+      "pagina_pdf": "77-79",
+      "titulo": "Princípio da documentação",
+      "texto": "A efetivação da cadeia de custódia exige que todo o caminho percorrido pela fonte de prova seja documentado, escrito e sedimentado — a documentação é o alicerce da cadeia de custódia. O testemunho de quem teve contato com o objeto não substitui a documentação, pois a prova pericial se funda no caráter objetivo. A cadeia de custódia também envolve segurança física de armazenamento, guarda, manuseio e análise, não se restringindo à documentação."
+    },
+    {
+      "id": "D08",
+      "pagina_pdf": "79-80",
+      "titulo": "Disciplina legal antes de 2019 — arts. 6º e 169 do CPP",
+      "texto": "Antes da Lei nº 13.964/2019, o CPP não tinha descrição direta da cadeia de custódia. Do art. 169 (dever de não alterar o estado das coisas até a chegada dos peritos) e do art. 6º (dever da autoridade policial de preservar o local e recolher objetos relacionados ao fato) é possível inferir, por interpretação sistemática, um início de preocupação normativa com a cadeia de custódia, ainda que de forma frágil e insuficiente."
+    },
+    {
+      "id": "D09",
+      "pagina_pdf": "80-84",
+      "titulo": "Art. 158-A do CPP — definição legal e responsabilidade",
+      "texto": "O art. 158-A define cadeia de custódia como o conjunto de procedimentos para manter e documentar a história cronológica do vestígio, do reconhecimento ao descarte. O início se dá com a preservação do local de crime ou procedimentos policiais/periciais em que se detecte vestígio. O agente público que reconhecer um elemento de potencial interesse fica responsável por sua preservação. Vestígio é definido como todo objeto ou material bruto, visível ou latente — definição criticada por não mencionar expressamente vestígios digitais."
+    },
+    {
+      "id": "D10",
+      "pagina_pdf": "83-85",
+      "titulo": "Art. 158-B do CPP — as etapas da cadeia de custódia",
+      "texto": "O art. 158-B lista dez etapas do rastreamento do vestígio: reconhecimento, isolamento, fixação, coleta, acondicionamento, transporte, recebimento, processamento, armazenamento e descarte. O legislador não diferenciou cadeia de custódia interna (dentro do laboratório) e externa (transporte até o laboratório), nem definiu a quem cabe a responsabilidade em cada etapa."
+    },
+    {
+      "id": "D11",
+      "pagina_pdf": "85-87",
+      "titulo": "Art. 158-C do CPP — coleta e proibição de acesso a locais isolados",
+      "texto": "A coleta deve ser feita preferencialmente por perito oficial, cabendo ao órgão central de perícia detalhar os protocolos de coleta. É proibida a entrada em locais isolados e a remoção de vestígios antes da liberação pelo perito responsável; a violação pode configurar fraude processual (art. 347 do Código Penal), desde que haja o fim de induzir a erro o juiz ou o perito."
+    },
+    {
+      "id": "D12",
+      "pagina_pdf": "87-89",
+      "titulo": "Art. 158-D do CPP — acondicionamento, lacres e documentação",
+      "texto": "O recipiente de acondicionamento é determinado pela natureza do material e deve ser selado com lacre numerado individualmente. Só o perito responsável pela análise (ou pessoa autorizada, motivadamente) pode abrir o recipiente. A cada rompimento de lacre deve constar, na ficha de acompanhamento do vestígio, nome e matrícula do responsável, data, local, finalidade e informações do novo lacre — considerado um dos dispositivos mais importantes da lei por vincular o resultado pericial aos indivíduos que tiveram contato com o material."
+    },
+    {
+      "id": "D13",
+      "pagina_pdf": "89-90",
+      "titulo": "Art. 158-E do CPP — centrais de custódia",
+      "texto": "Todos os Institutos de Criminalística devem ter uma central de custódia para guarda e controle de vestígios, vinculada ao órgão central de perícia oficial. A central deve ter serviço de protocolo, registrar entrada/saída de vestígios e identificar todas as pessoas com acesso ao material armazenado, com data e hora. Na prática, essas centrais ainda são raras no Brasil (a Polícia Federal tem apenas uma, no Mato Grosso do Sul, desde 2010)."
+    },
+    {
+      "id": "D14",
+      "pagina_pdf": "90-91",
+      "titulo": "Art. 158-F do CPP — devolução do material após a perícia",
+      "texto": "Após a perícia, o material deve ser devolvido à central de custódia e nela permanecer. Se a central não tiver espaço ou condições de armazenamento, a autoridade policial ou judiciária pode determinar depósito em local diverso, mediante requerimento do diretor do órgão pericial. A lei não define por quanto tempo o material deve permanecer custodiado."
+    },
+    {
+      "id": "D15",
+      "pagina_pdf": "91-93",
+      "titulo": "Aspectos positivos da reforma de 2019",
+      "texto": "Pontos positivos: (1) inclusão do tema na legislação ordinária, complementando a Portaria nº 82/2014 da SENASP, que já tratava do assunto de forma mais detalhada mas pouco efetiva na prática; (2) regramento geral sem se aprofundar em protocolos técnicos específicos, tarefa deixada aos órgãos periciais; (3) força de lei para a exigência de centrais de custódia. O modelo de referência citado é o colombiano, com capítulo próprio no Código de Procedimiento Penal e manual detalhado da Fiscalía."
+    },
+    {
+      "id": "D16",
+      "pagina_pdf": "93-94",
+      "titulo": "Aspectos negativos da reforma de 2019",
+      "texto": "Pontos negativos: definição restrita de cadeia de custódia (só o momento técnico-científico, excluindo a fase processual); ausência de tratamento sobre locais de crime mediato/imediato e sobre cadeia de custódia interna vs. externa; definição de vestígio que não menciona expressamente vestígios digitais; caráter pouco pragmático que dificulta a aplicação prática; e, sobretudo, ausência de qualquer regra sobre os efeitos da quebra, irregularidade ou inexistência da cadeia de custódia."
+    },
+    {
+      "id": "D17",
+      "pagina_pdf": "94-96",
+      "titulo": "Considerações finais",
+      "texto": "Conclui-se que a função da cadeia de custódia é assegurar a autenticidade, integridade, lealdade e seriedade da prova (lei da mesmidade); sua finalidade é dar maior precisão ao decisum e potencializar o contraditório. A Lei nº 13.964/2019 foi o primeiro diploma processual penal a tratar expressamente da cadeia de custódia, mas seu regramento é insuficiente para garantir a fiabilidade da prova pericial, silenciando sobre os efeitos da não observância, irregularidade, quebra ou inexistência da cadeia de custódia, e limitando-se apenas à prova pericial."
+    },
+    {
+      "id": "D18",
+      "pagina_pdf": "96-97",
+      "titulo": "Jurisprudência da Corte Interamericana de Direitos Humanos",
+      "texto": "A Corte IDH já se manifestou sobre cadeia de custódia em vários casos, com destaque para o Caso Velásquez Paiz e Outros vs. Guatemala (2015), no qual apontou falhas como ausência de documentação do encontro do corpo da vítima, manipulação do cadáver, manejo incorreto da cena do crime e irregularidades na preservação e documentação das evidências. Outros casos citados: Miguel Castro vs. Peru, Defensor de Derechos Humanos vs. Guatemala, Luna López vs. Honduras e Comunidade Campesina de Santa Bárbara vs. Peru."
+    }
+  ],
+  "queries_benchmark": [
+    {
+      "id": "Q01",
+      "tipo": "factual",
+      "query": "o que é, resumidamente, a cadeia de custódia de uma prova pericial?",
+      "relevancia": {"D04": 2, "D05": 1},
+      "resposta_referencia": "É a sucessão documentada de procedimentos que protege a integridade de um vestígio desde sua coleta no local do crime até seu uso como prova, garantindo que o que chega ao juiz é o mesmo material recolhido originalmente."
+    },
+    {
+      "id": "Q02",
+      "tipo": "factual",
+      "query": "quando começa oficialmente a cadeia de custódia, segundo a lei?",
+      "relevancia": {"D09": 2, "D06": 1},
+      "resposta_referencia": "Segundo o art. 158-A, §1º do CPP, começa com a preservação do local de crime ou com procedimentos policiais/periciais em que se detecte a existência de vestígio."
+    },
+    {
+      "id": "Q03",
+      "tipo": "factual",
+      "query": "quantas etapas a lei prevê para rastrear um vestígio, do começo ao fim?",
+      "relevancia": {"D10": 2},
+      "resposta_referencia": "Dez etapas: reconhecimento, isolamento, fixação, coleta, acondicionamento, transporte, recebimento, processamento, armazenamento e descarte."
+    },
+    {
+      "id": "Q04",
+      "tipo": "factual",
+      "query": "o que precisa ser anotado toda vez que o lacre de uma prova é rompido?",
+      "relevancia": {"D12": 2},
+      "resposta_referencia": "Nome e matrícula do responsável, data, local, finalidade e as informações referentes ao novo lacre utilizado, conforme o art. 158-D, §4º do CPP."
+    },
+    {
+      "id": "Q05",
+      "tipo": "factual",
+      "query": "quem deve gerenciar as centrais de custódia dentro dos institutos de perícia?",
+      "relevancia": {"D13": 2},
+      "resposta_referencia": "A gestão da central de custódia deve ser vinculada diretamente ao órgão central de perícia oficial de natureza criminal."
+    },
+    {
+      "id": "Q06",
+      "tipo": "factual",
+      "query": "depois que a perícia termina, para onde o material examinado deve voltar?",
+      "relevancia": {"D14": 2},
+      "resposta_referencia": "Deve ser devolvido à central de custódia e ali permanecer, salvo determinação de depósito em local diverso por falta de espaço."
+    },
+    {
+      "id": "Q07",
+      "tipo": "factual",
+      "query": "quem pode fazer a coleta de vestígios em um local de crime?",
+      "relevancia": {"D11": 2, "D09": 1},
+      "resposta_referencia": "Preferencialmente um perito oficial, embora a lei não vede expressamente que outros agentes públicos, ao reconhecerem o vestígio, fiquem responsáveis por sua preservação."
+    },
+    {
+      "id": "Q08",
+      "tipo": "factual",
+      "query": "existia alguma menção à preservação de provas no Código de Processo Penal antes da lei de 2019?",
+      "relevancia": {"D08": 2},
+      "resposta_referencia": "Sim, de forma frágil: o art. 169 (não alterar o estado das coisas até a chegada dos peritos) e o art. 6º (dever da autoridade policial de preservar o local) permitiam inferir uma preocupação embrionária com a cadeia de custódia."
+    },
+    {
+      "id": "Q09",
+      "tipo": "factual",
+      "query": "antes da lei de 2019, já existia alguma norma administrativa tratando da cadeia de custódia no Brasil?",
+      "relevancia": {"D15": 2, "D08": 1},
+      "resposta_referencia": "Sim, a Portaria nº 82/2014 da SENASP, que já estabelecia diretrizes mais detalhadas, mas que na prática não produziu os efeitos esperados, como a criação das centrais de custódia."
+    },
+    {
+      "id": "Q10",
+      "tipo": "factual",
+      "query": "a Corte Interamericana de Direitos Humanos já condenou algum país por falhas na preservação de provas?",
+      "relevancia": {"D18": 2},
+      "resposta_referencia": "Sim, por exemplo no Caso Velásquez Paiz e Outros vs. Guatemala (2015), em que apontou falhas como manipulação do cadáver e irregularidades na documentação das evidências."
+    },
+    {
+      "id": "Q11",
+      "tipo": "factual",
+      "query": "por que é tão importante documentar por escrito tudo o que acontece com uma prova?",
+      "relevancia": {"D07": 2, "D05": 1},
+      "resposta_referencia": "Porque a documentação é o alicerce que garante a rastreabilidade da prova e assegura a lei da mesmidade — sem ela não há como comprovar que o material não foi alterado."
+    },
+    {
+      "id": "Q12",
+      "tipo": "factual",
+      "query": "qual o papel da prova dentro de um processo criminal?",
+      "relevancia": {"D01": 2},
+      "resposta_referencia": "A prova reconstrói os fatos (funcionalidade cognoscitiva-reconstrutiva) e forma o convencimento do julgador (funcionalidade persuasiva)."
+    },
+    {
+      "id": "Q13",
+      "tipo": "reformulavel",
+      "query": "existe uma regra que garante que o material analisado no laboratório é exatamente o mesmo que foi encontrado na cena do crime?",
+      "relevancia": {"D05": 2},
+      "resposta_referencia": "Sim, é a chamada lei da mesmidade, que fundamenta a função da cadeia de custódia de assegurar a autenticidade da prova."
+    },
+    {
+      "id": "Q14",
+      "tipo": "reformulavel",
+      "query": "até quando uma evidência de crime precisa continuar sendo protegida juridicamente, existe um prazo final?",
+      "relevancia": {"D06": 2},
+      "resposta_referencia": "Para a doutrina majoritária citada no artigo, a proteção deve durar até o trânsito em julgado da decisão de mérito, embora haja quem defenda um prazo mais curto."
+    },
+    {
+      "id": "Q15",
+      "tipo": "reformulavel",
+      "query": "a definição legal de vestígio inclui coisas como arquivos de computador ou pen drives?",
+      "relevancia": {"D09": 2, "D16": 1},
+      "resposta_referencia": "Não expressamente — a lei define vestígio como objeto ou material bruto, visível ou latente, e os autores criticam essa definição por não mencionar vestígios digitais."
+    },
+    {
+      "id": "Q16",
+      "tipo": "reformulavel",
+      "query": "quando um agente embala uma amostra de sangue num saco lacrado, isso tem nome técnico na lei?",
+      "relevancia": {"D10": 2, "D12": 1},
+      "resposta_referencia": "Sim, é chamado de acondicionamento — uma das dez etapas da cadeia de custódia previstas no art. 158-B do CPP."
+    },
+    {
+      "id": "Q17",
+      "tipo": "reformulavel",
+      "query": "alguém pode entrar numa área isolada de um crime antes da perícia liberar o espaço?",
+      "relevancia": {"D11": 2},
+      "resposta_referencia": "Não, a lei proíbe a entrada em locais isolados e a remoção de vestígios antes da liberação pelo perito responsável, sob risco de configurar fraude processual."
+    },
+    {
+      "id": "Q18",
+      "tipo": "reformulavel",
+      "query": "os departamentos de perícia no Brasil já têm essas centrais de custódia funcionando de verdade hoje em dia?",
+      "relevancia": {"D13": 2},
+      "resposta_referencia": "Não amplamente — as centrais de custódia ainda são raras no Brasil; a Polícia Federal, por exemplo, tem apenas uma, criada em 2010 no Mato Grosso do Sul."
+    },
+    {
+      "id": "Q19",
+      "tipo": "reformulavel",
+      "query": "a lei explica o que acontece se alguém descobrir que a cadeia de custódia de uma prova foi violada, tipo se a prova fica inválida?",
+      "relevancia": {"D16": 2, "D17": 1},
+      "resposta_referencia": "Não — os autores apontam como o ponto mais crítico da lei justamente o silêncio sobre os efeitos da quebra, irregularidade ou inexistência da cadeia de custódia."
+    },
+    {
+      "id": "Q20",
+      "tipo": "reformulavel",
+      "query": "por que os juízes confiam tanto assim em laudos de perito, quase como se a ciência nunca errasse?",
+      "relevancia": {"D02": 2},
+      "resposta_referencia": "O artigo chama isso de 'mito da infalibilidade da prova pericial', decorrente do prestígio que a ciência passou a ter na esfera penal."
+    },
+    {
+      "id": "Q21",
+      "tipo": "reformulavel",
+      "query": "qual autor foi usado como referência principal para definir o conceito central do artigo?",
+      "relevancia": {"D04": 2},
+      "resposta_referencia": "Claudemir Dias Filho, cuja definição de cadeia de custódia é adotada como a mais abrangente e completa da doutrina nacional."
+    },
+    {
+      "id": "Q22",
+      "tipo": "reformulavel",
+      "query": "no final das contas, os autores acham que essa lei nova resolveu o problema da confiabilidade das provas periciais?",
+      "relevancia": {"D17": 2},
+      "resposta_referencia": "Não — concluem que o regramento da Lei nº 13.964/2019 é insuficiente para garantir a fiabilidade da prova pericial."
+    },
+    {
+      "id": "Q23",
+      "tipo": "multihop",
+      "query": "quais artigos da lei tratam do passo a passo desde o reconhecimento do vestígio até o descarte, e quem fica responsável por cada etapa?",
+      "relevancia": {"D10": 2, "D09": 1},
+      "resposta_referencia": "O art. 158-B lista as dez etapas (reconhecimento a descarte), mas nem ele nem o art. 158-A definem claramente a quem compete a responsabilidade em cada etapa — apenas que o agente público que reconhece o vestígio responde por sua preservação."
+    },
+    {
+      "id": "Q24",
+      "tipo": "multihop",
+      "query": "como a lei brasileira de 2019 se compara com o modelo de outros países na regulação da cadeia de custódia?",
+      "relevancia": {"D15": 2, "D18": 1},
+      "resposta_referencia": "O artigo cita a Colômbia como modelo de referência, com capítulo próprio no código processual e manual detalhado da Fiscalía, e menciona decisões da Corte IDH que cobram diligências mínimas de preservação de prova em vários países latino-americanos."
+    },
+    {
+      "id": "Q25",
+      "tipo": "multihop",
+      "query": "quais foram os principais pontos fracos apontados na lei, incluindo o que ela não resolveu sobre quebra da cadeia de custódia e provas digitais?",
+      "relevancia": {"D16": 2, "D17": 2},
+      "resposta_referencia": "Definição restrita de vestígio (sem mencionar vestígios digitais), ausência de diferenciação entre cadeia de custódia interna e externa, e sobretudo silêncio total sobre os efeitos jurídicos da quebra, irregularidade ou inexistência da cadeia de custódia."
+    },
+    {
+      "id": "Q26",
+      "tipo": "multihop",
+      "query": "existe uma central de custódia obrigatória por lei, e o que acontece com o material depois que o exame pericial termina?",
+      "relevancia": {"D13": 2, "D14": 2},
+      "resposta_referencia": "Sim, o art. 158-E exige que todo Instituto de Criminalística tenha uma central de custódia; após a perícia (art. 158-F), o material deve ser devolvido a essa central e nela permanecer, salvo depósito em local diverso por falta de espaço."
+    },
+    {
+      "id": "Q27",
+      "tipo": "multihop",
+      "query": "como a definição legal de vestígio se relaciona com o conceito teórico de cadeia de custódia discutido no início do artigo?",
+      "relevancia": {"D09": 2, "D04": 1},
+      "resposta_referencia": "O conceito teórico (Dias Filho) fala em proteger a integridade do vestígio desde a coleta até o trânsito em julgado, mas a definição legal do art. 158-A restringe o vestígio a objeto ou material bruto e limita a cadeia de custódia ao momento técnico-científico, sem abarcar a fase processual."
+    },
+    {
+      "id": "Q28",
+      "tipo": "multihop",
+      "query": "o artigo menciona alguma decisão internacional que listou falhas concretas de preservação de prova, e essas falhas se relacionam com as etapas que a lei brasileira tenta formalizar?",
+      "relevancia": {"D18": 2, "D10": 1},
+      "resposta_referencia": "Sim, o Caso Velásquez Paiz vs. Guatemala listou falhas como manejo incorreto da cena do crime e irregularidades na documentação — problemas que correspondem justamente às etapas de isolamento, fixação e processamento previstas no art. 158-B."
+    },
+    {
+      "id": "Q29",
+      "tipo": "multihop",
+      "query": "quais etapas de coleta e acondicionamento de uma prova a lei detalha, e o que pode acontecer se elas forem descumpridas, como entrar num local isolado sem autorização?",
+      "relevancia": {"D11": 2, "D10": 1, "D12": 1},
+      "resposta_referencia": "A lei detalha coleta (art. 158-C) e acondicionamento com lacres (art. 158-D); a entrada não autorizada em local isolado ou a remoção de vestígios antes da liberação do perito pode configurar o crime de fraude processual."
+    },
+    {
+      "id": "Q30",
+      "tipo": "multihop",
+      "query": "juntando a parte sobre função e finalidade da cadeia de custódia com as críticas feitas à lei, dá pra dizer que a lei cumpre totalmente esses objetivos teóricos?",
+      "relevancia": {"D17": 2, "D05": 1, "D16": 1},
+      "resposta_referencia": "Não — embora a lei tenha positivado a função (autenticidade/lei da mesmidade) e a finalidade (precisão do decisum) da cadeia de custódia, os autores concluem que o regramento é insuficiente, por não tratar dos efeitos da quebra e por limitar-se apenas à prova pericial."
+    }
+  ]
+}
