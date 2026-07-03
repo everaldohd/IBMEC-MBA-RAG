@@ -1,0 +1,485 @@
+{
+  "detalhes": [
+    {
+      "id": "Q01",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 1.0,
+      "ndcg@10": 0.2754,
+      "ids_recuperados": [
+        "D05",
+        "__nao_identificado_1",
+        "D15",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.28
+    },
+    {
+      "id": "Q02",
+      "tipo": "factual",
+      "hit@5": 0.0,
+      "recall@5": 0.0,
+      "rr": 0.0,
+      "ndcg@10": 0.0,
+      "ids_recuperados": [
+        "D11",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.06
+    },
+    {
+      "id": "Q03",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.0,
+      "ids_recuperados": [
+        "D10",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "D09"
+      ],
+      "latencia_s": 3.34
+    },
+    {
+      "id": "Q04",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.3333,
+      "ndcg@10": 0.5,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "D05",
+        "D12",
+        "__nao_identificado_3",
+        "D11"
+      ],
+      "latencia_s": 3.16
+    },
+    {
+      "id": "Q05",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.0,
+      "ids_recuperados": [
+        "D13",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D16",
+        "D15"
+      ],
+      "latencia_s": 3.44
+    },
+    {
+      "id": "Q06",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.4307,
+      "ids_recuperados": [
+        "D14",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D14",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.21
+    },
+    {
+      "id": "Q07",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 1.0,
+      "ndcg@10": 1.5017,
+      "ids_recuperados": [
+        "D11",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D11",
+        "D11"
+      ],
+      "latencia_s": 3.35
+    },
+    {
+      "id": "Q08",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.0,
+      "ids_recuperados": [
+        "D08",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.4
+    },
+    {
+      "id": "Q09",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.2645,
+      "ids_recuperados": [
+        "D15",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D08",
+        "D15"
+      ],
+      "latencia_s": 3.12
+    },
+    {
+      "id": "Q10",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.0,
+      "ids_recuperados": [
+        "D18",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.3
+    },
+    {
+      "id": "Q11",
+      "tipo": "factual",
+      "hit@5": 0.0,
+      "recall@5": 0.0,
+      "rr": 0.0,
+      "ndcg@10": 0.0,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D11",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.1
+    },
+    {
+      "id": "Q12",
+      "tipo": "factual",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.25,
+      "ndcg@10": 0.4307,
+      "ids_recuperados": [
+        "D04",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D01",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.27
+    },
+    {
+      "id": "Q13",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 1.0,
+      "ndcg@10": 1.3869,
+      "ids_recuperados": [
+        "D05",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "D05"
+      ],
+      "latencia_s": 3.14
+    },
+    {
+      "id": "Q14",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.3333,
+      "ndcg@10": 0.5,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "__nao_identificado_1",
+        "D06",
+        "__nao_identificado_3",
+        "D04"
+      ],
+      "latencia_s": 3.2
+    },
+    {
+      "id": "Q15",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 0.3333,
+      "ndcg@10": 0.2563,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "__nao_identificado_1",
+        "D16",
+        "D16",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.44
+    },
+    {
+      "id": "Q16",
+      "tipo": "reformulavel",
+      "hit@5": 0.0,
+      "recall@5": 0.0,
+      "rr": 0.0,
+      "ndcg@10": 0.0,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "D11",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.13
+    },
+    {
+      "id": "Q17",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.5,
+      "ndcg@10": 0.6309,
+      "ids_recuperados": [
+        "D09",
+        "D11",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "D09"
+      ],
+      "latencia_s": 3.47
+    },
+    {
+      "id": "Q18",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.25,
+      "ndcg@10": 0.4307,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "__nao_identificado_1",
+        "D14",
+        "D13",
+        "D15"
+      ],
+      "latencia_s": 3.2
+    },
+    {
+      "id": "Q19",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 0.25,
+      "ndcg@10": 0.1186,
+      "ids_recuperados": [
+        "D05",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D17",
+        "D09"
+      ],
+      "latencia_s": 3.43
+    },
+    {
+      "id": "Q20",
+      "tipo": "reformulavel",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.5,
+      "ndcg@10": 0.6309,
+      "ids_recuperados": [
+        "D11",
+        "D02",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "D11"
+      ],
+      "latencia_s": 3.15
+    },
+    {
+      "id": "Q21",
+      "tipo": "reformulavel",
+      "hit@5": 0.0,
+      "recall@5": 0.0,
+      "rr": 0.0,
+      "ndcg@10": 0.0,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "__nao_identificado_1",
+        "D15",
+        "D03",
+        "D11"
+      ],
+      "latencia_s": 3.22
+    },
+    {
+      "id": "Q22",
+      "tipo": "reformulavel",
+      "hit@5": 0.0,
+      "recall@5": 0.0,
+      "rr": 0.0,
+      "ndcg@10": 0.0,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "D05",
+        "__nao_identificado_2",
+        "D03",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.18
+    },
+    {
+      "id": "Q23",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 1.0,
+      "rr": 0.5,
+      "ndcg@10": 0.5869,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "D09",
+        "D10",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.22
+    },
+    {
+      "id": "Q24",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 1.0,
+      "ndcg@10": 0.8262,
+      "ids_recuperados": [
+        "D15",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "D08"
+      ],
+      "latencia_s": 3.18
+    },
+    {
+      "id": "Q25",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 1.0,
+      "ndcg@10": 0.6131,
+      "ids_recuperados": [
+        "D17",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.21
+    },
+    {
+      "id": "Q26",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 1.0,
+      "ndcg@10": 0.9197,
+      "ids_recuperados": [
+        "D14",
+        "__nao_identificado_1",
+        "D14",
+        "__nao_identificado_3",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.2
+    },
+    {
+      "id": "Q27",
+      "tipo": "multihop",
+      "hit@5": 0.0,
+      "recall@5": 0.0,
+      "rr": 0.0,
+      "ndcg@10": 0.0,
+      "ids_recuperados": [
+        "D03",
+        "__nao_identificado_1",
+        "__nao_identificado_2",
+        "D06",
+        "__nao_identificado_4"
+      ],
+      "latencia_s": 3.35
+    },
+    {
+      "id": "Q28",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 0.5,
+      "rr": 0.2,
+      "ndcg@10": 0.3196,
+      "ids_recuperados": [
+        "D17",
+        "__nao_identificado_1",
+        "D14",
+        "__nao_identificado_3",
+        "D18"
+      ],
+      "latencia_s": 3.19
+    },
+    {
+      "id": "Q29",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 0.6666666666666666,
+      "rr": 0.5,
+      "ndcg@10": 1.1096,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "D10",
+        "D11",
+        "D11",
+        "D11"
+      ],
+      "latencia_s": 3.4
+    },
+    {
+      "id": "Q30",
+      "tipo": "multihop",
+      "hit@5": 1.0,
+      "recall@5": 0.3333333333333333,
+      "rr": 0.5,
+      "ndcg@10": 0.2464,
+      "ids_recuperados": [
+        "__nao_identificado_0",
+        "D05",
+        "D03",
+        "__nao_identificado_3",
+        "D05"
+      ],
+      "latencia_s": 3.2
+    }
+  ],
+  "falhas": []
+}

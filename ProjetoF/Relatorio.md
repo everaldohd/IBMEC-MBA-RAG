@@ -218,12 +218,64 @@ seguir isolando tudo contra o `nomic-embed-text` do exp01) está registrada em
 conexão com o Ollama local — resolvido rodando o script de novo, que é resumível e
 tentou de novo só esse modelo.)*
 
-### Fase 4 — Recuperação base (top_k e busca híbrida)
+### Fase 4 — Recuperação base (top_k e busca híbrida) (`exp12`–`exp16`)
 
-`[PENDENTE]` — a partir desta fase, a base fixa passa a ser Docling + `hierárquico` +
-`qwen3-embedding:4b` (jornada progressiva, ver Seção 8.1). Testa `hibrida` (BM25 +
-densa via RRF, `OpenSearchHybridRetriever` — nova técnica em `app/busca_avancada.py`)
-contra a busca densa pura, em `top_k` 5/10/20 (`avaliacao/rodar_fase4_hibrida_topk.py`).
+**Hipótese:** combinar busca lexical (BM25) com a densa deveria aumentar a cobertura
+(vestígios de termos exatos da lei que a busca puramente semântica pode não priorizar);
+variar `top_k` também deveria afetar o ranking fino medido pelo NDCG@10.
+
+**Mudança:** a partir desta fase, a base fixa passa a ser Docling + `hierárquico` +
+`qwen3-embedding:4b` (jornada progressiva, ver Seção 8.1). Testada a nova técnica
+`hibrida` (BM25 + densa via RRF, `OpenSearchHybridRetriever` — novidade em
+`app/busca_avancada.py`) contra a busca densa pura, em `top_k` 5/10/20
+(`avaliacao/rodar_fase4_hibrida_topk.py`). `densa/top_k=10` não foi remedido: é
+exatamente o `exp10` da Fase 3, já na mesma base.
+
+**Resultado:**
+
+| Combinação | Hit@5 | Recall@5 | MRR | NDCG@10 |
+|---|---|---|---|---|
+| densa top_k=5 (exp12) | 0,933 | 0,700 | 0,657 | 0,674 |
+| densa top_k=10 (exp10, referência) | 0,933 | 0,700 | 0,661 | 0,775 |
+| densa top_k=20 (exp13) | 0,933 | 0,700 | 0,661 | 0,775 |
+| híbrida top_k=5 (exp14) | 0,800 | 0,633 | 0,548 | 0,599 |
+| híbrida top_k=10 (exp15) | 0,900 | 0,683 | 0,587 | 0,682 |
+| híbrida top_k=20 (exp16) | 0,800 | 0,600 | 0,569 | 0,660 |
+
+**Análise:** resultado contraintuitivo de novo — a busca híbrida (BM25+densa via RRF)
+ficou **abaixo** da busca densa pura em todas as métricas, em qualquer `top_k` testado.
+A hipótese mais provável: com `qwen3-embedding:4b` a busca densa já está muito forte
+neste corpus (Hit@5=0,933), então o BM25 tem pouco a contribuir de complementar — ao
+contrário, ele traz para o ranking fundido chunks lexicamente parecidos mas
+semanticamente menos relevantes (termos jurídicos repetidos em várias seções do
+artigo), e o RRF acaba empurrando para baixo alguns acertos fortes da busca densa.
+Dentro da própria família híbrida, `top_k=10` (exp15) foi consistentemente o melhor
+dos três, sugerindo que `top_k` muito baixo (5) corta cedo demais um ranking já mais
+ruidoso, e `top_k` muito alto (20) dilui ainda mais com chunks de cauda longa do BM25 —
+mas mesmo o melhor ponto da híbrida não alcançou a densa pura.
+
+Sobre `top_k` isolado (mantendo densa): `top_k=5` já mantém Hit@5/Recall@5 idênticos a
+`top_k=10/20` (o relevante já está garantido nas top-5 posições, se está), mas o
+NDCG@10 despenca (0,674 vs 0,775) — efeito mecânico, não de qualidade de busca: com
+`top_k=5` só existem 5 documentos para calcular um NDCG que olha até a posição 10, o
+que já penaliza o score independente da real relevância. `top_k=10` e `top_k=20` deram
+resultado idêntico em todas as métricas — ampliar a janela além de 10 não trouxe nem
+tirou nada do ranking dentro das primeiras 10 posições, ou seja, não há chunk relevante
+"escondido" entre as posições 11-20 nesta base. Conclusão prática: `top_k=10` segue
+sendo o ponto de equilíbrio (não perde nada de `top_k=20` e evita o corte artificial de
+`top_k=5`), e a busca densa pura segue como configuração de recuperação de referência
+até aqui — a híbrida fica descartada nesta base, mas registrada como resultado negativo
+relevante para a análise crítica (Seção 8).
+
+*(Nota técnica: a primeira tentativa desta fase teve o OpenSearch caindo por ~8s no
+meio da rodada do `exp15_hibrida_top10` — 23 das 30 perguntas falharam por erro de
+conexão. A linha malformada (`n_queries=7`) foi removida do `resultados.csv` e o
+script foi rodado de novo — resumível, então só refez o `exp15`; os demais
+experimentos (que já tinham completado 30/30) foram pulados.)*
+
+*(Índice **não** foi restaurado ao final desta fase — fica na base
+Docling+hierárquico+qwen3-embedding:4b para a Fase 5 em diante, por causa da mudança
+de metodologia isolada→progressiva, ver Seção 8.1.)*
 
 ### Fase 5 — Query enhancement
 
@@ -256,6 +308,11 @@ contra a busca densa pura, em `top_k` 5/10/20 (`avaliacao/rodar_fase4_hibrida_to
 | exp09_embed_qwen3_embedding_0.6b | Fase 3 | embedding=qwen3-embedding:0.6b (vs nomic-embed-text) | 0,833 | 0,639 | 0,527 | 0,618 | 3,15 |
 | exp10_embed_qwen3_embedding_4b | Fase 3 | embedding=qwen3-embedding:4b (vs nomic-embed-text) | 0,933 | 0,700 | 0,661 | 0,775 | 3,17 |
 | exp11_embed_qwen3_embedding_8b | Fase 3 | embedding=qwen3-embedding:8b "latest" (vs nomic-embed-text) | 0,933 | 0,733 | 0,615 | 0,770 | 3,42 |
+| exp12_densa_top5 | Fase 4 | tecnica=baseline (densa), top_k=5, base=Docling+hierárquico+qwen3-embedding:4b | 0,933 | 0,700 | 0,657 | 0,674 | 3,50 |
+| exp13_densa_top20 | Fase 4 | tecnica=baseline (densa), top_k=20, base=Docling+hierárquico+qwen3-embedding:4b | 0,933 | 0,700 | 0,661 | 0,775 | 3,20 |
+| exp14_hibrida_top5 | Fase 4 | tecnica=híbrida (BM25+densa/RRF), top_k=5, base=Docling+hierárquico+qwen3-embedding:4b | 0,800 | 0,633 | 0,548 | 0,599 | 3,25 |
+| exp15_hibrida_top10 | Fase 4 | tecnica=híbrida (BM25+densa/RRF), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,900 | 0,683 | 0,587 | 0,682 | 3,27 |
+| exp16_hibrida_top20 | Fase 4 | tecnica=híbrida (BM25+densa/RRF), top_k=20, base=Docling+hierárquico+qwen3-embedding:4b | 0,800 | 0,600 | 0,569 | 0,660 | 3,27 |
 
 *(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
 
