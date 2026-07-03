@@ -1,0 +1,461 @@
+## Resumo
+
+O presente  artigo  enfoca  o  objeto,  a  função  e  a  finalidade  da  cadeia  custódia, além  da  sua  importância  no  processo  penal,  problematizando  a  temática  em relação à documentação da prova em si.  Trata-se, ainda, da suficiência ou não do contido  na Lei nº 13.964/2019 à garantia da fiabilidade da prova pericial. Para tanto, utiliza-se a metodologia hermenêutica, com raciocínio dedutivo preponderante,  tendo  como  referencial  teórico  bibliografia  nacional  e  internacional.  A cadeia de custódia integra um sistema de controles epistêmicos, cuja funcionalidade é assegurar a autenticidade da prova, tendo na lei da mesmidade o seu objeto central. A finalidade da observância da cadeia de custódia é outorgar um elevado grau de precisão ao decisum, potencializando-se o contraditório. Contudo, a regulamentação é incipiente,  insuficiente  à  garantia  da  fiabilidade  da  prova  pericial, silenciando acerca dos efeitos da não observância da cadeia de custódia, de sua irregularidade ou quebra e mesmo de sua inexistência.
+
+1   Estudos  de  pós-doutorado  na  Università  degli  Studi  di  Torino.  Doutor  em Direito pela Universidade Complutense de Madrid. Coordenador e Professor do Programa de Pós-Graduação em Ciências Criminais da Pontifícia Universidade Católica  do  Rio  Grande  do  Sul,  Porto  Alegre,  Rio  Grande  do  Sul,  Brasil. Advogado. E-mail: nereu@giacomolli.com ORCID: 0000-0003-1753-0334.
+
+2   Doutoranda  do  Programa  de  Pós-Graduação  em  Ciências  Criminais  da Pontifícia  Universidade  Católica  do  Rio  Grande  do  Sul,  Porto  Alegre,  Rio Grande do Sul, Brasil. Bolsista CAPES/BRASIL do INCT Forense. Mestre em Biologia  Molecular  pela  PUCRS.  Especialista  em  Perícia  Criminal  e  Ciências Forenses pelo IPOG. E-mail: amaralmea@gmail.com
+
+|
+
+## A CADEIA DE CUSTÓDIA DA PROVA PERICIAL NA LEI Nº 13.964/2019
+
+THE CHAIN OF CUSTODY OF EXPERT EVIDENCE IN LAW 13.964/2019
+
+Nereu José Giacomolli 1
+
+Pontifícia Universidade Católica do Rio Grande do Sul
+
+Maria Eduarda Azambuja Amaral 2 Pontifícia Universidade Católica do Rio Grande do Sul
+
+|
+
+## Palavras-chave
+
+Processo Penal. Cadeia de Custódia. Perícias. Fiabilidade. Normatização.
+
+## Abstract
+
+This article aims to analyze the object, function and purpose of the chain of custody, in well as its importance in criminal proceedings, problematizing the issue in relation to the documentation of evidence itself.  It is also analyzed whether the wording of Law 13.964/2019 is sufficient to ensure the reliability of the expert evidence or not. For this, the hermeneutic methodology is used, with deductive reasoning preponderant, having as theoretical reference national and international bibliography. The chain of custody is part of a system of epistemic controls, whose functionality is to ensure the authenticity of the evidence. The purpose of observing the chain of custody is to ensure a high degree of accuracy to the decisum, ensuring the contradictory. However, the regulation is insufficient to ensure the reliability of the expert evidence, and do not deal with the effects of chain of custody's non-compliance, its breakage and even its non-existence.
+
+## Keywords
+
+Criminal Procedure. Chain of Custody. Forensics. Reliability. Standardization.
+
+## INTRODUÇÃO
+
+O tema prova é um dos mais relevantes no processo penal,  por  implicar  na  reconstrução  dos  fatos,  como  elemento central da atividade cognitiva judicial. A expressão prova, no processo penal, passou a representar tudo o que a ela pertine, ou seja, os meios empregados na demonstração dos fatos ou do thema probandum ,  a atividade utilizada pelas partes para levar ao processo os meios de prova, bem como o próprio resultado do procedimento probatório,  ou  seja,  o  convencimento  exteriorizado  pelo  julgador. Por meio da prova são introduzidos no processo penal os fatos e as circunstâncias de uma determinada infração criminal (funcionalidade cognoscitiva-reconstrutiva) e tudo o que importar ao convencimento do julgador (funcionalidade persuasiva). 3
+
+3   GIACOMOLLI,  Nereu  José. O  Devido  Processo  Penal.  Abordagem conforme  a  CF  e  o  Pacto  de  São  José  da  Costa  Rica . 3.  ed.  São  Paulo: GEn/Atlas, 2016, p. 199.
+
+|
+
+A problematização se acentua quando da aproximação entre o contexto probatório criminal e as ciências duras, 4 ou ciências naturais. A ciência , que sempre possuiu como finalidade primeira  o  saber,  passa  a  auxiliar  na  resolução  de  imperativos jurisdicionais e a gozar de prestígio e poder 5 na esfera penal (mito da infalibilidade  da  prova  pericial).  Neste  cenário  de  interconexão  entre  diversas  áreas  do  conhecimento,  emerge  a  prova  pericial,  embebida em uma atmosfera de positivismo científico e de visão determinista. 6
+
+4   GAUER,  Ruth  Maria  Chittó. A  fundação  da  norma:  para  além  da racionalidade  histórica. Porto  Alegre:  EDIPUCRS,  2011,  p.  15.  Sobre  a importância da redução do distanciamento entre as ciências humanas e algumas outras  ciências:  'o  esforço  em  preservar  as  fronteiras  conhecimento  é  um  dos grandes problemas enfrentados pelas Universidades quando buscam a inovação. A base do pensamento das pesquisas conhecidas como 'de ponta' reside no fato de que a linguagem técnica de uma área permite a ampliação de outra área. Esse exemplo  pode  ser  constatado  historicamente.  Para  tanto,  basta  pensarmos  no século  XVII,  o  qual  se  construiu  a  matriz  das  atuais  ciências  denominadas 'exatas" ou 'duras'. A geometria alcançou o papel de fornecedor de paradigmas para todo o conhecimento científico. Nos finais do século XIX a biologia passou a explicar para alguns darwinistas, como Tylor, Spencer, Webb, que a sociedade evoluía  em  fases  sucessivas,  ou  seja,  a  história  das  sociedades  também  estava sujeita às leis da natureza, tendendo  a  seguir  linhas  de  desenvolvimento semelhantes, independente da localização espaço-temporal. Logo, necessariamente,  a  sociedade  passaria  da  selvageria  à  barbárie,  e,  enfim,  à civilização.  Há,  no  entanto,  que  se  ter  presente  que  as  linguagens  -  palavras, conceitos  -  não  possuem  transparência  suficiente  para  expressar  o  próprio  ato criativo, portanto, a arte é imprescindível".
+
+5  BUSATO, Paulo César (org.). Neurociência e direito penal . São Paulo: Atlas, 2014, p. 8.
+
+6 Nas palavras de Bachelard, 'se desejássemos retraçar a história do determinismo,  seria  preciso retomar  toda  a  história  da  astronomia.  É  na imensidão dos céus que se delineia o objetivo puro que corresponde a um visual puro.  (…)  Esta  origem  astronômica  do  determinismo,  parece-nos  explicar  a longa negligência dos filósofos para os problemas relativos às perturbações, aos erros, às incertezas no estudo dos fenômenos físicos. É nesta franja de erros que se  fundará,  tardiamente,  o  indeterminismo científico.' BACHELARD, Gaston. O novo espírito científico. Tradução de Juvenal Hahne Júnior. Rio de Janeiro: Tempo Brasileiro, 2000, p. 93 e 94.
+
+|
+
+Junto a ela tencionam-se variados questionamentos, os quais permeiam o debate jurídico há décadas. 7
+
+Uma das mais críticas indagações abrange um complexo e extenso espaço de tempo ao longo de toda atividade processual e pré-processual. Trata-se da necessidade de garantir que, à atividade cognitiva do magistrado, serão apresentados elementos probatórios imbuídos de requisitos mínimos de confiabilidade (fiabilidade, idoneidade) e rastreabilidade do que fora coletado no local do fato  ou  em  outra  atividade  investigativa.  Questiona-se,  portanto, como controlar a atividade cognitiva jurisdicional frente  a  conhecimento tão específico e que, na maioria das vezes, não é de domínio  do  julgador?  Bem  salienta  Knijnik,  ao  indagar  'qual  o  papel cominado ao juiz, diante da prova pericial?' 8 Mais além, como assegurar garantias básicas processuais que sustentem um justo e devido processo? À esta visão romantizada da prova pericial e da certeza científica, faz-se necessário um aparato de controles epistêmicos, 9 a subsidiar a formação do convencimento judicial. Um deles é a observância da cadeia de custódia.
+
+Documentos, objetos  e  conteúdos  materiais  ou  virtuais, fontes de prova pericial, têm recebido significativa notoriedade no contexto decisório, assumindo o lugar da antes preponderante prova testemunhal. Torna-se cada vez mais comum que as partes, com o intuito de assegurar suas afirmações, apresentem algum tipo de informação especializada como elemento de prova e que o juiz utilize de tal informação tanto para determinar os fatos, como para valorá-los. 10 Nasce daí a necessidade de preservar as condições de
+
+7  VÁZQUEZ ROJAS, Carmen. De la prueba científica a la prueba pericial .
+
+Madrid: Marcial Pons, 2015, p. 26.
+
+Prova  pericial  e  seu  controle  no  direito  processual
+
+8   KNIJNIK,  Danilo. brasileiro . São Paulo: Revista dos Tribunais, 2017, p. 21
+
+9   PRADO,  Geraldo. Prova  penal  e  sistema  de  controles  epistêmicos:  a quebra da cadeia de custódia das provas obtidas por métodos ocultos . São Paulo: Marcial Pons, 2014, p. 43.
+
+10  VÁZQUEZ ROJAS, Carmen. De la prueba científica a la prueba pericial . p. 26.
+
+|
+
+fidedignidade. 11 A  cadeia de custódia da prova pericial mostra-se, portanto,  como  elemento  chave  do  referido  sistema  de  controle epistêmicos.
+
+O presente trabalho  não tratará  de  toda  problemática da cadeia de custódia, mas apenas de alguns aspectos, delimitados ao que o legislador introduziu no Código de Processo Penal através da Lei nº 13.964/2019, que entrou em vigor no início de 2020. Não serão abordados outros aspectos, não previstos no CPP, como os efeitos  da  quebra  da  cadeia  de  custódia  da  prova  pericial.  Por exemplo,  o  legislador  não  tratou  da  cadeia  de  custódia  de  outras provas,  mas  apenas  da  prova  pericial.  Assim,  o  presente  estudo analisa a atual regulamentação da cadeia de custódia da prova pericial no CPP.
+
+O artigo  pretende  responder  às  seguintes  problemáticas:  a)  Qual  o  objeto,  função  e  finalidade  da  cadeia  custódia  da prova pericial?; b) Que importância possui a cadeia de custódia no processo  penal?;  c)  Cadeia  de  custódia  e  documentação  da  prova são  realidades  idênticas?;  d)  A  Lei  nº  13.964/2019  é  o  primeiro diploma legal a abordar a cadeia de custódia? e) O regramento contido na Lei nº 13.964/2019 é suficiente para garantir a fiabilidade da prova pericial? As hipóteses ou respostas provisórias, prévias, são de  que  há  uma  diferença,  embora  não  substancial,  entre  função (fiabilidade da prova) e finalidade (relaciona-se com o decisum ),  enquanto o objeto diz respeito à mesmidade. A observância da cadeia de  custódia  permite  a  idoneidade  da  integridade  da  prova,  não  se reduzindo, a cadeia de custódia à documentação do iter da prova. A Lei  nº  13.964/2019  foi  o  primeiro  diploma  processual  penal  a  se referir, expressamente sobre a cadeia de custódia da prova, embora tenha se limitado à prova pericial, através de um regramento insuficiente.
+
+O artigo seguirá a metodologia hermenêutica, com raciocínio dedutivo preponderante, explorando a bibliografia brasileira, ainda incipiente, bem como autores estrangeiros. O texto inici-
+
+11  PRADO, Geraldo. A cadeia de custódia da prova no processo penal. Paulo: Marcial Pons, 2019, p. 94.
+
+São
+
+|
+
+almente conceitua a cadeia de custódia da prova pericial, adentrando em sua funcionalidade e finalidades. Em um segundo momento, analisa a atual disciplina legal da cadeia de custódia da prova pericial,  acrescida  à  legislação  processual  penal  por  meio  da  Lei  nº 13.964/2019,  sem  a  pretensão  de  esgotar  o  assunto  em  sua totalidade. Por fim, traz à lume alguns aspectos positivos e negativos da reforma de 2019, enfocando o debate, preferencialmente, na aplicabilidade e na relevância processual da atual regulamentação do instituto da cadeia de custódia da prova pericial.
+
+## 1. CONCEITO, FUNÇÃO E FINALIDADE DA CADEIA DE CUSTÓDIA
+
+A cadeia de custódia da prova pericial faz parte de um sistema  de  controles  epistêmicos,  indispensável  à  reconstrução histórica dos fatos e ao devido processo penal. Não obstante, faz-se mister um estudo prévio acerca do conceito, função e finalidade de referido instrumento, no âmbito instrumental criminal. A importância da cadeia de custódia da prova decorre do fato de que 'um objeto de prova poderá e deverá circular entre várias instâncias examinatórias, trafegando por diferentes órgãos, inclusive de polícia judiciária ou inspeção sanitária, até aportar no processo através de relatórios descritivos e interpretativos'. 12
+
+Para conceituar a cadeia de custódia da prova pericial, adotou-se aquela descrita por Claudemir Dias Filho, por entender que se trata  de  uma  das  definições  mais  abrangentes  e  completas acerca  do  instituto  até  então  desenvolvidas  na  doutrina  nacional. Dias Filho define 13 a cadeia de custódia como
+
+12   KNIJNIK,  Danilo. Prova  pericial  e  seu  controle  no  direito  processual brasileiro . p. 170-171.
+
+13   Outras  definições  de  cadeia  de  custódia  podem  ser  encontradas  na  doutrina brasileira e estrangeira. A própria Diretoria Técnico-Científica da Polícia Federal desenvolveu um glossário das ciências forenses, onde define a cadeia de custódia como o 'conjunto de medidas para o acompanhamento e registro dos eventos, ocorrências, transferências e movimentações do vestígio com vistas a garantir a
+
+|
+
+Uma  sucessão  de  eventos  concatenados,  em  que cada um proporciona a viabilidade ao desenvolvimento do seguinte, de forma a proteger a integridade de um vestígio do local de crime ao seu reconhecimento como prova material até o trânsito em  julgado  do  mérito  processual;  eventos  estes descritos em um registro documental pormenorizado, validando a evidência e permitindo sua rastreabilidade, sendo seu objetivo-fim garantir que a evidência apresentada na corte se revista das mesmas  propriedades  probatórias  que  o  vestígio coletado no local de crime. 14
+
+A  partir  desse  conceito,  pode-se  extrair  elementos essenciais ao debate da temática. O primeiro âmbito de análise a ser desenvolvido  abarca  o  entendimento  acerca  da  funcionalidade  e finalidade da cadeia de custódia. Muito embora sejam conceitos que permeiam uma região muito tênue de definição, é mister diferenciar a  função  da  finalidade.  A  função  da  cadeia  de  custódia  da  prova
+
+integridade e idoneidade deste, desde a sua identificação e coleta, até a utilização pela Justiça como elemento probatório' (BRASIL. Ministério da Justiça. Polícia Federal. Diretoria Técnico-Científica. Glossário de ciências forenses: termos técnicos mais usados pela perícia criminal federal. Brasília: Polícia Federal, Diretoria Técnico-Científica, 2016, p. 58). Na doutrina estrangeira, Rubén Darío refere que ' la cadena de custodia es un procedimento controlado y sistematizado que se aplica a  la  evidencia,  desde  su  localización  hasta  su  valoración.  Es  el  elemento  indispensable  para llevar a cabo un debido processo que lleva a la verdade de un hecho delictivo' (GONZÁLEZ, Rubén  Darío  Ângulo. Cadena  de  Custodia  en  Criminalística . Bogotá: Ediciones  Doctrina  y  Ley,  2016,  p.  2.)  Para  Figueroa  Navarro,  a  cadeia  de custódia  é  ' ele  procedimento  documentado  que  garantiza  la  identidade,  integridade  y autenticidade  de  los  restos  y  vestígios  relacionados  com  los  hechos  ojeto  de  la  causa,  de  forma ininterrompida desde su hallazgo hasta su aportación al processo, siempre a disposición de la autoridade judicial competente '. (FIGUEROA NAVARRO, Carmen. apud TABUENCA, Pilar Ladrón. La cadena de custodia en el Proceso Penal Español: revisión normativa. In: FIGUEROA NAVARRO, Carmen (org.). La cadena de custodia en el Proceso Penal . Madrid: Edisofer, 2015. p. 23).
+
+14  DIAS FILHO, Claudemir Rodrigues. Cadeia de custódia: do local de crime ao trânsito  em  julgado;  do  vestígio  à  evidência. Revista dos Tribunais . v.  98,  n. 883, p. 436-451. maio 2009.
+
+|
+
+pericial  é  assegurar,  de  maneira  fiável,  a  autenticidade  da  prova. 15 Ou  seja,  o  objeto  da  cadeia  de  custódia  fundamenta-se  na lei  da mesmidade , a qual determina que o elemento coletado é o mesmo a ser utilizado  na  decisão  judicial, 16 possuindo  um  caráter instrumental . 17 Deve-se  garantir  que  'aquéllos  que  se  ponen  a  disposición  del Tribunal, son los mismos que fueron recogidos en el lugar de los hechos  en  los  momentos  en  que  se  iniciaba  la  investigación criminal ' . 18 Trata-se,  portanto,  de  assegurar  as  fontes  de  prova como  elemento  essencial  da  eficácia  dos  meios  de  prova.  Do contrário,  criar-se-ão  questionamentos  acerca  da  fiabilidade  dos resultados  periciais  e  da  possibilidade  de  ruptura  da  cadeia  de custódia,  com  impacto  direto  nos  processos  de  admissibilidade e/ou valoração probatória. 19
+
+15 GONZÁLEZ, Rubén Darío Angulo. Cadena de Custodia en Criminalística . p. 7.
+
+16  PRADO, Geraldo. A cadeia de custódia da prova no processo penal . p. 95 17   Nas  palavras  da  autora,  ' solo  sirve  para  garantizar  que  la  analizada  es  la  misma  e integra  substancia  ocupada  generalmente  al  principio  de  las  actuaciones,  carece  por  tanto  de valor  probatório  em  sí  misma' .  SANZ,  María  Rosa  Gutiérrez. La  cadena  de custodia en el Proceso Penal Español . Navarra: Editorial Aranzadi, 2016, p.
+
+40-41.
+
+18   FIGUEROA  NAVARRO,  Carmen. apud TABUENCA,  Pilar  Ladrón.  La cadena  de  custodia  en  el  Proceso  Penal  Español:  revisión  normativa.  In: FIGUEROA  NAVARRO,  Carmen  (org.). La  cadena  de  custodia  en  el Proceso Penal . Madrid: Edisofer, 2015. p. 21.
+
+19  Importante salientar que o presente estudo não se propõe a debater acerca da consequência  da  configuração  da  quebra  da  cadeia  de  custódia;  ou  seja,  se  a confirmação de não manutenção da cadeia de custódia resultaria na inadmissibilidade  da  prova  pericial  ou  se  esta  poderia  ser  admitida  e  o  vício sanado  a  nível  de  valoração  probatória.  Não  há  um  consenso  na  doutrina nacional.  Geraldo  Prado  entende  que  se  configurada  a  quebra  da  cadeia  de custódia  da  prova  pericial,  dever-se-ia  reconhecer  a  ilicitude probatória  e, consequentemente,  a  inadmissibilidade  seria  a  regra  (PRADO,  Geraldo. A cadeia  de  custódia  da  prova  no  processo  penal ).  De  modo  contrário, Gustavo Badaró entende que, a depender do vício que ocorreu durante a quebra da  cadeia  de  custódia,  é  possível  que  a  irregularidade  seja  sanada  a  nível  de valoração. Dissertando sobre a temática e se constatada a existência de vícios na cadeia  de  custódia  isso  levaria,  necessariamente  à  ilicitude  probatória,  Badaró aponta que 'a resposta deve ser negativa, principalmente, no caso em que haja
+
+A  finalidade  da  cadeia  de  custódia,  por  sua  vez,  é propiciar maior grau de precisão ao decisum , o qual há de refletir um discurso  coerente  acerca  dos  fatos.  Ou  seja,  a  garantia  de  uma cadeia de custódia segura e fiável possui como consequência direta a rastreabilidade do  elemento  probatório  e  reflete  uma  sentença  de melhor  qualidade,  afastando  erros  e  arbítrios  judiciários. 20,21 Mas não  é  só  isso.  Nas  palavras  de  José  Braz,  a  possibilidade  de utilização  jurídica  da  prova  material  possui  como  pressuposto incontestável 'a garantia da  absoluta  integridade  e  inalterabilidade dos  elementos  materiais  analisados,  em  cuja  interpretação  incide um qualquer juízo de ciência'. 22 É  de  ser  ressaltado  que  as  regras do devido processo servem de base jurídico-política ao estado de direito, barreira pela qual evita-se que o exercício da força tenda a converter-se  em  arbítrio  judicial.  A  cadeia  de  custódia  da  prova pericial  é,  portanto,  vista  como  um  indicador  epistêmico,  o  qual impacta  direta  e  significativamente  na  atividade  recognitiva  do magistrado. 23 Nas palavras de Braz, 'a cadeia de custódia da prova tem, pois, uma dupla natureza e espaço de concretização: o jurídico e  o  técnico-científico'. 24 Para  além  disso,  aponta-se  como  uma segunda finalidade da cadeia de custódia, mas não menos importante, a garantia do contraditório da prova.
+
+apenas omissões ou irregularidades leves, sem que haja indicativos concretos de que a fonte de prova possa ter sido modificada, adulterada ou substituída. Em tais casos, a questão deve ser resolvida no momento da valoração'. (BADARÓ, Gustavo.  A  cadeia  de  custódia  e  sua  relevância  para  a  prova  penal.  In:  SIDI, Ricardo;  LOPES,  Anderson  Bezerra.  (orgs.) Temas  atuais  de  investigação preliminar  no  processo  penal .  Belo  Horizonte:  Editora  D'Plácido,  2017.  p. 517-538). Na mesma linha de Badaró, SANZ, María Rosa Gutiérrez. La cadena de  custodia  em  el  Proceso  Penal  Español . p.  39  e  ss.  e  FIGUEROA NAVARRO, Carmen. apud TABUENCA, Pilar Ladrón. La cadena de custodia en el Proceso Penal Español: revisión normativa. In: FIGUEROA NAVARRO, Carmen (org.). La cadena de custodia en el Proceso Penal . Madrid: Edisofer, 2015. p. 26).
+
+20   AZEVEDO,  Yuri;  VASCONCELOS,  Caroline  Regina  Oliveira. Ensaios sobre  a  cadeia  de  custódia  da  prova  no  processo  penal. Florianópolis: Empório do Direito, 2017, p. 101.
+
+21   VALENTE, Manuel Monteiro Guedes; PRADO, Geraldo; GIACOMOLLI, Nereu  José;  DA  SILVIERA,  Edson  Damas. Prova Penal e o  Estado Democrático de Direito . Portugal: Letras e Conceitos, Ltda., 2015 , p.32.
+
+22   BRÁZ,  José. Ciência,  tecnologia  e  investigação  criminal . Coimbra: Edições Almedina, 2016, p. 347.
+
+Possível é identificar a indispensabilidade da cadeia de  custódia  da  prova  no  contexto  processual  penal.  Como  bem aponta Knijnik, um objeto de prova circula entre várias instâncias examinatórias, transita por diversos e vários órgãos, aportando ao processo por meio de relatórios descritivos e interpretativos. 25
+
+Outro importante apontamento acerca das características da custódia diz respeito ao elemento temporal de referido instituto, ou  seja,  onde  inicia  e  onde  finda  a  cadeia  de  custódia.  Como apontado  na  definição  supracitada,  para  Dias  Filho,  a  cadeia  de custódia inicia no momento da coleta do vestígio do local de crime e  finaliza  com o trânsito em julgado da decisão acerca do mérito. Acredita-se  ser  esse  o tempo da  custódia  da  prova.  Ou  seja,  não basta  apenas  que  a  coleta  e  a  análise  pericial  sejam  custodiadas. Especificamente,  no  contexto  da  prova  pericial,  tudo  aquilo  que ocorre no interregno entre a chegada da autoridade policial ao local do  fato  criminoso  (ou,  ainda,  em  uma  atividade  de  busca  e apreensão) e o trânsito em julgado processual deve ser conteúdo de proteção  da  cadeia  de  custódia.  Na  doutrina  espanhola,  há  quem corrobore com este entendimento. 26 Não obstante, há aqueles 27,28,29
+
+23   Aury  Lopes  Jr.  bem  traz  a  finalidade  da  prova  no  processo  penal,  quando menciona que 'através - essencialmente - das provas, o processo pretende criar condições para que o juiz exerça a sua atividade recognitiva, a partir da qual se produzirá  o  convencimento  externado  na  sentença.  É  a  prova  que  permite  a São
+
+atividade  recognoscitiva  do  juiz  em  relação  ao  fato  histórico  ( story  of  the  case) narrado na peça acusatória'. LOPES JR., Aury. Direito processual penal. Paulo: Saraiva, 2018, p. 342.
+
+24  BRÁZ, José. Ciência, tecnologia e investigação criminal
+
+25   KNIJNIK,  Danilo. brasileiro . p. 170.
+
+. p. 348. Prova  pericial  e  seu  controle  no  direito  processual
+
+26   FIGUEROA  NAVARRO,  Carmen. apud TABUENCA,  Pilar  Ladrón.  La cadena  de  custodia  en  el  Proceso  Penal  Español:  revisión  normativa.  In:
+
+|
+
+que  sustentam  que  o tempo da  cadeia  de  custódia  é  diverso, constituindo-se em um tempo reduzido, não alcançando o trânsito em julgado, ideia com a qual não se coaduna.
+
+Por fim, faz-se mister tratar acerca da imprescindibilidade  de  documentação  pormenorizada  de  tudo  o que é custodiado. Ou seja, a efetivação da cadeia de custódia darse-á apenas quando todo o caminho percorrido pela fonte de prova (e  depois  elemento  de  prova)  seja  devidamente  documentado, escrito,  anotado,  sedimentado.  A  documentação  se  constitui  no alicerce  da  cadeia  de  custódia  da  prova.  A  doutrina  brasileira enuncia tal preceito como sendo o princípio que garante que toda amostra deve ser documentada, desde seu nascimento no local de crime, até sua análise e descrição final, de forma a se estabelecer um histórico completo e fiel de sua  origem. 30 Acredita-se  que,  para  uma  abrangência  mais  fiel  do devido  processo,  o  enunciado  deve  ser  tido  como: o  princípio  da documentação  assegura  que  toda  amostra  deve  ser  documentada,  desde  seu nascimento no local do fato, passando pela sua análise e descrição final, até o trânsito em julgado do mérito processual, de forma a se estabelecer um histórico completo e fiel de sua origem e trajetória.
+
+Nessa definição está o âmago, o fundamento, a essência  da  cadeia  de  custódia  da  prova.  Claudemir  Dias  Filho acentua  ser  a  documentação  uma  parte  integrativa  da  cadeia  de custódia, quiçá a mais relevante, de tal modo que alguns
+
+FIGUEROA  NAVARRO,  Carmen  (org.). La  cadena  de  custodia  en  el Proceso Penal . Madrid: Edisofer, 2015. p. 24.
+
+27  Rubén Darío acredita que a cadeia de custódia é um procedimento controlado e sistematizado que se aplica desde a localização da evidência até a sua valoração (GONZÁLEZ, Rubén Darío Angulo. Cadena de Custodia en Criminalística. p. 2.)
+
+28   BONACCORSO,  Norma  Sueli. Aplicação  do  exame  de  DNA  na elucidação de crimes . São Paulo: APMP, 2008, p. 60-62.
+
+29   BRÁZ, José. Investigação criminal: a organização, o método e a prova: os desafios da nova criminalidade . Coimbra: Almedina, 2019, p. 261-262.
+
+30   STUMVOLL, Victor Paulo. Criminalística. Campinas: Millennium, 2019, p. 10.
+
+|
+
+confundem  a  documentação  com  a  cadeia  de  custódia  em  si.  A rastreabilidade da prova se verifica pela sua documentação. 31
+
+Há  divergência  doutrinária  no  que  tange  à  absoluta necessidade  da  documentação  por  escrito  de  todos  os  atos  de custódia.  Há  quem  sustente  que  é  possível  que  informações relevantes acerca da cadeia de custódia sejam demonstradas mediante o testemunho daqueles que tiveram contato com o objeto da custódia. 32 Contudo, tal entendimento não é o mais garantidor, posto  que  a  prova  pericial  possui  a  sua  razão  de  ser  no  caráter objetivo que dela emerge, o qual reclama a devida documentação e comprovação.  Substituir  a  objetividade  da  prova  pericial pela subjetividade testemunhal  não  oferece  garantias  suficientes de fiabilidade. Não  só  pelo desconhecimento  das  especificidades qualificadoras  da  prova  pericial,  como  também  por  problematizar acentuadamente a veracidade e fiabilidade do testemunho .
+
+Entretanto,  a  cadeia  de  custódia  não  se  restringe  à documentação, mas também  se  relaciona com a segurança física das  áreas  e  ambientes  de  armazenamento,  guarda,  manuseio  e análise. 33 A cadeia de custódia, portanto, é parte de um sistema de controles  epistêmicos  assecuratórios  da  memória  cronológica  e sequencial de atos atinentes à prova pericial, permitindo a reconstituição fática, bem como a demonstração da cadeia constitutiva,  'sendo  um  pressuposto  fundamental  para  garantir  a integridade do vestígio e seu correspondente valor probatório'. 34
+
+31  DIAS FILHO, Claudemir Rodrigues. Cadeia de custódia: do local de crime ao v.  98,  n.
+
+trânsito  em  julgado;  do  vestígio  à  evidência. Revista dos Tribunais . 883, p. 436-451. maio 2009.
+
+32   RICHARD  González apud SANZ,  María  Rosa  Gutiérrez. La  cadena  de custodia en el Proceso Penal Español . p 27.
+
+33  BRÁZ, José. Ciência, tecnologia e investigação criminal . p. 349.
+
+34   BRÁZ, José. Investigação criminal: a organização, o método e a prova: os desafios da nova criminalidade. p. 262.
+
+|
+
+## 2. DISCIPLINA LEGAL DA CADEIA DE CUSTÓDIA DA PROVA PERICIAL NO CPP
+
+Antes  de  adentrar  na  análise  específica  da  recente tentativa de regulamentação da cadeia de custódia da prova pericial, há que se reconhecer que esse foi um  importante avanço normativo. Ainda muito singelo, de fato, mas que merece atenção. Até  a  entrada  em  vigor  da  Lei  nº  13.964,  de  24  de  dezembro  de 2019, não havia descrição direta e detalhada da cadeia de custódia no Código de Processo Penal Brasileiro (CPP). Com muito esforço, pode-se dizer que do atual artigo 169 do CPP, 35 acrescido pela Lei nº 5.970/1973, se pode inferir um início de preocupação normativa acerca  da  cadeia  de  custódia.  Ademais,  Gustavo  Badaró  entende que o artigo 6º do referido diploma também possibilitava (e possibilita) a interpretação sistemática acerca da necessidade da cadeia de custódia, ao referir que a autoridade policial possui o dever, sempre que se dirigir ao local de crime, de providenciar para 'que não se alterem o estado e a conservação das coisas, até a chegada dos peritos  criminais',  assim  como  deve  recolher  os  objetos  que  tiverem relação com o fato, após liberados pelos peritos criminais. 36
+
+De  fato,  é  possível,  a  partir  de  uma  análise  mais detalhada, extrair entendimentos acerca da necessidade da cadeia de custódia a partir de ambos os artigos do diploma penal. Todavia, há de se reconhecer a extrema fragilidade e insuficiência epistemológica desse dispositivos no que tange à normatização da cadeia de custódia. 37 Geraldo Prado já denunciara a necessidade da análise de casos concretos ao estudo de teses complexas presentes na realidade jurídica brasileira, não abarcadas pela legislação vigente. 38 A  partir  do  debate  criado  por  decisões  paradigmáticas proferidas pelos tribunais superiores, como foi o caso do julgamento, pela Sexta Turma do Superior Tribunal de Justiça, do HC 160.662/RJ, 39 é que se criam os laboratórios de estudo e análise de  temáticas  complexas.  É,  portanto,  imprescindível  o  estímulo permanente ao debate acerca de variadas temáticas e problemáticas ainda ausentes na normativa brasileira, para que ocorra a necessária troca de conhecimento inerente ao processo legislativo, facilitando a  implementação  e  regulamentação  de  institutos  necessários  à administração  da  justiça,  como  a  cadeia  de  custódia.  A  atual regulamentação da cadeia de custódia da prova pericial, introduzida pela  Lei  nº  13.964/2019,  não  se  deu  de  maneira  deveras  distinta. Foi a partir de uma tentativa de debate interinstitucional e interdisciplinar,  que  se  consolidou  o  que  atualmente  se  encontra positivado  no  extenso  rol  que  abarca  desde  o  artigo  158-A  até  o 158-F do CPP.
+
+35  Art. 169.  Para o efeito de exame do local onde houver sido praticada a infração,  a  autoridade  providenciará  imediatamente  para que  não  se  altere  o  estado das coisas até a chegada dos peritos, que poderão instruir seus laudos com fotografias, desenhos ou esquemas elucidativos. Parágrafo único.  Os peritos registrarão,  no  laudo,  as  alterações  do  estado  das  coisas  e  discutirão,  no  relatório,  as consequências dessas alterações na dinâmica dos fatos.
+
+36  BADARÓ, Gustavo. A cadeia de custódia e sua relevância para a prova penal. Temas  atuais  de . Belo Horizonte: D'Plácido, 2017.
+
+In:  SIDI,  Ricardo;  LOPES,  Anderson  Bezerra.  (orgs.). investigação preliminar no processo penal p. 517-538.
+
+Embora não seja a temática central do presente estudo, é  de  extrema  importância  que  se  aponte  o  debate  trazido  por Badaró a respeito da competência da regulamentação da cadeia de custódia  da  prova  pericial.  O  autor  suscita  a  discussão  acerca  da necessidade  ou  não  de  se  exigir  do  legislador  que  estabeleça  uma disciplina  específica  dos  elementos  a  serem  documentados.  Para ele, as problemáticas acerca da prova científica hão de ser tratadas, não só pelo direito, mas também pela ciência, com metodologia e
+
+37  Badaró reiterava que 'a ausência da regulamentação não significa que não haja a necessidade de preservação das fontes de prova, com a documentação integral de toda a sequência de pessoas que com ela tiveram contato, desde a sua coleta, manuseio,  utilização  em  experimentos  e  apresentação  judicial'.  BADARÓ, Gustavo.  A  cadeia  de  custódia  e  sua  relevância  para  a  prova  penal.  In:  SIDI, Ricardo;  LOPES,  Anderson  Bezerra.  (orgs.). Temas  atuais  de  investigação preliminar no processo penal . Belo Horizonte: D'Plácido, 2017. p. 517-538.
+
+38  PRADO, Geraldo. A cadeia de custódia da prova no processo penal . p. 11. 39  STJ no HC 160.662/RJ, Rel. Min. Assusete Magalhães, DJe de 17/03/2014.
+
+|
+
+padrões à produção válida da prova. Para tanto, é fundamental que a  lei  processual  penal  abarque  'regras  gerais  e  padrões  mínimos', tanto  no  que  tange  ao  conteúdo  da  documentação  integral  da cadeia de custódia, quanto aos efeitos advindos de seu descumprimento, seja no plano da validade ou no da valoração. 40
+
+Coaduna-se com o exposto pelo autor e acredita-se que a  implementação  será  mais  efetiva  e célere se, ao  legislador, competir o estabelecimento de regras gerais e padrões mínimos da custódia enquanto que, aos órgãos periciais especializados, incumbir as delimitações específicas, já que são estes os que detém o conhecimento especializado de cada área das ciências forenses. É a partir dessa ideia de regulamentação geral que, parte-se, pois, para o estudo acerca do ' novo rol de artigos 158' do CPP.
+
+Inicia-se apontando a verdadeira extensão da tentativa de regulamentação do referido instituto. Iniciando pelos artigos 158 e 158-A do CPP, a supracitada normatização alastra-se até o artigo 158-F, concentrando toda a temática relativa à cadeia de custódia da  prova  pericial.  Dispensável,  ao  que  se  propõe  a  presente , porquanto
+
+abordagem, qualquer comentário acerca do artigo 158 41 não sofrera qualquer alteração frente ao já exposto.
+
+O artigo 158-A, enuncia o que o legislador entende por cadeia de custódia. 42 Percebe-se, em um primeiro momento, que a definição  dada  pelo  legislador  abarca  apenas  o  momento técnicocientífico da  cadeia  de  custódia,  ou  seja,  circunscreve  o  instituto apenas ao momento de coleta, transporte, armazenamento, análise e  interpretação  do  elemento  material  a  ser  analisado,  excluindo qualquer  etapa  posterior.  Assim,  o  legislador  excluiu  o  momento processual  da  cadeia  de  custódia.  Ademais,  delimitou  o tempo da custódia,  iniciando  no reconhecimento do  vestígio  e  finalizando  com seu descarte .  Trata-se,  portanto,  de  uma  definição  insuficiente  e limitada.
+
+40  BADARÓ, Gustavo. A cadeia de custódia e sua relevância para a prova penal. In:  SIDI,  Ricardo;  LOPES,  Anderson  Bezerra  (orgs.). Temas  atuais  de investigação preliminar no processo penal . Belo Horizonte: D'Plácido, 2017. p. 517-538.
+
+41   Art. 158.  Quando  a  infração  deixar  vestígios,  será  indispensável  o  exame  de corpo de delito, direto ou indireto, não podendo supri-lo a confissão do acusado. Parágrafo  único. Dar-se-á  prioridade à  realização  do  exame de  corpo  de  delito quando se tratar de crime que envolva: I - violência doméstica e familiar contra mulher;  II - violência contra criança, adolescente, idoso ou pessoa com deficiência.
+
+42   Art. 158-A. Considera-se cadeia de custódia o conjunto de todos os procedimentos utilizados  para manter e documentar a história cronológica do vestígio coletado em locais ou em vítimas de crimes, para rastrear sua posse e manuseio a partir de seu reconhecimento até o descarte. § 1º O início da cadeia de custódia dá-se com a preservação do local de crime ou com procedimentos policiais ou
+
+A  cadeia de custódia engloba não só o ínterim relacionado à  identificação  da  fonte  de  prova  e  de  sua  produção, mas  também  o  momento judicial de  envolvimento  do  elemento probatório.  Além  disso,  a  definição  do caput abarca  apenas  os vestígios  coletados  em  locais  ou  em  vítimas  de  crimes ,  excluindo  aqueles adquiridos,  por  exemplo,  em  um  suposto  agressor,  em  mandados de  busca  e  apreensão 43 ou  em  locais  correlatos  ao  delito.  Isso potencializa a problemática.
+
+O  parágrafo  primeiro  do  158-A,  ao  apontar  que  o início  da  cadeia  de  custódia  dá-se  com  a  preservação  do  local  de crime  ou  com procedimentos  policiais ou  periciais,  nos  quais  seja detectada a existência de vestígio, o legislador retira do âmbito da perícia  a  responsabilidade  pela  custódia  dos  elementos  materiais. Quer  dizer,  muito  embora  a  definição  do caput não  abarque  os vestígios  coletados  em  buscas  e  apreensões,  pode-se  realizar  uma interpretação extensiva a partir do parágrafo primeiro, entendendo que  os  protocolos  de  custódia  devem  também  ser  seguidos  pelas autoridades policiais, a fim de garantir a idoneidade dos vestígios. Percebe-se,  portanto,  que  o  respeito  à  cadeia  de  custódia  não  é
+
+periciais nos quais seja detectada a existência de vestígio. § 2º O agente público que  reconhecer  um  elemento  como  de  potencial  interesse  para  a  produção  da prova pericial fica responsável por sua preservação. § 3º Vestígio é todo objeto ou material bruto, visível ou latente, constatado ou recolhido, que se relaciona à infração penal.
+
+43   Ver-se-á  que,  mais  a  frente,  o  legislador  abarca  o  mandado  de  busca  e apreensão  e  outras  atividades  policiais  no  contexto  da  cadeia  de  custódia  da
+
+prova pericial.
+
+|
+
+atividade exclusiva da perícia,  como  enunciado  pela  doutrina brasileira. 44
+
+O  parágrafo  segundo  reitera  a  ideia  de  ampliação  da responsabilidade da custódia de vestígios, relatando que não só ao perito compete a preservação dos vestígios, mas a qualquer agente público. 45 Isso denota uma necessidade de expansão de treinamento direcionados a agentes públicos de variadas instituições que colaboram  com  o  contexto  investigativo  e  processual.  O  terceiro parágrafo, por fim, define o que é vestígio, possibilitando, inclusive, realizar uma associação direta com o artigo 158, caput , cuja redação remonta  à  necessidade  de  exame  de  corpo  de  delito  sempre  que uma infração deixar vestígio.
+
+Acerca  do  terceiro  parágrafo,  cabe  um  apontamento especial. A definição diz que 'vestígio é todo o objeto ou material bruto,  visível  ou  latente'.  Em  um  primeiro  momento  pode-se entender  que,  com  a  referida  descrição,  o  autor  exclui  os vestígios digitais . Não  obstante, há que se entender que os vestígios relacionados à prova pericial abarcam qualquer fonte de prova de natureza  real.  Assim,  não  se  limita  apenas  às  coisas  'materiais', sendo  necessário  também  observar  a  cadeia  de  custódia  em  face dos elementos imateriais (vestígios digitais que são também reais). 46 A doutrina estrangeira, de modo claro, também define a evidência real  (vestígio) como  'physical  evidence,  such  as  knife,  clothing,
+
+44   ESPÍNDULA,  Alberi. Perícia  criminal  e  cível:  uma  visão  geral  para peritos e usuários da perícia. Campinas: Millenium, 2013, p. 186 e ss.
+
+45  Há, na doutrina brasileira, quem descreva a sequência de proteção da custódia da prova em três âmbitos: a partir da perícia, da polícia e nos casos de busca e apreensão.  ESPÍNDULA,  Alberi. Perícia  criminal  e  cível:  uma  visão  geral para peritos e usuários da perícia . p. 188-190.
+
+46  BADARÓ, Gustavo. A cadeia de custódia e sua relevância para a prova penal. In:  SIDI,  Ricardo;  LOPES,  Anderson  Bezerra  (orgs.). Temas  atuais  de investigação preliminar no processo penal. Belo Horizonte: D'Plácido, 2017. p 517-538.
+
+|
+
+fibres,  blood  and  even  computer  disks,  that  is  directly  connected with a crime scene ' . 47
+
+Em se tratando  do  artigo  158-B, 48 pode-se  identificar que o caput é  seguido  por  uma  sequência  de  incisos  que  possuem um tom de descrição e de definição. Delimitando os conceitos de reconhecimento,  isolamento,  fixação,  coleta,  acondicionamento, transporte, recebimento, processamento, armazenamento e
+
+47   MEINTJIES-VAN DER WALT, Lirieka. The chain of  custody  and  formal admissions. South African Journal of Criminal Justice , v. 23, n. 3, p. 371-384, 2010.
+
+48   Art. 158-B. A cadeia de custódia compreende o rastreamento do vestígio nas seguintes etapas: I reconhecimento : ato de distinguir um elemento como de potencial interesse para a produção da prova pericial; II isolamento : ato de evitar que se altere o estado das coisas, devendo isolar e preservar o ambiente imediato, mediato e relacionado aos vestígios e local de crime; III fixação : descrição detalhada do vestígio conforme se encontra no local de crime ou no corpo de delito, e a sua posição na área de exames, podendo ser ilustrada por fotografias, filmagens ou croqui, sendo indispensável a sua descrição no laudo pericial produzido pelo perito  responsável  pelo  atendimento; IV  coleta :  ato  de  recolher  o  vestígio  que será submetido à análise pericial, respeitando suas características e natureza;  V acondicionamento : procedimento por meio do qual cada vestígio coletado é embalado de forma individualizada, de acordo com suas características físicas, químicas e biológicas, para posterior análise, com anotação da data, hora e nome de quem realizou a coleta e o acondicionamento; VI transporte : ato de transferir o vestígio de um local para o outro, utilizando as condições adequadas (embalagens, veículos, temperatura, entre outras), de modo a garantir a manutenção de suas características originais, bem como o controle de sua posse; VII recebimento : ato formal de transferência da posse do vestígio, que deve ser documentado com, no mínimo,  informações  referentes  ao  número  de  procedimento  e  unidade  de  polícia judiciária  relacionada,  local  de  origem,  nome  de  quem  transportou  o  vestígio, código de rastreamento, natureza do exame, tipo do vestígio, protocolo, assinatura e identificação de quem o recebeu;  VIII processamento :  exame pericial em si, manipulação do vestígio de acordo com a metodologia adequada às suas características biológicas, físicas e químicas, a fim de se obter o resultado desejado, que deverá ser formalizado em laudo produzido por perito;  IX armazenamento : procedimento referente à guarda, em condições adequadas, do material a ser processado, guardado para realização de contraperícia, descartado ou transportado, com vinculação ao número do laudo correspondente;  X descarte : procedimento referente à liberação do vestígio, respeitando a legislação vigente e, quando pertinente, mediante autorização judicial.
+
+|
+
+descarte, o legislador de 2019 omitiu não só em  relação à diferenciação  entre  cadeia  de  custódia  interna 49 e  externa 50 ,  bem como deixou de mencionar a quem competiria a responsabilidade por cada etapa do procedimento. Mais uma vez, o legislador perdeu uma importante oportunidade ao suprimir informações que seriam indispensáveis para o estabelecimento dos critérios mínimos-gerais da cadeia de custódia da prova pericial.
+
+Em relação  ao caput do  artigo  158-C, 51 alguns  pontos merecem ser destacados. Inicia-se pela primeira parte do dispositivo, segundo o qual 'a coleta dos vestígios deverá ser realizada preferencialmente por perito oficial'. Quer dizer, há a possibilidade de que a  coleta  não  seja  realizada  por  peritos  oficiais.  Disso  decorrem  o questionamento  de,  no  mínimo,  duas  hipóteses.  A  primeira  é  de que qualquer pessoa poderia realizar a coleta, já que não há delimitações taxativas acerca daqueles que, além dos peritos, possam efetuá-la. Todavia, não há qualquer possibilidade de aplicação da referida  hipótese  em  um  contexto  investigativo  e  processual  penal. Inadmissível seria que, de modo indiscriminado, qualquer indivíduo tivesse acesso à coleta de vestígios em um cenário fático criminal. A
+
+49  A fase interna refere-se ao procedimento interno no laboratório, até o descarte da Matta. Parâmetros de confiança analítica e irrefutabilidade do laudo pericial em ,  v.  14,  n.  1,  p.  40-46.
+
+ou armazenamento das amostras. CHASIN, Alice Aparecida toxicologia  Forense. Revista Brasileira de Toxicologia 2001.
+
+50   A  fase  externa  refere-se  ao  transporte  do  local  de  coleta  até  a  chegada  ao laboratório  de  perícia.  CHASIN,  Alice  Aparecida  da  Matta. Parâmetros  de confiança  analítica  e  irrefutabilidade  do  laudo  pericial  em  toxicologia  Forense.
+
+Revista Brasileira de Toxicologia , v. 14, n. 1, p. 40-46. 2001.
+
+51   Art. 158-C. A coleta dos vestígios deverá ser realizada preferencialmente por perito oficial, que dará o encaminhamento necessário para a central de custódia, mesmo quando for necessária a realização de exames complementares. § 1º Todos vestígios coletados no decurso do inquérito ou processo devem ser tratados como  descrito  nesta  Lei,  ficando  órgão  central  de  perícia  oficial  de  natureza criminal responsável por detalhar a forma do seu cumprimento. § 2º É proibida a entrada em locais isolados bem como a remoção de quaisquer vestígios de locais de  crime  antes  da  liberação  por  parte  do  perito  responsável,  sendo  tipificada como fraude processual a sua realização.
+
+segunda interpretação, portanto, seria a leitura do caput juntamente com  o  §  2º  do  artigo  158-A,  cuja  redação  aponta  que  'o  agente público que reconhecer um elemento como de potencial interesse para a produção da prova pericial fica responsável por sua preservação'. Trata-se  de  interpretação  extensiva,  posto  que  o  referido parágrafo fala de preservação e  não  necessariamente coleta. De qualquer sorte, é uma maneira de limitar aos agentes públicos a coleta de vestígios relacionados ao fato.
+
+Maiores  aprofundamentos  e  discussões  acerca  da  primeira parte do § 1º do artigo 158-C são desnecessários. Trata-se do óbvio, exposto sem maiores necessidades em um dispositivo legal. Uma vez estando a coleta de vestígios penais definida na legislação processual, a regulamentação no que tange à temática legislativa há de ser seguida. No entanto, quando o parágrafo traz que o órgão central de perícia oficial de natureza criminal ficará responsável por detalhar  a  forma  do  cumprimento  da  coleta  delimitada  no  CPP, percebe-se que o legislador conferiu aos órgãos específicos o poder e  a  responsabilidade  de  determinar  a  maneira  pela  qual  as  coletas hão de ser realizadas, bem como descrever de maneira detalhada os protocolos de coleta de vestígios. Ademais, não se pode esquecer que os peritos não são os únicos responsáveis pelas coletas, embora aos órgãos periciais fora incumbida a tarefa de definir a maneira de cumprimento das referidas coletas.
+
+O § 2º do artigo 158-C possibilita uma gama de discussões. A primeira parte diz que é proibida a entrada em locais isolados, bem como a remoção de quaisquer vestígios de locais de crime antes  da  liberação  por  parte  do  perito  responsável.  Um  primeiro apontamento a se fazer é: a quem está proibida a entrada em locais isolados? O  legislador  apenas  definiu  aquilo  que  se  entende  por  isolamento, mas sequer tratou de maneira mais aprofundada acerca da temática.  Há,  portanto,  uma  amplitude  de  interpretação  bastante significativa, característica que pode ser observada em grande parte da nova legislação ora comentada. Reitera-se a necessidade de uma interpretação à luz do § 2º do artigo 158-A, na perspectiva de que apenas aos agentes públicos é permitida a entrada em locais isolados. A segunda parte dispõe acerca de conduta específica, qual seja
+
+|
+
+a  de  remoção de vestígios em locais que não foram liberados por parte do perito responsável, que, se satisfeitos todos os requisitos, poderá ser enquadrada como fraude processual, tipificada no artigo 347 do Código Penal 52 .  Logo, é de extrema importância que o ato seja com o fim de induzir a erro o juiz ou o perito ,  como consta no tipo penal, sob pena de a conduta ser atípica.
+
+Partindo  à  análise  do  artigo  158-D, 53 de  pronto  já  se percebe que tanto o caput, quanto os parágrafos ocupam-se da temática  do  acondicionamento  de  materiais,  ponto  chave  na  cadeia de  custódia  da  prova  pericial.  Isso  porque  o  acondicionamento inadequado de quaisquer elementos e/ou objetos pode resultar na perda de características essenciais ao exame pericial, bem como no perecimento e degradação do material. 54 No caput está exposto que 'o recipiente para acondicionamento do vestígio será determinado pela natureza do material'. Informação bastante lógica, posto que diferentes materiais requerem distintos tratamentos. Isso se encon55
+
+tra bem descrito nas obras de criminalística. Percebe-se, entretan-
+
+52    Art.  347  -  Inovar  artificiosamente,  na  pendência  de  processo  civil  ou administrativo, o estado de lugar, de coisa ou de pessoa, com o fim de induzir a erro  o  juiz  ou  o  perito;  Pena  -  detenção,  de  três  meses  a  dois  anos,  e  multa. Parágrafo único - Se a inovação se destina a produzir efeito em processo penal, ainda que não iniciado, as penas aplicam-se em dobro..
+
+53  Art. 158-D. O recipiente para acondicionamento do vestígio será determinado pela  natureza  do  material. §  1º  Todos  os  recipientes  deverão  ser  selados  com lacres, com numeração individualizada, de forma a garantir a inviolabilidade e a idoneidade do vestígio durante o transporte. § 2º O recipiente deverá individualizar o vestígio, preservar suas características, impedir contaminação e vazamento, ter grau de resistência adequado e espaço para registro de informações sobre seu conteúdo. § 3º O recipiente só poderá ser aberto pelo perito que vai proceder à análise e, motivadamente, por pessoa autorizada. § 4º Após cada rompimento de lacre, deve se fazer constar na ficha de acompanhamento de vestígio o nome e a matrícula do responsável, a data, o local, a finalidade, bem como as informações referentes ao novo lacre utilizado. § 5º O lacre rompido deverá ser acondicionado no interior do novo recipiente.
+
+54 GONZÁLEZ, Rubén Darío Angulo. Cadena de Custodia en Criminalística . p. 2.
+
+55 GONZÁLEZ, Rubén Darío Angulo. Cadena de Custodia en Criminalística .;  MOZAYANI, Ashraf;  FISHER,  Casie  Parish. Forensic  Evi-
+
+|
+
+to,  que  o  legislador  não  se  preocupou  em  discriminar  detalhadamente qual o recipiente para cada natureza de material, como também não delimitou quem o especificaria. Quer dizer, frente à omissão do legislador, necessária é a interpretação conjunta com o § 1º do artigo 158-C, concluindo que o órgão central de perícia oficial de  natureza  criminal  ficará  responsável  por  especificar  quais  os recipientes adequados em situações específicas.
+
+No § 1º do artigo 158-D, o legislador garantiu que 'todos os recipientes deverão ser selados com lacres, com numeração individualizada, de forma a garantir a inviolabilidade e a idoneidade do vestígio durante o transporte'. O lacre individualizado presta-se para  garantir  a  inviolabilidade  e  a  idoneidade,  não  só  durante  o transporte do material, mas também ao longo de todo o processo de análise pericial e de armazenamento, em caso de necessidade de contraperícia. 56 Ou  seja,  mais  uma  vez  o  legislador  delimitou,  de maneira inadequada, a abrangência da cadeia de custódia da prova pericial.  O  §  2º  do  artigo  158-D  apenas  reitera  o  que  já  exposto acerca da importância e da finalidade da utilização de um recipiente adequado. O § 3º, por sua vez, refere que 'o recipiente só poderá ser aberto pelo perito que vai proceder à análise e, motivadamente, por pessoa autorizada', afirmando a necessidade de manutenção do material até momento oportuno de análise e reduzindo a possibilidade  de  manuseio  do  conteúdo  por  terceiros  não  autorizados, conquanto  não  mencione  de  que  maneira  dar-se-á  a  autorização quando pertinente.
+
+O § 4º do artigo 158-D levanta uma caraterística essencial  da custódia da prova, como já mencionado anteriormente, ou seja,  a documentação .  Refere  que  'após  cada  rompimento  de  lacre,
+
+dence  Management:  from  the  crime  scene  to  the  courtroom .  New  York: CRC Press. 2017. No Brasil, variados livros tratam da temática: VELHO, Jesus Antonio; GEISER, Gustavo Caminoto; ESPÍNDULA, Alberi. Ciências forenses:  uma  introdução  às  principais  áreas  da  criminalística  moderna . Campinas: Millennium, 2017.
+
+56   MOZAYANI, Ashraf; FISHER, Casie Parish. Forensic Evidence Management: from the crime scene to the courtroom . New York: CRC Press. 2017, p. 7-ss.
+
+|
+
+deve constar na ficha de acompanhamento de vestígio o nome e a matrícula do responsável, a data, o local, a finalidade, bem como as informações  referentes  ao  novo  lacre  utilizado'.  O  §  4º  reitera  a necessidade de registrar, de maneira detalhada, as informações específicas de cada indivíduo que esteve em contato com o material a ser periciado, facilitando seu rastreamento durante todo o processo. Não há dúvidas de que se trata de um dos mais importantes dispositivos da atual legislação, em razão do vínculo indissolúvel existente entre o resultado da perícia e os indivíduos que tiveram contato com o material quando do procedimento pericial. Além disso, é a documentação  que  assegura  a  possibilidade  de  contraditório  da prova  e  garante  o princípio  da  mesmidade. 57 Por  fim,  o  §  5º  apenas refere ser preciso manter o lacre rompido no interior do novo recipiente, com a devida documentação.
+
+O artigo  158-E 58 é,  possivelmente,  um  dos  mais  relevantes acerca da temática. A redação do caput aponta que 'todos os Institutos  de  Criminalística  deverão  ter  uma  central  de  custódia destinada à guarda e controle dos vestígios, e sua gestão deve ser vinculada diretamente ao órgão central de perícia oficial de natureza criminal'. A efetivação das centrais de custódia é elemento chave a uma implementação adequada da cadeia de custódia. Isso decorre por dois motivos principais. O primeiro deles é o fato de que os próprios laboratórios de perícia não possuem espaço físico suficiente  para  armazenar  a  totalidade  dos  vestígios  requeridos  pelos casos  concretos.  O  segundo,  e  quiçá  mais  importante,  decorre  da necessidade de se ter uma central que controle de maneira adequada o recebimento, o armazenamento, a transferência para análise e, por fim a manutenção de material para contraperícia, se necessário. Atualmente, as referidas centrais são raras, tanto em âmbito federal 59 quanto estadual. Há, frequentemente, nos órgãos periciais, os chamados setores de protocolo, que recebem o material e repassam aos  laboratórios  de  perícia.  Entretanto,  cada  unidade  técnica  fica responsável  pelo  armazenamento  do  vestígio,  resultando  em  uma demanda  por  vezes  insustentável.  Os  parágrafos  que  seguem  ao caput do artigo 158-E descrevem algumas especificações em relação ao funcionamento futuro das centrais de custódia, a serem implementadas.
+
+57 GONZÁLEZ, Rubén Darío Angulo. Cadena de Custodia en Criminalística .  p.  4-ss.  Ainda mais,  LOPES JR., Aury. Direito processual penal . p. 409-ss.
+
+58   Art. 158-E. Todos os Institutos de Criminalística deverão ter uma central de custódia destinada à guarda e controle dos vestígios, e sua gestão deve ser vinculada  diretamente  ao  órgão  central  de  perícia  oficial  de  natureza  criminal.  §  1º Toda central de custódia deve possuir os serviços de protocolo, com local para conferência,  recepção,  devolução  de  materiais  e  documentos,  possibilitando  a seleção, a classificação e a distribuição de materiais, devendo ser um espaço seguro  e  apresentar  condições  ambientais  que  não  interfiram  nas  características  do vestígio. § 2º Na central de custódia, a entrada e a saída de vestígio deverão ser protocoladas, consignando-se informações sobre a ocorrência no inquérito que a eles se relacionam.  § 3º Todas as pessoas que tiverem acesso ao vestígio armazenado deverão ser identificadas e deverão ser registradas a data e a hora do acesso. § 4º Por ocasião da tramitação do vestígio armazenado, todas as ações deverão ser registradas, consignando-se a identificação do responsável pela tramitação, a destinação, a data e horário da ação.
+
+Por fim, o artigo 158-F 60 estabelece que 'após a realização da perícia, o material deverá ser devolvido à central de custódia, devendo nela permanecer'. Entretanto, o legislador não definiu por quanto tempo deverá o material permanecer na central de custódia. Evidente que não se pode manter ad aeternum, por questões óbvias de administração, de capacidade física e de logística financeira. Neste contexto, o legislador fez a ressalva de apontar, no parágrafo único do 158-F, que 'caso a central de custódia não possua espaço ou condições de armazenar determinado material, deverá a
+
+59   A  Polícia  Federal  conta  com  apenas  uma  central  de  custódia  no  estado  do Mato Grosso do Sul, criada em 2010, que foi desenvolvida a partir de padrões
+
+internacionais e mantém atividade até os dias de hoje.
+
+60   Art.  158-F.  Após  a  realização  da  perícia,  o  material  deverá  ser  devolvido  à central de custódia, devendo nela permanecer. Parágrafo único. Caso a central de custódia  não  possua  espaço  ou  condições  de  armazenar  determinado  material, deverá a autoridade policial ou judiciária determinar as condições de depósito do referido material em local diverso, mediante requerimento do diretor do órgão
+
+central de perícia oficial de natureza criminal.
+
+|
+
+autoridade policial ou judiciária determinar as condições de depósito do referido material em local diverso, mediante requerimento do diretor  do  órgão  central  de  perícia  oficial  de  natureza  criminal'. Não obstante, há que se reconhecer que todo esse movimento à implementação das centrais de custódias, apesar de imprescindível à investigação e ao devido processo legal, implica em um ônus assaz  elevado  ao  Estado,  sendo  necessário  um  planejamento  extremamente cuidadoso em detrimento à inviabilidade de implementação do descrito na lei.
+
+Após analisar os dispositivos legais acerca da introdução da necessidade da cadeia de custódia da prova pericial, mesmo que a guisa inicial, faz-se mister elencar alguns aspectos positivos e outros negativos acerca das referidas modificações.
+
+## 3. ALGUNS  ASPECTOS  POSITIVOS  E  NEGATIVOS DA REFORMA DE 2019 NO QUE TANGE À CADEIA DE CUSTÓDIA
+
+Nesta reflexão acerca dos pontos positivos e negativos da  recente  reforma,  não  se  objetiva  esgotar  o  assunto  e  abarcar todas  as  potencialidades  e  insuficiências  da  atual  legislação.  Por certo,  o  aprofundamento  do  debate  acadêmico  e  institucional  irá, futuramente, desvelar novos olhares acerca da temática e expandir os horizontes da problemática.
+
+Não se pode iniciar tratando dos aspectos positivos da reforma sem citar, de imediato, a importância da inclusão da referida  disciplina  na  legislação  ordinária.  Neste  ponto,  indispensável relembrar que desde 2014 encontra-se vigente a Portaria n o 82 61 da SENASP 62 , a qual estabelece as diretrizes sobre os procedimentos a serem observados no tocante à cadeia de custódia de vestígios. Tal
+
+61   BRASIL. Secretaria Nacional  de Segurança Pública. Portaria n o  82, de 16 de julho  de  2014.  Estabelece  as  Diretrizes  sobre  os  procedimentos  a  serem Diário  Oficial  da
+
+observados  no  tocante  à  cadeia  de  custódia  de  vestígios. União , Brasília, DF, 18/07/2014.
+
+62  Secretaria Nacional de Segurança Pública, vinculada ao Ministério da Justiça.
+
+|
+
+portaria traz de forma mais aprofundada os procedimentos a serem adotados à implementação de uma cadeia de custódia com maior efetividade e, inclusive, possui redação específica e detalhada acima daquela adotada pela própria legislação processual penal. No entanto  apesar  da  vigência  desde  2014,  é  oportuno  reconhecer  que,  na prática, tal portaria não produziu os efeitos almejados, como a não criação  das  centrais  de  custódia,  abarcadas  pela  referida  portaria. De qualquer sorte, a inclusão do instituto da cadeia de custódia da prova  pericial  no  Código  Processual  Penal  é  uma  conquista  que deve  ser  reconhecida  e  que  remete  ao  movimento  atual  presente nos  países  da  América  Latina,  onde  busca-se  a  normatização  do referido instituto, tanto pela normatização processual, quanto pela via administrativa. 63 O modelo de referência é o colombiano, o qual possui um capítulo 64 próprio no Código de Procedimiento Penal 65 para tratar  da  regulamentação  geral  da  cadeia  de  custódia 66 ,  além  de abarcar a temática em variados outros artigos do dispositivo legal.
+
+63   ARIAS,  Emma  Calderón.  Un  estudio  comparado  en  Latinoamérica  sobre  la cadena de custodia de las evidencias en el proceso penal. Revista Facultad de Derecho y Ciencias Políticas . v. 44, n. 121, p. 425-459. 2014.
+
+64   Capítulo  V,  do  Título  I-2  do  Livro  II.  Abarca  do  artigo  254  até  o  266. Disponível em:
+
+http://www.secretariasenado.gov.co/senado/basedoc/ley\_0906\_2004\_pr006.ht ml#254. Acesso em: 15 fev 2020.
+
+65   COLÔMBIA. Ley 906 de 2004. Código de Procedimiento Penal Colombiano . Publicada  no  Diário  Oficial  número  45.657  de  31  de  agosto  de  2004. Disponível em:
+
+http://www.secretariasenado.gov.co/senado/basedoc/ley\_0906\_2004.html.
+
+Acesso em: 15 fev 2020.
+
+66  Neste ponto deve-se salientar, ainda, que a Fiscalía General de la Nación Colombiana elaborou um Manual de Procedimientos del Sistema de Cadena de Custodia, a fim de detalhar todo o processo a ser adotado. Essa ideia vai ao encontro do que é defendido  neste  artigo:  que  a  legislação  ordinária  regule,  de  maneira  geral,  o instituto,  principalmente  no  que  tange  às  particularidades  processuais  e  préprocessuais, enquanto os órgãos responsáveis emitam normativas especificando e detalhando de maneira mais aprofundada os detalhes relativos ao exame pericial em si.
+
+|
+
+Um segundo aspecto positivo da reforma refere-se ao regramento geral acerca da cadeia de custódia, sem abarcar de maneira  aprofundada  características  específicas  dos  inúmeros  procedimentos associados à cadeia de custódia, como, por exemplo, detalhes de recipientes específicos de coleta, particularidades de exames  periciais,  etc.  Entende-se,  na  linha  do  que  Gustavo  Badaró defende, que não é função do legislador delimitar procedimentos e protocolos específicos da custódia da prova, mas sim traçar as diretrizes gerais básicas e fundamentais do âmbito investigativo e processual em um Estado Democrático de Direito.
+
+Também  se  pode  estabelecer  como  ponto  positivo  a necessidade, agora com força de lei, da implementação das centrais de  custódia.  Anteriormente  a  temática  era  apenas  regulamentada por  um  ato  administrativo;  doravante  está  exposta  na  legislação processual, com consequências práticas resultantes da lei. Devem, portanto, os órgãos periciais e a estrutura Estatal, elaborar políticas de ação ao desenvolvimento e à concretização das referidas centrais de  custódia.  A  materialização  do  instituto  da  cadeia  de  custódia passa,  fundamentalmente,  pela  estruturação  de  centrais  responsáveis por toda a logística da prova.
+
+Contudo, como todo produto de atividade legislativa, há  aspectos  negativos  a  serem  tensionados.  De  início  se  observa uma insuficiência de conteúdo, quer dizer, o legislador não abarcou de maneira direta e abrangente uma variada gama de aspectos pertinentes  à  cadeia  de  custódia.  Como  exemplo  cita-se  a  restrição conceitual da própria definição de cadeia de custódia. Mas não é só. O legislador deixou de trazer as definições e os impactos dos locais de  crime  mediato e  imediato,  como  olvidou-se  de  tratar  das  diferenças e das especificações entre cadeia de custódia interna e externa. Mais problemático, ainda, foi a definição de vestígio , onde sequer consta referência ao vestígio digital, sendo necessária uma interpretação extensiva para adequar a legislação de 2019 a uma realidade que ocorre há pelo menos duas décadas.
+
+Além disso, o caráter eminentemente descritivo e pouco pragmático dificulta a aplicação fática da cadeia de custódia. A descrição demasiadamente aberta, como ocorre com a regulamen- tação da prova no processo penal, ao longo da história, possibilitou o atuar ex officio , revelando uma insegurança jurídica acerca da temática. Pouco inovou o legislador frente à Portaria nº 82 da SENASP, que, aliás, possui redação deveras detalhada e consistente, superior à própria normatividade introduzida pela Lei nº 13.964/2019. Fica difícil visualizar, a curto prazo, as consequências práticas de referida regulamentação.
+
+Por fim, o ponto mais crítico da carência legislativa refere-se  à  ausência  de  delimitação  das  consequências  geradas  pela quebra da cadeia de custódia da prova pericial. Possivelmente por ocupar-se de temática ainda muito questionada na doutrina nacional  e  internacional,  com  pontos  de  vista  bastante  polarizados,  o legislador  sequer  referiu  o  tópico quebra  da  cadeia  de  custódia ,  mormente no que tange aos seus efeitos. Há situações que devem ser diferenciadas: inexistência de cadeia de custódia, defeitos na cadeia de custódia e quebra da cadeia de custódia.
+
+## CONSIDERAÇÕES FINAIS
+
+As  fontes  pessoais  (testemunha  Pedro, v.g. )  e  reais (objetos,  documentos,  v .g. )  fornecem  os  elementos  de  prova,  a serem tensionados e avaliados. Ademais do produto (depoimento, conteúdo da perícia, v.g .), o vício ou defeito poderá estar na origem -  idoneidade  da  fonte  -  ou  incidir  na  conservação  da  prova  fidedignidade.  Além  da  metodologia  da  aquisição  da  prova,  a  sua conservação e documentação há de ser idônea. O procedimento da documentação da prova há de garantir a identidade, integridade e autenticidade dos elementos de prova, bem como a contraprova. É problemática,  não  só  a  dimensão  temporal  (época  do  fato  e  da realização da perícia) e espacial (local do encontro do objeto), bem como a conservação dos elementos de prova, desde a sua colheita até a sua avaliação, devendo ser resguardados fidedignamente até o trânsito  em  julgado  da  decisão  acerca  do  mérito.  As  fontes  e  os elementos de prova devem ser protegidos, evitando-se contaminações subjetivas, manipulações e quebra da fidedignidade. As  fontes  de  prova  mantêm  a  sua  funcionalidade  mesmo  após
+
+|
+
+terem  sido  documentados  os  elementos  de  prova,  em  face  da dinamicidade do contraditório e da possibilidade de ser desfeita a coisa  julgada  no  processo  penal.  O iter procedimental  fornece relevantes  elementos  à  verificação  da  validade  da  prova  e  da idoneidade da fonte.
+
+A guisa de considerações finais, devem ser retomados os  problemas  contidos  inicialmente  e  verificar  a  confirmação  ou não das hipóteses lá enunciadas. O artigo responde à problemática. Conclui-se que a função da cadeia de custódia da prova pericial é assegurar, de maneira fiável, a autenticidade, integridade, lealdade e seriedade da prova. O objeto da cadeia de custódia funda-se na lei da mesmidade , de modo que o elemento coletado é o mesmo a ser valorado no provimento jurisdicional. A finalidade da cadeia de custódia permite maior grau de precisão ao decisum , inclusive potencializando a garantia do contraditório. A cadeia de custódia da prova pericial  se  constitui  em  um  indicador  epistêmico,  o  qual  impacta direta  e  significativamente  a  atividade  recognitiva  do  magistrado. Portanto, a cadeia de custódia faz parte de um sistema de controles epistêmicos assecuratórios da memória cronológica e sequencial de atos atinentes à prova pericial, permitindo a sua reconstituição fática, bem como a demonstração da cadeia constitutiva, pressuposto fundamental de garantia da integridade do vestígio e de seu correspondente valor probatório.
+
+A cadeia de custódia abarca, além da documentação, a guarda,  manuseio  e  análise  da  prova.  A  documentação  dos  atos representa uma parte da cadeia de custódia, quiçá a mais relevante, mas com ela não se confunde, embora a integre. A rastreabilidade da prova se verifica pela sua documentação. A Lei nº 13.964/2019 foi o primeiro diploma legal a abordar, expressamente, a cadeia de custódia. Contudo, poderia ser inferido, tanto do artigo 6º, quanto do atual artigo 169, ambos do Código de Processo Penal. O regramento contido na Lei nº 13.964/2019 é insuficiente para garantir a fiabilidade  da  prova  pericial,  silenciando  sobre  uma  problemática importante,  ou  seja,  dos  efeitos  da  não  observância  da  cadeia  de custódia,  de  sua  irregularidade  ou  quebra  e  mesmo  de  sua  inexistência. Ademais, apenas faz referência à cadeia de custódia da prova pericial. Melhor seria o estabelecimento de regras gerais, aplicáveis à  cadeia  de  custódia e,  depois,  regrar  as  especificidades  mais  relevantes, de cada meio de prova.
+
+Além da normatividade doméstica, a Corte Interamericana de Direitos Humanos (CORTE  IDH)  já se manifestou em vários casos acerca da cadeia de custódia. No Caso Velásquez  Paiz  e  Outros vs. Guatemala  (2015) 67 ,  constatou  uma série de irregularidades na colheita e conservação da prova, desde o encontro  do  corpo  da  vítima.  Assentou  o  dever  de  realização  de diligências  mínimas e indispensáveis à conservação dos elementos de prova que possam contribuir ao êxito da investigação, preservando-se a cadeia de custódia (item 150 da sentença). No que pertine à cena do crime ('alma do delito'), a CORTE IDH decidiu que  os  investigadores  devem:  fotografar  o  local  e  qualquer  outra evidência;  fotografar  o  corpo,  como  foi  encontrado  e  depois  de movido do lugar; recolher as amostras de sangue, cabelos, fibras e outras pistas; examinar a área, com o escopo de averiguar marcas de  pegadas  ou  de  qualquer  outra  evidência;  realizar  um  relatório circunstanciado do levantamento feito; conservar o local, mantendo-o sob custódia permanente, evitando a contaminação. A CORTE  IDH  apontou  as  seguintes  falhas  no  caso:  ausência  de documentação  do  encontro  do  corpo  da  vítima;  manipulação  do cadáver;  incorreto  manejo  da  cena  do  crime;  irregularidades  na preservação  e  documentação  das  evidências;  irregularidades  na necropsia e em sua documentação; falta de determinação da hora da  morte;  ausência  de  nominação  da  vítima,  apesar  de  ter  sido identificada (nominada de 'XX'); irregularidade no reconhecimento médico forense. Além desse caso, outros aportaram  à  CORTE  IDH,  onde,  de  uma  forma  ou  outra,  foi discutia a cadeia de custódia da prova: Caso Miguel Castro vs. Peru (2006); Caso Defensor de Derechos Humanos vs. Guatemala; Caso
+
+67  Disponível em
+
+https://www.corteidh.or.cr/docs/casos/articulos/seriec\_307\_esp.pdf. Acesso em abr/2020.
+
+|
+
+Luna López vs. Honduras (2013) e  Caso Comunidade Campesina de Santa Bárbara vs. Peru (2015).
+
+## REFERÊNCIAS DAS FONTES CITADAS
+
+ARIAS, Emma Calderón. Un estudio comparado en Latinoamérica sobre la cadena de custodia de las evidencias en el proceso penal. Revista  Facultad  de  Derecho  Y  Ciencias  Políticas . v.  44,  n. 121, p. 425-459. 2014.
+
+AZEVEDO,  Yuri;  VASCONCELOS,  Caroline  Regina  Oliveira. Ensaios  sobre  a  cadeia  de  custódia  da  prova  no  processo penal . Florianópolis: Empório do Direito, 2017.
+
+BACHELARD, Gaston. O novo espírito científico . Tradução de Juvenal Hahne Júnior. Rio de Janeiro: Tempo Brasileiro, 2000.
+
+BADARÓ, Gustavo. A cadeia de custódia e sua relevância para a prova penal. In: SIDI, Ricardo; LOPES, Anderson Bezerra (orgs.) Temas atuais de investigação preliminar  no  processo  penal. Belo Horizonte: D'Plácido, 2017. p. 517-538.
+
+BONACCORSO, Norma Sueli. Aplicação do exame de DNA na elucidação de crimes . São Paulo: APMP, 2008.
+
+BRASIL. Ministério da Justiça. Polícia Federal. Diretoria TécnicoCientífica. Glossário  de  ciências  forenses:  termos  técnicos mais  usados  pela  perícia  criminal  federal. Brasília: Polícia Federal, Diretoria Técnico-Científica, 2016.
+
+BRASIL. Secretaria Nacional de Segurança Pública. Portaria n o 82, de 16 de julho de 2014. Estabelece as Diretrizes sobre os procedimentos a serem observados no tocante à cadeia de custódia de vestígios. Diário Oficial da União , Brasília, DF, 18 julho, 2014.
+
+BRÁZ,  José. Ciência, tecnologia e investigação criminal . Coimbra: Almedina, 2016.
+
+BRÁZ, José. Investigação criminal: a organização, o método e a prova: os desafios da nova criminalidade . Coimbra: Almedina, 2019.
+
+BUSATO, Paulo César (org.). Neurociência e direito penal. São Paulo: Atlas, 2014.
+
+CHASIN,  Alice  Aparecida  da  Matta. Parâmetros  de  confiança analítica e irrefutabilidade do laudo pericial em toxicologia Forense. Revista Brasileira de Toxicologia, v. 14, n. 1, p. 40-46. 2001.
+
+COLÔMBIA. Ley  906  de  2004.  Código  de  Procedimiento Penal Colombiano . Publicada no Diário Oficial número 45.657 de 31 de agosto de 2004. Disponível em: http://www.secretariasenado.gov.co/senado/basedoc/ley\_0906\_2 004.html. Acesso em: 15 fev 2020.
+
+DIAS FILHO, Claudemir Rodrigues. Cadeia de custódia: do local de  crime ao  trânsito  em  julgado;  do  vestígio  à  evidência. Revista dos Tribunais , v. 98, n. 883, p. 436-451. maio 2009.
+
+ESPÍNDULA, Alberi. Perícia criminal e cível: uma visão geral para peritos e usuários da perícia . Campinas: Millenium, 2013.
+
+FIGUEROA NAVARRO, Carmen (org.). La cadena de custodia en el Proceso Penal . Madrid: Edisofer, 2015.
+
+GAUER, Ruth Maria Chittó. A fundação da norma: para além da racionalidade histórica . Porto Alegre: EDIPUCRS, 2011.
+
+GIACOMOLLI, Nereu José. O Devido Processo Penal. Abordagem conforme a CF e o Pacto de São José da Costa Rica . 3. ed. São Paulo: GEn/Atlas, 2016.
+
+|
+
+GONZÁLEZ,  Rubén  Darío  Angulo. Cadena  de  Custodia  en Criminalística . Bogotá: Ediciones Doctrina y Ley, 2016.
+
+KNIJNIK,  Danilo. Prova  pericial  e  seu  controle  no  direito processual brasileiro . São Paulo: Revista dos Tribunais, 2017.
+
+LOPES JR., Aury. Direito processual penal .  São  Paulo:  Saraiva, 2018.
+
+MEINTJIES-VAN  DER  WALT,  Lirieka.  The  chain  of  custody and formal admissions. South African Journal of Criminal Justice , v. 23, n. 3, p. 371-384. 2010.
+
+MOZAYANI, Ashraf; FISHER, Casie Parish. Forensic Evidence Management:  from  the  crime  scene  to  the  courtroom .  New York: CRC Press. 2017.
+
+PRADO, Geraldo. A cadeia de custódia da prova no processo penal . São Paulo: Marcial Pons, 2019.
+
+PRADO, Geraldo. Prova penal e sistema de controles epistêmicos  a  quebra  da  cadeia  de  custódia  das  provas obtidas por métodos ocultos . São Paulo: Marcial Pons, 2014.
+
+SANZ,  María  Rosa  Gutiérrez. La  cadena  de  custodia  em  el Proceso Penal Español . Navarra: Aranzadi, 2016.
+
+STUMVOLL, Victor Paulo. Criminalística. Campinas: Millennium, 2019.
+
+TABUENCA, Pilar Ladrón. La cadena de custodia en el Proceso Penal Español: revisión normativa. In: FIGUEROA NAVARRO, Carmen  (org.). La  cadena  de  custodia  en  el  Proceso  Penal . Madrid: Edisofer, 2015.
+
+VALENTE, Manuel Monteiro Guedes; PRADO, Geraldo; GIACOMOLLI,  Nereu  José;  DA  SILVIERA,  Edson  Damas. Prova  Penal  e  o  Estado  Democrático  de  Direito . Portugal: Letras e Conceitos, 2015 .
+
+VALENTE,  Manuel  Monteiro  Guedes. Cadeia  de  Custódia . Coimbra: Almedina, 2019.
+
+VÁZQUEZ  ROJAS,  Carmen. De  la  prueba  científica  a  la prueba pericial . Madrid: Marcial Pons, 2015.
+
+VELHO, Jesus Antônio; GEISER, Gustavo Caminoto; ESPÍNDULA,  Alberi. Ciências  forenses:  uma  introdução  às principais áreas da criminalística moderna . Campinas: Millennium, 2017.

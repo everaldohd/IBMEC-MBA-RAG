@@ -1,2 +1,3 @@
 exp,fase,mudanca,tecnica,top_k,hit@5,recall@5,mrr,ndcg@10,ragas_faith,ragas_ans_rel,ragas_ctx_recall,latencia_media_s,n_queries,n_falhas,observacao
 exp01_baseline,Fase 0,"baseline: chunking=auto (hierarquico), embedding=nomic-embed-text, busca=baseline, top_k=10",baseline,10,0.6333,0.4222,0.3512,0.3381,,,,2.721,30,0,
+exp02_extracao_pymupdf,Fase 1,"extracao=PyMuPDF (vs Docling no exp01), chunking=hierarquico fixo p/ isolar a variavel",baseline,10,0.7,0.4889,0.4356,0.4147,,,,2.584,30,0,11 titulos(Docling) vs 0(PyMuPDF); 76146 vs 78430 caracteres

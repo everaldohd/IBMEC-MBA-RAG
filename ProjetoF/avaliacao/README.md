@@ -45,4 +45,30 @@ parecer estranho.
 ## Arquivos desta pasta
 
 - `avaliar_recuperacao.py` — roda as 30 perguntas contra `app/busca_avancada`,
-  calcula Hit@5
+  calcula Hit@5, Recall@5, MRR, NDCG@10 e grava uma linha em `resultados.csv`
+  (e um `detalhe_<exp>.json` com os chunks recuperados por pergunta). Uso:
+  ```
+  python avaliacao/avaliar_recuperacao.py --exp exp01_baseline --fase "Fase 0" \
+      --mudanca "baseline: chunking=auto, embedding=nomic-embed-text, busca=baseline" \
+      --tecnica baseline --top-k 10
+  ```
+  Rodar de dentro de `ProjetoF/`, com o venv do projeto ativado (precisa da
+  API **não** precisar estar no ar — o script importa `app.busca_avancada`
+  direto, sem passar pelo FastAPI).
+- `rodar_fase1_extracao.py` — Fase 1 (Seção 7): compara extração Docling
+  (markdown, baseline) vs fallback PyMuPDF (texto puro), com chunking FIXO
+  (`hierarquico`, igual ao exp01) para isolar a extração como única variável.
+  Limpa e reindexa o OpenSearch, roda a mesma avaliação de retrieval do
+  exp01, grava `exp02_extracao_pymupdf` em `resultados.csv`, e por fim
+  **restaura o índice para o texto do Docling** (estado da baseline) antes de
+  terminar. Salva amostras de texto extraído em `avaliacao/amostras_extracao/`
+  para inspeção manual. OCR não entra nessa fase: o PDF escolhido tem camada
+  de texto nativa, não é escaneado. Uso:
+  ```
+  python avaliacao/rodar_fase1_extracao.py
+  ```
+- `avaliar_ragas.py` — a criar: Faithfulness, Answer Relevancy, Context
+  Precision/Recall (padrão RAGAS + Groq das Aulas 5/8, `strictness=1`).
+- `resultados.csv` — uma linha por experimento (gerado automaticamente pelo
+  `avaliar_recuperacao.py`/`rodar_fase1_extracao.py`; colunas seguem o
+  template da Seção 7 do `Roteiro_Final.md`).
