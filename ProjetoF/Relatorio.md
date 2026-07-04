@@ -1,7 +1,8 @@
 # A Jornada de Melhoria da Recuperação em RAG — Cadeia de Custódia da Prova Pericial
 
 **Disciplina:** RAG & CAG Aplicados a Direito e Segurança Pública (MBA IBMEC)
-**Autor:** Everaldo
+**Grupo:** 7
+**Integrantes:** Everaldo Diniz, Gustavo Aranha, Thiago Marques, Guilherme Rabelo, Marcos Soares, Modestino André
 **Ponto de partida:** aplicação do Projeto Final (`aula12/projeto_final/`), copiada para `ProjetoF/`
 
 > Rascunho em construção — preenchido fase a fase, conforme os experimentos são medidos. Seções marcadas como `[PENDENTE]` ainda não têm dados.
@@ -20,7 +21,8 @@ Pública), ter estrutura mista — texto corrido, seções tituladas, referênci
 de lei e a jurisprudência (Corte Interamericana de Direitos Humanos) — o que permite
 testar diferentes técnicas de chunking e recuperação ao longo da jornada.
 
-Motivação prática: o autor integra uma equipe de **Peritos Criminais**, para quem a
+Motivação prática: Everaldo, um dos integrantes do grupo, faz parte de uma equipe de
+**Peritos Criminais**, para quem a
 cadeia de custódia da prova pericial é um tema central da rotina profissional (rastreio
 e integridade de vestígios do local de crime até o laudo). O caso de uso real de um
 sistema RAG sobre esse tema seria apoiar peritos e operadores do direito a consultar
