@@ -27,28 +27,37 @@ Context Precision fica registrado no campo 'observacao' de cada linha.
 
 RESUMIVEL (pula o que ja esta em resultados.csv) e com try/except por pergunta, como
 as fases anteriores - mas aqui cada pergunta faz 2 chamadas de LLM (geracao da resposta
-+ o proprio RAGAS chama o juiz Groq varias vezes por amostra), entao e mais lento e mais
-sensivel a cota diaria (TPD) do Groq. Rode com --limite N para testar num subconjunto
-antes de rodar as 30 perguntas completas.
++ o proprio RAGAS chama o juiz varias vezes por amostra), entao e mais lento e mais
+sensivel a limite de taxa/cota do provedor. Rode com --limite N para testar num
+subconjunto antes de rodar as 30 perguntas completas.
 
 CACHE DE GERACAO (avaliacao/cache_geracao_<exp>.json, so quando --limite=0): a geracao
 (busca+LLM) e a parte mais cara em tokens desta fase (prompt com ate 10 chunks de
-contexto por pergunta). Se a cota diaria do Groq estourar no meio das 30 perguntas (ja
-aconteceu), rodar de novo reaproveita as respostas ja geradas com sucesso em vez de
-gastar tokens de novo nelas - o cache e apagado automaticamente depois que a
+contexto por pergunta). Se a cota do provedor estourar no meio das 30 perguntas (ja
+aconteceu com o Groq), rodar de novo reaproveita as respostas ja geradas com sucesso em
+vez de gastar tokens de novo nelas - o cache e apagado automaticamente depois que a
 configuracao inteira e registrada em resultados.csv.
 
-NOTA (bug corrigido): a 1a rodada desta fase passava base_url=llm_base ao ChatGroq
-(a mesma URL usada pelo OpenAIGenerator do Haystack, "https://api.groq.com/openai/v1"),
-mas o ChatGroq (langchain_groq) ja usa essa URL internamente por padrao - passar de novo
-duplicava o path (POST /openai/v1/openai/v1/chat/completions -> 404) e derrubava TODAS
-as chamadas de juiz do RAGAS (faithfulness/answer_relevancy/context_precision/
-context_recall = nan, mesmo com respostas geradas com sucesso). Corrigido: ChatGroq so
-recebe model+api_key (mesmo padrao de aula5/_comum.py::chat_groq e aula8/05_comparar_ragas.py).
+NOTA (3 bugs corrigidos, todos no juiz do RAGAS - avaliar_ragas()):
+  1. A 1a rodada (com Groq) passava base_url=llm_base ao ChatGroq, mas o ChatGroq
+     (langchain_groq) ja usa "https://api.groq.com/openai/v1" internamente por padrao -
+     passar de novo duplicava o path (POST /openai/v1/openai/v1/chat/completions -> 404)
+     e derrubava TODAS as chamadas de juiz.
+  2. Depois de trocar o provedor para OpenRouter no .env (Groq TPD=100k/dia esgotou 3
+     chaves seguidas - cada config desta fase sozinha ja consome quase toda a cota
+     diaria), o ChatGroq CONTINUAVA fixo na API do Groq (ignora LLM_BASE_URL) - a chave
+     do OpenRouter foi enviada pro endpoint do Groq -> 401 Invalid API Key em 100% dos
+     jobs, mesmo com as 30 respostas geradas certinho (a geracao usa o OpenAIGenerator
+     do Haystack, que ja e agnostico e usava o endpoint certo). Corrigido trocando para
+     ChatOpenAI (langchain_openai) generico, com base_url explicito de config_llm().
+  3. Com o ChatOpenAI sem max_tokens explicito, o juiz cortava a resposta no meio
+     (LLMDidNotFinishException) - Faithfulness decompoe a resposta em varias afirmacoes
+     e verifica cada uma, o que gera uma saida longa (JSON estruturado). Corrigido com
+     max_tokens=2048 no ChatOpenAI.
 
-Uso (de dentro de ProjetoF/, venv ativado, precisa de OpenSearch + Ollama + Groq no ar):
+Uso (de dentro de ProjetoF/, venv ativado, precisa de OpenSearch + Ollama + LLM no ar):
 
-    pip install -r requirements.txt   # instala ragas/langchain-groq/langchain-ollama
+    pip install -r requirements.txt   # instala ragas/langchain-openai/langchain-ollama
     python avaliacao/rodar_fase8_ragas.py
     python avaliacao/rodar_fase8_ragas.py --limite 5     # teste rapido, nao salva no csv
 """
@@ -142,7 +151,7 @@ def gerar_resposta(pergunta, top_k=TOP_K):
 # ---------------------------------------------------------------------------
 def avaliar_ragas(amostras):
     """amostras: [{"pergunta", "resposta", "contextos", "referencia"}, ...] -> DataFrame."""
-    from langchain_groq import ChatGroq
+    from langchain_openai import ChatOpenAI
     from ragas import EvaluationDataset, evaluate
     from ragas.dataset_schema import SingleTurnSample
     from ragas.embeddings import LangchainEmbeddingsWrapper
@@ -152,14 +161,17 @@ def avaliar_ragas(amostras):
 
     from app import config
 
-    api_key, gmodelo, _llm_base = config.config_llm()
-    # NAO passar base_url aqui: ChatGroq ja aponta para https://api.groq.com/openai/v1
-    # por padrao internamente: passar llm_base (que JA e essa mesma URL, vinda de
-    # config_llm() para o OpenAIGenerator do Haystack) faz o cliente duplicar o path
-    # (POST /openai/v1/openai/v1/chat/completions -> 404) - foi o que quebrou 100% das
-    # chamadas de juiz do RAGAS na 1a rodada desta fase. Padrao correto e o mesmo usado
-    # em aula5/aula8 (_comum.py::chat_groq / 05_comparar_ragas.py): so model+api_key.
-    juiz = LangchainLLMWrapper(ChatGroq(model=gmodelo, api_key=api_key, temperature=0))
+    api_key, gmodelo, llm_base = config.config_llm()
+    # O projeto e agnostico de provedor (LLM_BASE_URL/LLM_MODEL/LLM_API_KEY no .env) -
+    # o juiz do RAGAS precisa respeitar isso, entao usa ChatOpenAI generico (aceita
+    # qualquer endpoint OpenAI-compativel via base_url) em vez de ChatGroq (que so fala
+    # com a API do Groq, ignorando LLM_BASE_URL). Ver NOTA no topo do arquivo.
+    # max_tokens=2048: sem isso, o ChatOpenAI (via OpenRouter) cortou respostas do juiz
+    # no meio (LLMDidNotFinishException) - Faithfulness decompoe a resposta em varias
+    # afirmacoes e verifica cada uma, o que pode gerar uma saida longa (JSON estruturado).
+    juiz = LangchainLLMWrapper(ChatOpenAI(model=gmodelo, api_key=api_key,
+                                           base_url=llm_base, temperature=0,
+                                           max_tokens=2048))
 
     base_url, modelo_emb = config.config_ollama()
     try:
@@ -212,12 +224,12 @@ def rodar_configuracao(exp_nome, queries, limite):
     """Gera a resposta completa (RAG) para cada pergunta e roda RAGAS em cima.
 
     CACHE por pergunta (avaliacao/cache_geracao_<exp>.json, so quando --limite=0):
-    a geracao (busca+LLM) e a parte mais cara em tokens Groq desta fase (cada resposta
-    usa um prompt com ate 10 chunks de contexto). Se a cota diaria (TPD) estourar no
-    meio das 30 perguntas (ja aconteceu 1x), rodar de novo SEM o cache perderia e
-    re-gastaria tokens nas perguntas que ja tinham gerado resposta com sucesso. Com o
-    cache, so as perguntas que ainda nao tem resposta salva fazem uma nova chamada de
-    LLM - o restante e reaproveitado do arquivo.
+    a geracao (busca+LLM) e a parte mais cara em tokens desta fase (cada resposta
+    usa um prompt com ate 10 chunks de contexto). Se a cota estourar no meio das 30
+    perguntas, rodar de novo SEM o cache perderia e re-gastaria tokens nas perguntas
+    que ja tinham gerado resposta com sucesso. Com o cache, so as perguntas que ainda
+    nao tem resposta salva fazem uma nova chamada de LLM - o restante e reaproveitado
+    do arquivo.
     """
     perguntas = queries[:limite] if limite else queries
     cache = {} if limite else _carregar_cache(exp_nome)
@@ -269,8 +281,8 @@ def rodar_configuracao(exp_nome, queries, limite):
         raise RuntimeError(
             f"RAGAS devolveu NaN em TODAS as 4 metricas para {exp_nome} - as "
             f"{len(amostras)} resposta(s) foram geradas, mas nenhuma chamada de juiz do "
-            f"RAGAS deu certo (confira o log acima por 404/429/timeout). NADA foi salvo "
-            f"em resultados.csv - as respostas geradas continuam no cache "
+            f"RAGAS deu certo (confira o log acima por 404/429/401/timeout). NADA foi "
+            f"salvo em resultados.csv - as respostas geradas continuam no cache "
             f"({_cache_path(exp_nome).name}) para a proxima tentativa nao gastar tokens "
             f"de novo.")
     detalhes = []
@@ -396,4 +408,18 @@ def main():
             r = resumos[exp_nome]
             print(f"  {exp_nome:<22} {r['faithfulness']:>7} {r['answer_relevancy']:>8} "
                   f"{r['context_precision']:>9} {r['context_recall']:>8}")
-       
+        elif exp_nome in ja_feitos:
+            print(f"  {exp_nome:<22} (ja estava em resultados.csv de uma rodada anterior)")
+        else:
+            print(f"  {exp_nome:<22} FALHOU nesta rodada - nao registrado")
+
+    if falhas_config:
+        print(f"\nATENCAO: {len(falhas_config)} configuracao(oes) falharam e NAO foram registradas:")
+        for exp_nome, erro in falhas_config:
+            print(f"  - {exp_nome}: {erro[:200]}")
+        print("Corrija a causa e rode o script de novo - o que ja passou sera pulado.")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

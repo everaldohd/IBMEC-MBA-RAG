@@ -55,8 +55,9 @@ aproximação documentada, revisável via `avaliacao/detalhe_<exp>.json`.
 ## 3. Metodologia
 
 - **Métricas de recuperação:** Hit@5, Recall@5, MRR, NDCG@10 (`avaliacao/avaliar_recuperacao.py`).
-- **Métricas de geração (RAGAS):** Faithfulness, Answer Relevancy, Context Precision/Recall —
-  `[PENDENTE]`, rodam ao final (Fase 8), na baseline e na melhor configuração.
+- **Métricas de geração (RAGAS):** Faithfulness, Answer Relevancy, Context Precision/Recall
+  (`avaliacao/rodar_fase8_ragas.py`) — rodadas ao final (Fase 8) na baseline (`exp23`) e na
+  melhor configuração (`exp24`); ver Seção 5, Fase 8.
 - **top_k:** 10 chunks recuperados por consulta (cobre Hit@5/Recall@5 e NDCG@10 na
   mesma rodada).
 - **Experimento controlado:** uma variável por vez. Cada fase reindexa o OpenSearch
@@ -66,8 +67,11 @@ aproximação documentada, revisável via `avaliacao/detalhe_<exp>.json`.
 - **Registro:** uma linha por experimento em `avaliacao/resultados.csv` (`exp`, `fase`,
   `mudança`, métricas, observação) + `avaliacao/detalhe_<exp>.json` com os chunks
   recuperados por pergunta (auditoria).
-- **Infra:** OpenSearch local (Docker), embeddings via Ollama (`nomic-embed-text`,
-  768d), geração via Groq (LLM agnóstico, `llama-3.3-70b-versatile`).
+- **Infra:** OpenSearch local (Docker), embeddings via Ollama (`nomic-embed-text`, 768d,
+  baseline), geração via LLM agnóstico a provedor (`app/config.py::config_llm()`) — Groq
+  (`llama-3.3-70b-versatile`) nas Fases 0-7; trocado para OpenRouter
+  (`meta-llama/llama-3.3-70b-instruct`, mesmo modelo Llama 3.3 70B) na Fase 8 por causa do
+  limite diário de tokens do tier gratuito da Groq (nota técnica na Seção 5, Fase 8).
 
 ## 4. Baseline (Fase 0)
 
@@ -458,7 +462,58 @@ final do projeto. `context_precision` não tem coluna própria em `resultados.cs
 (o template da Seção 7 do Roteiro só prevê `ragas_faith`/`ragas_ans_rel`/
 `ragas_ctx_recall`); fica registrado no campo `observacao` de cada linha.
 
-`[PENDENTE]` resultado — script criado mas ainda não executado.
+**Resultado:**
+
+| Métrica RAGAS | exp23 (baseline, nomic-embed-text) | exp24 (melhor, qwen3-embedding:4b) | Δ |
+|---|---|---|---|
+| Faithfulness | 0,8465 | 0,9410 | +0,0945 |
+| Answer Relevancy | 0,5938 | 0,7211 | +0,1273 |
+| Context Precision | 0,6374 | 0,7990 | +0,1616 |
+| Context Recall | 0,7389 | 1,0000 | +0,2611 |
+| Latência média (s) | 9,40 | 11,07 | +1,67 |
+
+**Análise:** a hipótese se confirma com folga — o ganho de recuperação medido na Fase 3
+(Hit@5 0,633→0,933 trocando `nomic-embed-text` por `qwen3-embedding:4b`) se traduz em
+ganho de geração nas **4 métricas RAGAS**, não só nas de recuperação. Context Recall
+chegou a 1,000 na melhor configuração: para as 30 perguntas do gabarito, tudo que a
+resposta de referência exigia estava presente em algum lugar dos 10 chunks recuperados —
+nenhuma lacuna de cobertura. Context Precision também subiu bastante (+0,162): além de
+presente, o conteúdo relevante veio mais concentrado no topo do ranking, coerente com o
+Hit@5 muito maior medido na Fase 3.
+
+Faithfulness e Answer Relevancy melhoraram de forma mais moderada, e Answer Relevancy
+segue sendo a métrica mais baixa das quatro em ambas as configurações (0,594/0,721) —
+olhando `avaliacao/detalhe_exp23_ragas_baseline.json` e `detalhe_exp24_ragas_melhor.json`,
+parte da penalização vem de um comportamento específico do RAGAS: perguntas cuja resposta
+é "Não consta" (o LLM admite honestamente que o contexto não trouxe a informação, ex.:
+Q21 em ambas as configs) recebem `answer_relevancy=0,0` mesmo quando a resposta está
+certa em recusar-se a inventar — a métrica gera perguntas sintéticas a partir da resposta
+e compara com a original, o que não funciona bem para respostas que negam ter a
+informação. Um exemplo concreto do ganho real de conteúdo: em **Q02** ("quando começa
+oficialmente a cadeia de custódia, segundo a lei?"), o `exp23` (baseline) não recuperou o
+trecho certo e respondeu "Não consta" (`context_recall=0,0`), enquanto o `exp24` (melhor
+config) recuperou o artigo 158-B e respondeu corretamente (`context_recall=1,0`,
+`faithfulness=0,8`) — ilustra na prática como a melhora de embedding vira resposta
+utilizável para o usuário final.
+
+*(Nota técnica 1: em ambas as rodadas, uma pequena fração das ~120 chamadas de juiz RAGAS
+por config (4-5 de 120) falhou isoladamente com `LLMDidNotFinishException` (saída cortada
+do juiz) — o executor do RAGAS trata cada chamada de forma independente, então essas
+falhas pontuais só geram `NaN` no job específico e não impedem o cálculo das médias
+finais com os demais ~115 jobs válidos. Nota técnica 2: por causa do limite diário de
+tokens (TPD) do tier gratuito da Groq — cada configuração desta fase sozinha já consome
+quase toda a cota de 100k tokens/dia, entre a geração das 30 respostas e as ~120 chamadas
+de juiz —, o provedor de LLM foi trocado para OpenRouter (pago, sem limite diário) só
+para esta fase, mantendo o mesmo modelo Llama 3.3 70B Instruct
+(`meta-llama/llama-3.3-70b-instruct`); a troca não exigiu mudar a geração do RAG, já que
+`app/config.py::config_llm()` é agnóstico a provedor — só o juiz do RAGAS precisou trocar
+de `ChatGroq` para `ChatOpenAI` (genérico), pois o `ChatGroq` do LangChain ignora
+`LLM_BASE_URL` e sempre fala com a própria API da Groq.)*
+
+Conclusão da fase: a configuração final do projeto (Docling + hierárquico +
+`qwen3-embedding:4b` + busca `baseline`/densa, `top_k=10`) não é só a melhor em
+recuperação (Fases 3-7) — é também mensuravelmente melhor em geração, fechando o ciclo
+completo da jornada.
 
 ## 6. Tabela consolidada
 
@@ -487,15 +542,80 @@ final do projeto. `context_precision` não tem coluna própria em `resultados.cs
 | exp21_rerank_pool40 | Fase 6 | tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=40, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,733 | 0,617 | 0,473 | 0,607 | 32,53 |
 | exp22_hyde | Fase 7 | tecnica=hyde (documento hipotético via Groq), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b | 0,800 | 0,650 | 0,598 | 0,747 | 4,78 |
 
-*(atualizado automaticamente a partir de `avaliacao/resultados.csv` conforme novas fases rodam — gráficos entram aqui na consolidação final.)*
+*(tabela restrita às métricas de recuperação, Fases 0-7 — as métricas de geração RAGAS
+de `exp23`/`exp24` (Fase 8) estão na Seção 5 e na Seção 7.)*
 
 ## 7. Melhor configuração final
 
-`[PENDENTE]` — definido ao final da jornada (Fase 8), comparando todas as linhas de `resultados.csv`.
+A configuração final confirmada ao longo de toda a jornada (Fases 0-8) é:
+
+**Extração:** Docling · **Chunking:** hierárquico · **Embedding:** `qwen3-embedding:4b`
+(2560d) · **Busca:** densa pura (`baseline`, sem técnica alternativa) · **top_k:** 10.
+
+Nenhuma das 8 variações de técnica de recuperação testadas nas Fases 4-7 (híbrida
+top_k=5/10/20, multi_query, rag_fusion, step_back, rerank pool=20/40, HyDE) superou essa
+configuração em nenhuma das 4 métricas de recuperação — resultado repetido em 4 fases
+diferentes.
+
+| Métrica | Recuperação (`exp10`) | Geração (`exp24`) |
+|---|---|---|
+| Hit@5 | 0,933 | — |
+| Recall@5 | 0,700 | — |
+| MRR | 0,661 | — |
+| NDCG@10 | 0,775 | — |
+| Faithfulness | — | 0,941 |
+| Answer Relevancy | — | 0,721 |
+| Context Precision | — | 0,799 |
+| Context Recall | — | 1,000 |
+| Latência média | 3,17s | 11,07s |
+
+É também, de longe, a configuração mais rápida entre as testadas nas Fases 4-7 (reranking
+chegou a 25-33s/pergunta; multi_query/rag_fusion a ~7,5s) — melhor qualidade e menor custo
+computacional ao mesmo tempo, um resultado incomum e que vale destacar.
 
 ## 8. Análise crítica
 
-`[PENDENTE]`
+Alguns achados atravessam a jornada inteira e merecem destaque antes das decisões
+técnicas pontuais (8.1):
+
+**O modelo de embedding foi, de longe, a maior alavanca de qualidade do projeto** (Fase
+3): trocar `nomic-embed-text` por `qwen3-embedding:4b` levou o Hit@5 de 0,633 para
+0,933 — um salto maior que o efeito de todas as outras técnicas testadas depois (busca
+híbrida, query enhancement, reranking, HyDE) somadas, e nenhuma delas chegou perto de
+repetir esse ganho.
+
+**Toda técnica "avançada" de recuperação testada piorou o resultado, uma vez que o
+embedding forte já estava em uso** — busca híbrida (Fase 4), multi_query/rag_fusion/
+step_back (Fase 5), reranking (Fase 6) e HyDE (Fase 7) perderam para a busca densa pura
+em praticamente todas as métricas, em 4 fases seguidas. Leitura mais provável: neste
+corpus pequeno (143 chunks, um único artigo curto e coeso), a busca densa com um
+embedding forte já opera perto do teto de cobertura possível (Hit@5=0,933) — sobra pouco
+espaço para essas técnicas adicionarem sinal, enquanto cada uma introduz alguma fonte de
+ruído (variação do LLM na reescrita de consultas, fusão de rankings, ou um cross-encoder
+de domínio genérico julgando mal vocabulário jurídico específico). É um contraponto à
+literatura de RAG, que costuma apresentar essas técnicas como melhorias quase universais —
+aqui, o achado prático é "compare sempre contra uma baseline densa forte antes de assumir
+que a técnica mais sofisticada compensa a complexidade adicional".
+
+**A extração "mais simples" (PyMuPDF) bateu o Docling** (Fase 1) neste PDF específico
+(acadêmico, coluna única, bem formatado) — hipótese de que a marcação markdown do Docling
+introduz ruído lexical que não aparece nas perguntas dos usuários. Reforça que o Docling
+tende a valer mais em documentos complexos (múltiplas colunas, tabelas, PDFs escaneados)
+do que em PDFs simples já bem extraíveis por um método mais direto.
+
+**A Fase 8 fechou o ciclo**, mostrando que a melhoria medida em recuperação (Fase 3) de
+fato se propaga para a geração — algo que não podia ser dado como certo sem medir: seria
+possível, em tese, que um contexto melhor não mudasse a qualidade da resposta final se o
+LLM já "se virasse" igualmente bem com um contexto pior. Não foi o caso aqui: as 4
+métricas RAGAS melhoraram.
+
+**Restrições operacionais também moldaram a metodologia**: o limite diário de tokens do
+tier gratuito da Groq foi um gargalo real em toda fase com muitas chamadas de LLM (query
+enhancement, HyDE, e principalmente a Fase 8, cujas ~120 chamadas de juiz RAGAS por
+configuração quase esgotam sozinhas a cota diária). A resposta prática foi tornar os
+scripts resumíveis (pulam experimentos já registrados em `resultados.csv`) e, na Fase 8,
+somar um cache de respostas geradas por pergunta — permitindo recuperar de interrupções
+sem regastar tokens — e, por fim, trocar de provedor (OpenRouter, pago) só para essa fase.
 
 ### 8.1 Decisões técnicas relevantes já tomadas
 
@@ -522,8 +642,44 @@ final do projeto. `context_precision` não tem coluna própria em `resultados.cs
 
 ## 9. Conclusão
 
-`[PENDENTE]`
+A jornada partiu de uma baseline "out of the box" (Hit@5=0,633, Faithfulness=0,847) e
+chegou, ao final de 8 fases de experimentação controlada, a uma configuração final
+(Docling + hierárquico + `qwen3-embedding:4b` + busca densa pura, `top_k=10`) melhor em
+recuperação (Hit@5=0,933, +47%), melhor em geração (Faithfulness=0,941, Context
+Recall=1,000) e mais rápida que qualquer alternativa testada nas Fases 4-7. Praticamente
+todo o ganho veio de uma única mudança — o modelo de embedding (Fase 3) —, enquanto
+nenhuma das técnicas de recuperação mais sofisticadas testadas depois (híbrida, query
+enhancement, reranking, HyDE) justificou sua complexidade adicional neste corpus.
+
+Para o caso de uso que motivou este trabalho — apoiar peritos criminais e operadores do
+direito a consultar rapidamente legislação e doutrina sobre cadeia de custódia —, a lição
+prática mais importante é: antes de investir em técnicas de RAG mais sofisticadas, vale
+medir se um embedding melhor já não resolve a maior parte do problema, e sempre comparar
+qualquer técnica nova contra uma baseline densa forte, não contra a baseline fraca
+original — foi o único jeito de perceber que busca híbrida, reranking e HyDE estavam
+piorando, não melhorando, os resultados aqui.
+
+Como generalização cautelosa: os resultados negativos das Fases 4-7 são específicos deste
+corpus (pequeno, coeso, um único documento) — corpora maiores, mais heterogêneos ou com
+mais ruído lexical provavelmente mudariam esse equilíbrio a favor de técnicas como busca
+híbrida ou reranking. O valor do experimento não é "essas técnicas não funcionam", é
+"meça antes de assumir".
 
 ## 10. Anexos
 
-`[PENDENTE]` — traces do LangFuse, exemplos de perguntas certas/erradas antes e depois.
+- `avaliacao/dataset.json` — gabarito completo (18 documentos D01-D18, 30 perguntas com
+  tipo e resposta de referência).
+- `avaliacao/resultados.csv` — todas as linhas de experimento (Fases 0-8), métricas
+  brutas.
+- `avaliacao/detalhe_<exp>.json` — por experimento, os chunks recuperados (ou, a partir
+  da Fase 8, também a resposta gerada e as 4 métricas RAGAS) pergunta a pergunta, para
+  auditoria.
+- `avaliacao/README.md` — como rodar cada script de fase.
+- Exemplo de "antes/depois" (recuperação fraca → forte, mudando só o embedding):
+  pergunta Q02 ("quando começa oficialmente a cadeia de custódia, segundo a lei?") —
+  `exp23` (nomic-embed-text) não recuperou o trecho certo e respondeu "Não consta"
+  (`context_recall=0,0`); `exp24` (qwen3-embedding:4b) recuperou o artigo 158-B e
+  respondeu corretamente (`context_recall=1,0`, `faithfulness=0,8`).
+- Traces detalhados de cada chamada de busca ficam disponíveis no LangFuse quando as
+  chaves em `.env` (`LANGFUSE_*`) estão configuradas — não habilitado nesta rodada de
+  avaliação, mas suportado pelo pipeline (`app/busca_avancada.py`, `LangfuseConnector`).

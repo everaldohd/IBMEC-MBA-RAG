@@ -1,0 +1,275 @@
+{
+  "detalhes": [
+    {
+      "id": "Q01",
+      "pergunta": "o que é, resumidamente, a cadeia de custódia de uma prova pericial?",
+      "resposta": "A cadeia de custódia da prova pericial é um conjunto de medidas para garantir a autenticidade, integridade, lealdade e seriedade da prova, desde a coleta até a utilização pela Justiça, assegurando que o elemento coletado seja o mesmo a ser valorado no provimento jurisdicional.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9112790524469333,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q02",
+      "pergunta": "quando começa oficialmente a cadeia de custódia, segundo a lei?",
+      "resposta": "Segundo o § 1º, a cadeia de custódia dá-se com a preservação do local de crime ou com procedimentos policiais ou com o reconhecimento do vestígio. Além disso, o art. 158-B também menciona que a cadeia de custódia compreende o rastreamento do vestígio a partir do reconhecimento. Portanto, a cadeia de custódia começa oficialmente com o reconhecimento do vestígio.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 0.8083314511884466,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q03",
+      "pergunta": "quantas etapas a lei prevê para rastrear um vestígio, do começo ao fim?",
+      "resposta": "De acordo com o artigo 158-B, a lei prevê as seguintes etapas para rastrear um vestígio: \n\nI - reconhecimento\nII - isolamento\nIII - fixação\nIV - coleta\nV - acondicionamento\nVI - transporte\nVII - recebimento\nVIII - processamento\nIX - armazenamento\n\nPortanto, a lei prevê 9 etapas para rastrear um vestígio, do começo ao fim, mas também menciona o descarte como o final da cadeia de custódia, o que pode ser considerado uma 10ª etapa.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.9315477905039575,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q04",
+      "pergunta": "o que precisa ser anotado toda vez que o lacre de uma prova é rompido?",
+      "resposta": "De acordo com o § 4º, toda vez que o lacre de uma prova é rompido, deve ser anotado na ficha de acompanhamento de vestígio o nome e a matrícula do responsável, a data, o local, a finalidade, bem como as informações referentes ao novo lacre utilizado. Além disso, também deve ser registrada a informação sobre os indivíduos que tiveram contato com o material.",
+      "faithfulness": 0.8571428571428571,
+      "answer_relevancy": 0.88583823708613,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q05",
+      "pergunta": "quem deve gerenciar as centrais de custódia dentro dos institutos de perícia?",
+      "resposta": "A gestão das centrais de custódia deve ser vinculada diretamente ao órgão central de perícia oficial de natureza criminal.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7925375164928059,
+      "context_precision": 0.9704861110989801,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q06",
+      "pergunta": "depois que a perícia termina, para onde o material examinado deve voltar?",
+      "resposta": "De acordo com o artigo 158-F, após a realização da perícia, o material deverá ser devolvido à central de custódia, devendo nela permanecer.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7288672307583814,
+      "context_precision": 0.74999999998125,
+      "context_recall": NaN
+    },
+    {
+      "id": "Q07",
+      "pergunta": "quem pode fazer a coleta de vestígios em um local de crime?",
+      "resposta": "A coleta dos vestígios deverá ser realizada preferencialmente por perito oficial.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8345289560629295,
+      "context_precision": 0.99999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q08",
+      "pergunta": "existia alguma menção à preservação de provas no Código de Processo Penal antes da lei de 2019?",
+      "resposta": "Sim, existia uma menção indireta à preservação de provas no Código de Processo Penal antes da Lei nº 13.964/2019, através do artigo 169, acrescido pela Lei nº 5.970/1973, que pode ser interpretado como um início de preocupação normativa acerca da cadeia de custódia. Além disso, o artigo 6º do Código de Processo Penal também pode ser relacionado à cadeia de custódia.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.926313485219764,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q09",
+      "pergunta": "antes da lei de 2019, já existia alguma norma administrativa tratando da cadeia de custódia no Brasil?",
+      "resposta": "Sim, antes da Lei nº 13.964/2019, já existia a Portaria nº 82 da SENASP, que estabelece as diretrizes sobre os procedimentos a serem observados no tocante à cadeia de custódia de vestígios, vigente desde 2014.",
+      "faithfulness": 1.0,
+      "answer_relevancy": NaN,
+      "context_precision": 0.7555555555303703,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q10",
+      "pergunta": "a Corte Interamericana de Direitos Humanos já condenou algum país por falhas na preservação de provas?",
+      "resposta": "Sim, a Corte Interamericana de Direitos Humanos (CORTE IDH) já se manifestou em vários casos acerca da cadeia de custódia e condenou países por falhas na preservação de provas, como no Caso Velásquez Paiz e Outros vs. Guatemala (2015), onde constatou uma série de irregularidades na colheita e conservação da prova. Além disso, também houve casos como o Caso Miguel Castro vs. Peru (2006), Caso Defensor de Derechos Humanos vs. Guatemala, Caso Luna López vs. Honduras (2013) e Caso Comunidade Campesina de Santa Bárbara vs. Peru (2015), que discutiram a cadeia de custódia da prova.",
+      "faithfulness": 0.8571428571428571,
+      "answer_relevancy": 0.7034295523631854,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q11",
+      "pergunta": "por que é tão importante documentar por escrito tudo o que acontece com uma prova?",
+      "resposta": "A documentação por escrito de tudo o que acontece com uma prova é importante porque assegura a possibilidade de contraditório da prova, garante o princípio da mesmidade e estabelece um histórico completo e fiel de sua origem e trajetória, permitindo a rastreabilidade da prova. Além disso, a documentação é fundamental para a conservação da prova e para a garantia da sua fidedignidade, evitando que se altere o estado das coisas e permitindo a avaliação das consequências de alterações na dinâmica dos fatos.",
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.968955705691239,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q12",
+      "pergunta": "qual o papel da prova dentro de um processo criminal?",
+      "resposta": "A prova tem como função introduzir no processo penal os fatos e as circunstâncias de uma determinada infração criminal, permitindo ao juiz exercer sua atividade recognitiva e produzir o convencimento externado na sentença. Além disso, a prova permite a reconstrução histórica dos fatos e é essencial ao devido processo penal, tendo funções cognoscitiva-reconstrutiva e persuasiva.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8532696090028432,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q13",
+      "pergunta": "existe uma regra que garante que o material analisado no laboratório é exatamente o mesmo que foi encontrado na cena do crime?",
+      "resposta": "Sim, existe uma regra que visa garantir a autenticidade da prova, conhecida como \"lei da mesmidade\", que determina que o elemento coletado é o mesmo a ser utilizado na decisão judicial. Além disso, a cadeia de custódia da prova pericial é um sistema de controles epistêmicos que visa assegurar a autenticidade da prova, garantindo que o material analisado no laboratório é exatamente o mesmo que foi encontrado na cena do crime.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.5684144225343515,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q14",
+      "pergunta": "até quando uma evidência de crime precisa continuar sendo protegida juridicamente, existe um prazo final?",
+      "resposta": "Até o trânsito em julgado da decisão acerca do mérito.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.46607426120350837,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q15",
+      "pergunta": "a definição legal de vestígio inclui coisas como arquivos de computador ou pen drives?",
+      "resposta": "Não consta explicitamente nos trechos fornecidos uma definição legal que inclua expressamente arquivos de computador ou pen drives. No entanto, é mencionado que a doutrina estrangeira define evidência real (vestígio) como \"physical evidence, such as... computer disks\", o que sugere uma interpretação extensiva que poderia abranger arquivos de computador ou pen drives.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7415851471892138,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q16",
+      "pergunta": "quando um agente embala uma amostra de sangue num saco lacrado, isso tem nome técnico na lei?",
+      "resposta": "Sim, isso tem nome técnico na lei. O ato de embalar uma amostra de sangue num saco lacrado é chamado de \"acondicionamento\". De acordo com o trecho, o acondicionamento é definido como \"procedimento por meio do qual cada vestígio coletado é embalado de forma individualizada, de acordo com suas características físicas, químicas e biológicas, para posterior análise, com anotação da data, hora e nome de quem realizou a coleta e o acondicionamento\".",
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.8594112970586468,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q17",
+      "pergunta": "alguém pode entrar numa área isolada de um crime antes da perícia liberar o espaço?",
+      "resposta": "Não, de acordo com o § 2º do artigo 158-C, é proibida a entrada em locais isolados antes da liberação por parte do perito responsável.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8120083365237246,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q18",
+      "pergunta": "os departamentos de perícia no Brasil já têm essas centrais de custódia funcionando de verdade hoje em dia?",
+      "resposta": "Não consta que os departamentos de perícia no Brasil já têm essas centrais de custódia funcionando de verdade hoje em dia. Pelo contrário, o texto menciona que as centrais de custódia são \"raras\" e que a Polícia Federal conta com apenas uma central de custódia no estado do Mato Grosso do Sul, criada em 2010. Além disso, o texto destaca a necessidade de implementação dessas centrais e a importância de uma gestão adequada para a cadeia de custódia.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9653675914883022,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q19",
+      "pergunta": "a lei explica o que acontece se alguém descobrir que a cadeia de custódia de uma prova foi violada, tipo se a prova fica inválida?",
+      "resposta": "Não consta uma resposta clara na lei sobre o que acontece se alguém descobrir que a cadeia de custódia de uma prova foi violada. Há opiniões divergentes entre os autores, como Geraldo Prado, que entende que a quebra da cadeia de custódia da prova pericial deveria levar à ilicitude probatória e inadmissibilidade, e Gustavo Badaró, que defende que a resposta depende do vício que ocorreu e que, em alguns casos, a irregularidade pode ser sanada a nível de valoração. Além disso, o texto menciona que a regulamentação é incipiente e insuficiente para garantir a fiabilidade da prova pericial, silenciando sobre os efeitos da não observância da cadeia de custódia.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q20",
+      "pergunta": "por que os juízes confiam tanto assim em laudos de perito, quase como se a ciência nunca errasse?",
+      "resposta": "De acordo com o texto, os juízes confiam tanto em laudos de perito porque a ciência é vista como infalível, o que é conhecido como \"mito da infalibilidade da prova pericial\". Isso ocorre porque a ciência é considerada uma fonte de conhecimento objetivo e confiável, o que pode levar a uma visão romantizada da prova pericial e da certeza científica.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.878352553558286,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q21",
+      "pergunta": "qual autor foi usado como referência principal para definir o conceito central do artigo?",
+      "resposta": "Não consta. O texto apresenta vários autores citados, como Bachelard, Busato, Prado, Gauer, entre outros, mas não define explicitamente qual autor foi usado como referência principal para definir o conceito central do artigo.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.1249999999875,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q22",
+      "pergunta": "no final das contas, os autores acham que essa lei nova resolveu o problema da confiabilidade das provas periciais?",
+      "resposta": "Não, os autores não acham que a Lei nº 13.964/2019 resolveu o problema da confiabilidade das provas periciais. Eles afirmam que a regulamentação é \"insuficiente à garantia da fiabilidade da prova pericial\" e que \"silencia acerca dos efeitos da não observância da cadeia de custódia, de sua irregularidade ou quebra e mesmo de sua inexistência\".",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.8018733230918307,
+      "context_precision": 0.99999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q23",
+      "pergunta": "quais artigos da lei tratam do passo a passo desde o reconhecimento do vestígio até o descarte, e quem fica responsável por cada etapa?",
+      "resposta": "De acordo com os trechos fornecidos, os artigos que tratam do passo a passo desde o reconhecimento do vestígio até o descarte são:\n\n- Artigo 158-B, que define a cadeia de custódia e suas etapas, incluindo reconhecimento, isolamento, fixação, coleta, acondicionamento, transporte, recebimento, processamento, armazenamento e descarte.\n\nQuanto à responsabilidade por cada etapa, não consta uma definição clara e específica nos trechos fornecidos. O artigo 158-B delimita as etapas, mas não especifica quem é responsável por cada uma delas. Além disso, o texto menciona que o legislador omitiu a definição da responsabilidade por cada etapa do procedimento.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.9765432098656928,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q24",
+      "pergunta": "como a lei brasileira de 2019 se compara com o modelo de outros países na regulação da cadeia de custódia?",
+      "resposta": "A lei brasileira de 2019 se inspirou no modelo colombiano, que possui um capítulo próprio no Código de Procedimiento Penal para tratar da regulamentação geral da cadeia de custódia. No entanto, não consta uma comparação detalhada com outros países na regulação da cadeia de custódia.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9029050977031119,
+      "context_precision": 0.3928571428375,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q25",
+      "pergunta": "quais foram os principais pontos fracos apontados na lei, incluindo o que ela não resolveu sobre quebra da cadeia de custódia e provas digitais?",
+      "resposta": "Os principais pontos fracos apontados na lei incluem:\n\n1. A falta de definição clara sobre a quebra da cadeia de custódia e seus efeitos;\n2. A não abordagem da cadeia de custódia de outras provas, além da prova pericial;\n3. A falta de definição de vestígio digital;\n4. A insuficiência de conteúdo em relação à cadeia de custódia;\n5. A falta de delimitação das consequências geradas pela quebra da cadeia de custódia;\n6. A não abordagem dos locais de crime mediato e imediato;\n7. A falta de distinção entre cadeia de custódia interna e externa.\n\nEsses pontos demonstram que a lei não resolveu completamente a questão da quebra da cadeia de custódia e não abordou adequadamente a questão das provas digitais.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9380983359652423,
+      "context_precision": NaN,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q26",
+      "pergunta": "existe uma central de custódia obrigatória por lei, e o que acontece com o material depois que o exame pericial termina?",
+      "resposta": "Sim, existe uma central de custódia obrigatória por lei, conforme estabelece o artigo 158-E. Após a realização da perícia, o material deverá ser devolvido à central de custódia, devendo nela permanecer, conforme estabelece o artigo 158-F. No entanto, não há definição por quanto tempo o material deverá permanecer na central de custódia. Caso a central de custódia não possua espaço ou condições de armazenar determinado material, a autoridade policial ou judiciária determinará as condições de depósito do referido material em local diverso, mediante requerimento do diretor do órgão central de perícia oficial de natureza criminal.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7463275190109296,
+      "context_precision": 0.9999999999888889,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q27",
+      "pergunta": "como a definição legal de vestígio se relaciona com o conceito teórico de cadeia de custódia discutido no início do artigo?",
+      "resposta": "A definição legal de vestígio não menciona explicitamente os vestígios digitais, o que pode ser considerado uma limitação. No entanto, é possível interpretar que os vestígios relacionados à prova pericial abarcam qualquer fonte de prova de natureza real, incluindo os vestígios digitais. Isso implica que a definição legal de vestígio pode ser considerada insuficiente em relação ao conceito teórico de cadeia de custódia, que engloba não apenas os vestígios materiais, mas também os digitais.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7368787848282229,
+      "context_precision": 0.99999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q28",
+      "pergunta": "o artigo menciona alguma decisão internacional que listou falhas concretas de preservação de prova, e essas falhas se relacionam com as etapas que a lei brasileira tenta formalizar?",
+      "resposta": "Sim, o artigo menciona a decisão da Corte Interamericana de Direitos Humanos (CORTE IDH) no Caso Velásquez Paiz e Outros vs. Guatemala (2015), que constatou uma série de irregularidades na colheita e conservação da prova, desde o encontro do corpo da vítima, e assentou o dever de realização de diligências mínimas e indispensáveis à conservação dos elementos de prova que possam contribuir ao êxito da investigação, preservando-se a cadeia de custódia.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.34599238329487514,
+      "context_precision": 0.4166666666458333,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q29",
+      "pergunta": "quais etapas de coleta e acondicionamento de uma prova a lei detalha, e o que pode acontecer se elas forem descumpridas, como entrar num local isolado sem autorização?",
+      "resposta": "As etapas de coleta e acondicionamento de uma prova detalhadas pela lei são:\n\n- Coleta: ato de recolher o vestígio que será submetido à análise pericial, respeitando suas características e natureza;\n- Acondicionamento: procedimento por meio do qual cada vestígio coletado é embalado de forma individualizada, de acordo com suas características físicas, químicas e biológicas, para posterior análise, com anotação da data, hora e nome de quem realizou a coleta e o acondicionamento.\n\nSe essas etapas forem descumpridas, como entrar num local isolado sem autorização, pode ser tipificada como fraude processual, conforme o § 2º do artigo 158-C. Além disso, a inovação artificiosa em um local de crime, com o fim de induzir a erro o juiz ou o perito, pode ser punida com detenção de 3 meses a 2 anos e multa, conforme o artigo 347. Se a inovação se destina a produzir efeito em processo penal, as penas aplicam-se em dobro.",
+      "faithfulness": 0.9166666666666666,
+      "answer_relevancy": 0.9012090213668329,
+      "context_precision": 0.99999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "Q30",
+      "pergunta": "juntando a parte sobre função e finalidade da cadeia de custódia com as críticas feitas à lei, dá pra dizer que a lei cumpre totalmente esses objetivos teóricos?",
+      "resposta": "Não, a lei não cumpre totalmente os objetivos teóricos de função e finalidade da cadeia de custódia. Conforme mencionado, a regulamentação é considerada incipiente e insuficiente para garantir a fiabilidade da prova pericial, e o legislador não abarcou de maneira direta e abrangente uma variada gama de aspectos pertinentes à cadeia de custódia. Além disso, a lei é criticada por delimitar de maneira inadequada a abrangência da cadeia de custódia da prova pericial.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9024439937185803,
+      "context_precision": 0.99999999999,
+      "context_recall": 1.0
+    }
+  ],
+  "falhas": []
+}
