@@ -16,3 +16,4 @@ CLAUDE.md
 ProjetoF/.venv_pf/
 ProjetoF/rag_storage/
 ProjetoF/uploads/
+ProjetoF/avaliacao/cache_geracao_*.json

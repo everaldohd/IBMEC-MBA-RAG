@@ -31,6 +31,21 @@ as fases anteriores - mas aqui cada pergunta faz 2 chamadas de LLM (geracao da r
 sensivel a cota diaria (TPD) do Groq. Rode com --limite N para testar num subconjunto
 antes de rodar as 30 perguntas completas.
 
+CACHE DE GERACAO (avaliacao/cache_geracao_<exp>.json, so quando --limite=0): a geracao
+(busca+LLM) e a parte mais cara em tokens desta fase (prompt com ate 10 chunks de
+contexto por pergunta). Se a cota diaria do Groq estourar no meio das 30 perguntas (ja
+aconteceu), rodar de novo reaproveita as respostas ja geradas com sucesso em vez de
+gastar tokens de novo nelas - o cache e apagado automaticamente depois que a
+configuracao inteira e registrada em resultados.csv.
+
+NOTA (bug corrigido): a 1a rodada desta fase passava base_url=llm_base ao ChatGroq
+(a mesma URL usada pelo OpenAIGenerator do Haystack, "https://api.groq.com/openai/v1"),
+mas o ChatGroq (langchain_groq) ja usa essa URL internamente por padrao - passar de novo
+duplicava o path (POST /openai/v1/openai/v1/chat/completions -> 404) e derrubava TODAS
+as chamadas de juiz do RAGAS (faithfulness/answer_relevancy/context_precision/
+context_recall = nan, mesmo com respostas geradas com sucesso). Corrigido: ChatGroq so
+recebe model+api_key (mesmo padrao de aula5/_comum.py::chat_groq e aula8/05_comparar_ragas.py).
+
 Uso (de dentro de ProjetoF/, venv ativado, precisa de OpenSearch + Ollama + Groq no ar):
 
     pip install -r requirements.txt   # instala ragas/langchain-groq/langchain-ollama
@@ -137,9 +152,14 @@ def avaliar_ragas(amostras):
 
     from app import config
 
-    api_key, gmodelo, llm_base = config.config_llm()
-    juiz = LangchainLLMWrapper(ChatGroq(model=gmodelo, api_key=api_key,
-                                         base_url=llm_base, temperature=0))
+    api_key, gmodelo, _llm_base = config.config_llm()
+    # NAO passar base_url aqui: ChatGroq ja aponta para https://api.groq.com/openai/v1
+    # por padrao internamente: passar llm_base (que JA e essa mesma URL, vinda de
+    # config_llm() para o OpenAIGenerator do Haystack) faz o cliente duplicar o path
+    # (POST /openai/v1/openai/v1/chat/completions -> 404) - foi o que quebrou 100% das
+    # chamadas de juiz do RAGAS na 1a rodada desta fase. Padrao correto e o mesmo usado
+    # em aula5/aula8 (_comum.py::chat_groq / 05_comparar_ragas.py): so model+api_key.
+    juiz = LangchainLLMWrapper(ChatGroq(model=gmodelo, api_key=api_key, temperature=0))
 
     base_url, modelo_emb = config.config_ollama()
     try:
@@ -172,13 +192,47 @@ def exps_ja_registrados(caminho_csv):
         return {row["exp"] for row in csv.DictReader(f)}
 
 
+def _cache_path(exp_nome):
+    return PASTA_AVAL / f"cache_geracao_{exp_nome}.json"
+
+
+def _carregar_cache(exp_nome):
+    p = _cache_path(exp_nome)
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    return {}
+
+
+def _salvar_cache(exp_nome, cache):
+    _cache_path(exp_nome).write_text(json.dumps(cache, ensure_ascii=False, indent=2),
+                                      encoding="utf-8")
+
+
 def rodar_configuracao(exp_nome, queries, limite):
+    """Gera a resposta completa (RAG) para cada pergunta e roda RAGAS em cima.
+
+    CACHE por pergunta (avaliacao/cache_geracao_<exp>.json, so quando --limite=0):
+    a geracao (busca+LLM) e a parte mais cara em tokens Groq desta fase (cada resposta
+    usa um prompt com ate 10 chunks de contexto). Se a cota diaria (TPD) estourar no
+    meio das 30 perguntas (ja aconteceu 1x), rodar de novo SEM o cache perderia e
+    re-gastaria tokens nas perguntas que ja tinham gerado resposta com sucesso. Com o
+    cache, so as perguntas que ainda nao tem resposta salva fazem uma nova chamada de
+    LLM - o restante e reaproveitado do arquivo.
+    """
     perguntas = queries[:limite] if limite else queries
+    cache = {} if limite else _carregar_cache(exp_nome)
     amostras = []
     falhas = []
     latencias = []
     for i, q in enumerate(perguntas, 1):
         print(f"  [{i:02d}/{len(perguntas)}] ({q['tipo']}) {q['query'][:70]}...", flush=True)
+        if q["id"] in cache:
+            c = cache[q["id"]]
+            amostras.append({"id": q["id"], "pergunta": q["query"], "resposta": c["resposta"],
+                              "contextos": c["contextos"], "referencia": q["resposta_referencia"]})
+            latencias.append(c.get("latencia_s", 0.0))
+            print("      (cache: resposta ja gerada numa rodada anterior, sem nova chamada de LLM)")
+            continue
         try:
             t0 = time.perf_counter()
             resposta, contextos = gerar_resposta(q["query"])
@@ -190,6 +244,10 @@ def rodar_configuracao(exp_nome, queries, limite):
         latencias.append(dt)
         amostras.append({"id": q["id"], "pergunta": q["query"], "resposta": resposta,
                           "contextos": contextos, "referencia": q["resposta_referencia"]})
+        if not limite:
+            cache[q["id"]] = {"resposta": resposta, "contextos": contextos,
+                               "latencia_s": round(dt, 3)}
+            _salvar_cache(exp_nome, cache)   # incremental - sobrevive a TPD/crash no meio
 
     if not amostras:
         raise RuntimeError(f"Nenhuma resposta gerada para {exp_nome} ({len(falhas)} falha(s)).")
@@ -207,6 +265,14 @@ def rodar_configuracao(exp_nome, queries, limite):
         "context_precision": round(media("llm_context_precision_with_reference"), 4),
         "context_recall": round(media("context_recall"), 4),
     }
+    if all(v != v for v in medias.values()):   # v != v <=> math.isnan(v), sem precisar importar math
+        raise RuntimeError(
+            f"RAGAS devolveu NaN em TODAS as 4 metricas para {exp_nome} - as "
+            f"{len(amostras)} resposta(s) foram geradas, mas nenhuma chamada de juiz do "
+            f"RAGAS deu certo (confira o log acima por 404/429/timeout). NADA foi salvo "
+            f"em resultados.csv - as respostas geradas continuam no cache "
+            f"({_cache_path(exp_nome).name}) para a proxima tentativa nao gastar tokens "
+            f"de novo.")
     detalhes = []
     for a, (_, row) in zip(amostras, df.iterrows()):
         detalhes.append({
@@ -307,6 +373,9 @@ def main():
         caminho_detalhe = salvar_detalhes(exp_nome, detalhes, falhas)
         resumos[exp_nome] = resumo
         print(f"  detalhe: {caminho_detalhe}\n")
+        cache_path = _cache_path(exp_nome)
+        if cache_path.exists():
+            cache_path.unlink()   # ja registrado em resultados.csv/detalhe - cache nao e mais util
 
     if not args.limite:
         print("== restaurando o indice para qwen3-embedding:4b (melhor config, estado final "
@@ -327,18 +396,4 @@ def main():
             r = resumos[exp_nome]
             print(f"  {exp_nome:<22} {r['faithfulness']:>7} {r['answer_relevancy']:>8} "
                   f"{r['context_precision']:>9} {r['context_recall']:>8}")
-        elif exp_nome in ja_feitos:
-            print(f"  {exp_nome:<22} (ja estava em resultados.csv de uma rodada anterior)")
-        else:
-            print(f"  {exp_nome:<22} FALHOU nesta rodada - nao registrado")
-
-    if falhas_config:
-        print(f"\nATENCAO: {len(falhas_config)} configuracao(oes) falharam e NAO foram registradas:")
-        for exp_nome, erro in falhas_config:
-            print(f"  - {exp_nome}: {erro[:200]}")
-        print("Corrija a causa e rode o script de novo - o que ja passou sera pulado.")
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
+       
