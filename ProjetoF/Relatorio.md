@@ -16,18 +16,16 @@ Fonte escolhida: **"Cadeia de Custódia da Prova Pericial: uma análise da Lei 1
 não escaneado), tratando da cadeia de custódia de vestígios/provas periciais no
 processo penal brasileiro, a partir da Lei 13.964/2019 (Pacote Anticrime).
 
-Escolhido por ser diretamente relacionado ao tema da disciplina (Direito e Segurança
-Pública), ter estrutura mista — texto corrido, seções tituladas, referência a artigos
-de lei e a jurisprudência (Corte Interamericana de Direitos Humanos) — o que permite
-testar diferentes técnicas de chunking e recuperação ao longo da jornada.
-
-Motivação prática: Everaldo, um dos integrantes do grupo, faz parte de uma equipe de
-**Peritos Criminais**, para quem a
-cadeia de custódia da prova pericial é um tema central da rotina profissional (rastreio
-e integridade de vestígios do local de crime até o laudo). O caso de uso real de um
-sistema RAG sobre esse tema seria apoiar peritos e operadores do direito a consultar
-rapidamente a legislação e a doutrina sobre cadeia de custódia — o que também orienta
-o tipo de pergunta incluído no gabarito (Seção 2): dúvidas práticas de procedimento
+Escolhido, em primeiro lugar, porque o **Grupo 7 é formado por Peritos Criminais**, para
+quem a cadeia de custódia da prova pericial é um tema central da rotina profissional
+(rastreio e integridade de vestígios do local de crime até o laudo) — um caso de uso
+real de RAG sobre esse tema seria apoiar peritos e operadores do direito a consultar
+rapidamente a legislação e a doutrina sobre cadeia de custódia. Também é diretamente
+relacionado ao tema da disciplina (Direito e Segurança Pública) e tem estrutura mista —
+texto corrido, seções tituladas, referência a artigos de lei e a jurisprudência (Corte
+Interamericana de Direitos Humanos) — o que permite testar diferentes técnicas de
+chunking e recuperação ao longo da jornada. Essa origem profissional também orienta o
+tipo de pergunta incluído no gabarito (Seção 2): dúvidas práticas de procedimento
 (lacre, embalagem, central de custódia), não só teóricas.
 
 ## 2. O dataset de avaliação (gabarito)
