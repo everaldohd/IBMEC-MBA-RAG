@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Jornada de Melhoria da Recuperação em RAG — Cadeia de Custódia da Prova Pericial</title>
+<style>
+:root {
+  --navy: #0f2a4a;
+  --navy-dark: #0a1d33;
+  --accent: #b8863b;
+  --accent-light: #e8c988;
+  --bg: #f7f5f0;
+  --card: #ffffff;
+  --text: #26313f;
+  --text-light: #5b6b7c;
+  --border: #e2e0d8;
+  --green: #2f7a4f;
+  --red: #a8433a;
+  --radius: 10px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 16px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+nav.sidebar {
+  background: var(--navy-dark);
+  color: #dce6f0;
+  padding: 28px 20px 40px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+nav.sidebar .brand {
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+nav.sidebar .brand-sub {
+  font-size: 12px;
+  color: #9fb3c8;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+nav.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav.sidebar ul ul {
+  padding-left: 14px;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+nav.sidebar li { margin: 0; }
+nav.sidebar a {
+  display: block;
+  color: #cdd9e5;
+  text-decoration: none;
+  font-size: 13.5px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  transition: background .15s, color .15s;
+}
+nav.sidebar ul ul a {
+  font-size: 12.5px;
+  color: #9fb3c8;
+}
+nav.sidebar a:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+main { padding: 0; }
+.cover {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: #fff;
+  padding: 64px 60px 52px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::after {
+  content: "";
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: rgba(184,134,59,0.18);
+}
+.cover .kicker {
+  color: var(--accent-light);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.cover h1 {
+  font-size: 34px;
+  line-height: 1.25;
+  margin: 0 0 22px;
+  max-width: 780px;
+  font-weight: 700;
+}
+.cover .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+.cover .meta div { font-size: 13.5px; color: #cdd9e5; }
+.cover .meta strong {
+  display: block;
+  color: #fff;
+  font-size: 14.5px;
+  margin-bottom: 2px;
+}
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 44px 60px 100px;
+}
+.notice {
+  background: #fdf6e8;
+  border-left: 4px solid var(--accent);
+  padding: 14px 20px;
+  border-radius: 6px;
+  color: #6b5628;
+  font-size: 14.5px;
+  margin: 0 0 36px;
+}
+h2 {
+  font-size: 24px;
+  color: var(--navy);
+  margin-top: 52px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  scroll-margin-top: 20px;
+}
+h3 {
+  font-size: 18.5px;
+  color: var(--navy);
+  margin-top: 36px;
+  scroll-margin-top: 20px;
+}
+h3 code { font-size: 15px; }
+p { margin: 14px 0; color: var(--text); }
+strong { color: var(--navy-dark); }
+em { color: var(--text-light); }
+ul, ol { padding-left: 24px; }
+li { margin: 6px 0; }
+code {
+  background: #eef1ec;
+  color: #3a4a3f;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: "Cascadia Code", Consolas, "SF Mono", monospace;
+  font-size: 13.5px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 28px;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+thead th {
+  background: var(--navy);
+  color: #fff;
+  text-align: left;
+  padding: 11px 14px;
+  font-weight: 600;
+  font-size: 13px;
+}
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+tbody tr:nth-child(even) td { background: #fbfaf7; }
+tbody tr:hover td { background: #f1ecdf; }
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: #fdf6e8;
+  margin: 20px 0;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: #6b5628;
+  font-size: 14.5px;
+}
+blockquote p { margin: 0; color: inherit; }
+em > code, i code { font-style: normal; }
+hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+.section-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  padding: 2px 9px;
+  border-radius: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+footer.report-footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 60px 60px;
+  color: var(--text-light);
+  font-size: 13px;
+}
+@media print {
+  nav.sidebar { display: none; }
+  .layout { display: block; }
+  .cover { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  nav.sidebar { position: static; height: auto; }
+  .cover, .content, footer.report-footer { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="brand">MBA IBMEC · RAG &amp; CAG</div>
+    <div class="brand-sub">Cadeia de Custódia da Prova Pericial<br>Relatório do Projeto Final</div>
+    <div class="toc">
+<ul>
+<li><a href="#1-a-fonte-de-dados-e-por-que">1. A fonte de dados e por quê</a></li>
+<li><a href="#2-o-dataset-de-avaliacao-gabarito">2. O dataset de avaliação (gabarito)</a></li>
+<li><a href="#3-metodologia">3. Metodologia</a></li>
+<li><a href="#4-baseline-fase-0">4. Baseline (Fase 0)</a></li>
+<li><a href="#5-experimentos-por-fase">5. Experimentos por fase</a><ul>
+<li><a href="#fase-1-extracao-exp02_extracao_pymupdf">Fase 1 — Extração (exp02_extracao_pymupdf)</a></li>
+<li><a href="#fase-2-chunking-exp03exp06">Fase 2 — Chunking (exp03–exp06)</a></li>
+<li><a href="#fase-3-modelo-de-embedding-exp07exp11">Fase 3 — Modelo de embedding (exp07–exp11)</a></li>
+<li><a href="#fase-4-recuperacao-base-top_k-e-busca-hibrida-exp12exp16">Fase 4 — Recuperação base (top_k e busca híbrida) (exp12–exp16)</a></li>
+<li><a href="#fase-5-query-enhancement-exp17exp19">Fase 5 — Query enhancement (exp17–exp19)</a></li>
+<li><a href="#fase-6-reranking-exp20exp21">Fase 6 — Reranking (exp20–exp21)</a></li>
+<li><a href="#fase-7-tecnica-avancada-hyde-exp22">Fase 7 — Técnica avançada: HyDE (exp22)</a></li>
+<li><a href="#fase-8-ragas-avaliacao-da-geracao-exp23exp24">Fase 8 — RAGAS (avaliação da geração) (exp23–exp24)</a></li>
+</ul>
+</li>
+<li><a href="#6-tabela-consolidada">6. Tabela consolidada</a></li>
+<li><a href="#7-melhor-configuracao-final">7. Melhor configuração final</a></li>
+<li><a href="#8-analise-critica">8. Análise crítica</a><ul>
+<li><a href="#81-decisoes-tecnicas-relevantes-ja-tomadas">8.1 Decisões técnicas relevantes já tomadas</a></li>
+</ul>
+</li>
+<li><a href="#9-conclusao">9. Conclusão</a></li>
+<li><a href="#10-anexos">10. Anexos</a></li>
+</ul>
+</div>
+
+  </nav>
+  <main>
+    <div class="cover">
+      <div class="kicker">Relatório Final</div>
+      <h1>A Jornada de Melhoria da Recuperação em RAG — Cadeia de Custódia da Prova Pericial</h1>
+      <div class="meta">
+        <div><strong>Disciplina</strong>RAG & CAG Aplicados a Direito e Segurança Pública (MBA IBMEC)</div>
+        <div><strong>Autor</strong>Everaldo</div>
+        <div><strong>Ponto de partida</strong>aplicação do Projeto Final (`aula12/projeto_final/`), copiada para `ProjetoF/`</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="notice">Documento gerado a partir da jornada completa de experimentação
+      (Fases 0–8): baseline, extração, chunking, embedding, recuperação, query
+      enhancement, reranking, técnica avançada (HyDE) e avaliação de geração (RAGAS).</div>
+      <h2 id="1-a-fonte-de-dados-e-por-que">1. A fonte de dados e por quê</h2>
+<p>Fonte escolhida: <strong>"Cadeia de Custódia da Prova Pericial: uma análise da Lei 13.964/2019"</strong>
+(GIACOMOLLI; AMARAL, 2020) — artigo acadêmico em PDF nativo (com camada de texto,
+não escaneado), tratando da cadeia de custódia de vestígios/provas periciais no
+processo penal brasileiro, a partir da Lei 13.964/2019 (Pacote Anticrime).</p>
+<p>Escolhido por ser diretamente relacionado ao tema da disciplina (Direito e Segurança
+Pública), ter estrutura mista — texto corrido, seções tituladas, referência a artigos
+de lei e a jurisprudência (Corte Interamericana de Direitos Humanos) — o que permite
+testar diferentes técnicas de chunking e recuperação ao longo da jornada.</p>
+<p>Motivação prática: o autor integra uma equipe de <strong>Peritos Criminais</strong>, para quem a
+cadeia de custódia da prova pericial é um tema central da rotina profissional (rastreio
+e integridade de vestígios do local de crime até o laudo). O caso de uso real de um
+sistema RAG sobre esse tema seria apoiar peritos e operadores do direito a consultar
+rapidamente a legislação e a doutrina sobre cadeia de custódia — o que também orienta
+o tipo de pergunta incluído no gabarito (Seção 2): dúvidas práticas de procedimento
+(lacre, embalagem, central de custódia), não só teóricas.</p>
+<h2 id="2-o-dataset-de-avaliacao-gabarito">2. O dataset de avaliação (gabarito)</h2>
+<p><code>avaliacao/dataset.json</code> — construído manualmente sobre o artigo:</p>
+<ul>
+<li><strong>18 documentos (D01–D18)</strong>: segmentos temáticos do artigo, distribuídos ao longo
+  de todo o texto (não são os chunks reais gerados pela ingestão — servem de unidade
+  de gabarito).</li>
+<li><strong>30 perguntas (<code>queries_benchmark</code>)</strong>, em 3 tipos (Seção 5 do <code>Roteiro_Final.md</code>):</li>
+<li><strong>factual</strong> (Q01–Q12): resposta está em 1 segmento.</li>
+<li><strong>reformulável</strong> (Q13–Q22): mesmo conteúdo, mas em linguagem coloquial/leiga —
+    testa o ganho de multi-query / step-back.</li>
+<li><strong>multihop</strong> (Q23–Q30): resposta exige combinar 2–3 segmentos — testa o ganho de
+    RAG-Fusion / grafo.</li>
+<li>Perguntas escritas em linguagem natural, evitando copiar termos exatos do texto
+  (para não inflar artificialmente a baseline — lição da Seção 5 do roteiro).</li>
+<li><code>relevancia</code>: nota 2 (muito relevante) / 1 (relevante) por documento, para NDCG
+  graduado.</li>
+</ul>
+<p><strong>Como a recuperação é avaliada sem <code>id_original</code> estável:</strong> o pipeline do projeto
+não grava um id de chunk rastreável até o documento de origem. A avaliação identifica
+cada chunk recuperado <strong>pelo conteúdo</strong>, procurando "marcadores" (trechos distintivos)
+de cada D0x no texto do chunk (ver <code>avaliacao/README.md</code> para o detalhe). É uma
+aproximação documentada, revisável via <code>avaliacao/detalhe_&lt;exp&gt;.json</code>.</p>
+<h2 id="3-metodologia">3. Metodologia</h2>
+<ul>
+<li><strong>Métricas de recuperação:</strong> Hit@5, Recall@5, MRR, NDCG@10 (<code>avaliacao/avaliar_recuperacao.py</code>).</li>
+<li><strong>Métricas de geração (RAGAS):</strong> Faithfulness, Answer Relevancy, Context Precision/Recall
+  (<code>avaliacao/rodar_fase8_ragas.py</code>) — rodadas ao final (Fase 8) na baseline (<code>exp23</code>) e na
+  melhor configuração (<code>exp24</code>); ver Seção 5, Fase 8.</li>
+<li><strong>top_k:</strong> 10 chunks recuperados por consulta (cobre Hit@5/Recall@5 e NDCG@10 na
+  mesma rodada).</li>
+<li><strong>Experimento controlado:</strong> uma variável por vez. Cada fase reindexa o OpenSearch
+  fixando tudo o que não está sendo testado (mesmo embedding, mesma técnica de busca,
+  mesmo top_k) e o script de cada fase restaura o índice para o estado da baseline
+  ao final, para a próxima fase não herdar configuração errada.</li>
+<li><strong>Registro:</strong> uma linha por experimento em <code>avaliacao/resultados.csv</code> (<code>exp</code>, <code>fase</code>,
+  <code>mudança</code>, métricas, observação) + <code>avaliacao/detalhe_&lt;exp&gt;.json</code> com os chunks
+  recuperados por pergunta (auditoria).</li>
+<li><strong>Infra:</strong> OpenSearch local (Docker), embeddings via Ollama (<code>nomic-embed-text</code>, 768d,
+  baseline), geração via LLM agnóstico a provedor (<code>app/config.py::config_llm()</code>) — Groq
+  (<code>llama-3.3-70b-versatile</code>) nas Fases 0-7; trocado para OpenRouter
+  (<code>meta-llama/llama-3.3-70b-instruct</code>, mesmo modelo Llama 3.3 70B) na Fase 8 por causa do
+  limite diário de tokens do tier gratuito da Groq (nota técnica na Seção 5, Fase 8).</li>
+</ul>
+<h2 id="4-baseline-fase-0">4. Baseline (Fase 0)</h2>
+<p>Projeto rodado como veio: ingestão do PDF forçando <code>estrategia=opensearch</code> (a
+heurística automática do projeto rotearia para o grafo/LightRAG por causa da
+densidade de entidades nomeadas do texto — decisão documentada, ver Seção 8.2),
+chunking <code>auto</code> (a heurística escolheu <code>hierárquico</code>, por o texto ter ≥3 títulos),
+embedding <code>nomic-embed-text</code>, busca <code>baseline</code> (sem reescrita de query), <code>top_k=10</code>.
+143 chunks indexados.</p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hit@5</td>
+<td>0,633</td>
+</tr>
+<tr>
+<td>Recall@5</td>
+<td>0,422</td>
+</tr>
+<tr>
+<td>MRR</td>
+<td>0,351</td>
+</tr>
+<tr>
+<td>NDCG@10</td>
+<td>0,338</td>
+</tr>
+<tr>
+<td>Latência média</td>
+<td>2,72 s</td>
+</tr>
+</tbody>
+</table>
+<p>Ponto de partida: cobre a maioria das perguntas no top-5 (Hit@5 alto), mas o relevante
+raramente vem em 1º lugar (MRR baixo) e o ranking fino ainda é fraco (NDCG@10 baixo) —
+espaço claro de melhoria nas próximas fases.</p>
+<h2 id="5-experimentos-por-fase">5. Experimentos por fase</h2>
+<h3 id="fase-1-extracao-exp02_extracao_pymupdf">Fase 1 — Extração (<code>exp02_extracao_pymupdf</code>)</h3>
+<p><strong>Hipótese:</strong> texto mal extraído limita tudo a jusante (Docling, com sua camada de
+markdown/estrutura, deveria extrair melhor que um fallback de texto puro).</p>
+<p><strong>Mudança:</strong> reextração do mesmo PDF via PyMuPDF (texto puro, sem markdown/OCR),
+mantendo o chunking <strong>fixo</strong> em <code>hierárquico</code> (igual ao baseline) para isolar a
+extração como única variável (<code>avaliacao/rodar_fase1_extracao.py</code>).</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>exp01 (Docling)</th>
+<th>exp02 (PyMuPDF)</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hit@5</td>
+<td>0,633</td>
+<td>0,700</td>
+<td>+0,067</td>
+</tr>
+<tr>
+<td>Recall@5</td>
+<td>0,422</td>
+<td>0,489</td>
+<td>+0,067</td>
+</tr>
+<tr>
+<td>MRR</td>
+<td>0,351</td>
+<td>0,436</td>
+<td>+0,085</td>
+</tr>
+<tr>
+<td>NDCG@10</td>
+<td>0,338</td>
+<td>0,415</td>
+<td>+0,077</td>
+</tr>
+<tr>
+<td>Chunks gerados</td>
+<td>143</td>
+<td>134</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> resultado contraintuitivo — o extrator "mais simples" (PyMuPDF) venceu
+o Docling em <strong>todas</strong> as métricas de recuperação. Hipótese para o motivo: a marcação
+markdown do Docling (<code>#</code>, <code>##</code>, <code>|</code> de tabela) introduz tokens que não aparecem nas
+perguntas em linguagem natural dos usuários, diluindo a similaridade semântica dos
+embeddings; além disso, como o <code>HierarchicalDocumentSplitter</code> conta palavras para
+decidir os limites de chunk, os símbolos de markdown deslocam esses limites — daí os
+143 chunks do Docling vs 134 do PyMuPDF para o mesmo texto-fonte. Amostras salvas em
+<code>avaliacao/amostras_extracao/{docling,pymupdf}.txt</code> para inspeção manual.</p>
+<p>Achado relevante para o relatório final: o Docling costuma ganhar em documentos
+complexos (múltiplas colunas, tabelas, PDFs escaneados) — aqui, num PDF acadêmico de
+coluna única e bem formatado, a extração "burra" saiu na frente. Vale frisar isso
+como <em>trade-off</em>, não como regra geral.</p>
+<p><em>(As próximas fases usam o índice restaurado ao estado do Docling/baseline — o ganho
+do PyMuPDF nesta fase ainda não foi "adotado" como configuração corrente; decisão
+sobre qual extração vira a base das fases seguintes fica para a Seção 7 deste
+relatório, ao consolidar tudo.)</em></p>
+<h3 id="fase-2-chunking-exp03exp06">Fase 2 — Chunking (<code>exp03</code>–<code>exp06</code>)</h3>
+<p><strong>Hipótese:</strong> a granularidade do chunk muda o que é recuperável.</p>
+<p><strong>Mudança:</strong> com a extração fixa em Docling (a mesma do baseline/exp01), testadas as
+outras 4 técnicas de chunking do projeto — <code>fixo</code>, <code>recursivo</code>, <code>sentença_janela</code>,
+<code>semântico</code> — cada uma reindexando do zero (<code>avaliacao/rodar_fase2_chunking.py</code>).
+<code>hierárquico</code> não foi reindexado de novo: é exatamente a configuração do exp01.</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Técnica</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+<th>Chunks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hierárquico (exp01)</td>
+<td>0,633</td>
+<td>0,422</td>
+<td>0,351</td>
+<td>0,338</td>
+<td>143</td>
+</tr>
+<tr>
+<td>fixo (exp03)</td>
+<td>0,467</td>
+<td>0,306</td>
+<td>0,287</td>
+<td>0,312</td>
+<td>72</td>
+</tr>
+<tr>
+<td>recursivo (exp04)</td>
+<td>0,600</td>
+<td>0,372</td>
+<td><strong>0,418</strong></td>
+<td><strong>0,426</strong></td>
+<td>81</td>
+</tr>
+<tr>
+<td>sentença_janela (exp05)</td>
+<td>0,533</td>
+<td>0,383</td>
+<td>0,338</td>
+<td>0,416</td>
+<td>240</td>
+</tr>
+<tr>
+<td>semântico (exp06)</td>
+<td>0,400</td>
+<td>0,317</td>
+<td>0,336</td>
+<td>0,358</td>
+<td>96</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> nenhuma técnica domina em tudo — há um trade-off entre <em>cobertura</em> e
+<em>qualidade do ranking</em>. <code>hierárquico</code> continua sendo o melhor em Hit@5/Recall@5 (traz
+o relevante no top-5 com mais frequência), mas <code>recursivo</code> tem o melhor MRR e NDCG@10
+(quando acerta, acerta mais perto do topo do ranking) — apesar de gerar só 81 chunks
+(bem menos que os 143 do hierárquico), sugerindo que blocos de ~200 palavras
+respeitando frase/parágrafo capturam o suficiente de contexto sem diluir a
+similaridade com blocos grandes demais. <code>fixo</code> (chunks cegos de 200 palavras, sem
+respeitar limites de frase) e <code>semântico</code> (corte por mudança de tópico, 96 chunks)
+saíram piores em todas as métricas — no caso do <code>semântico</code>, possivelmente porque o
+artigo é curto e coeso o bastante para o corte por tópico não trazer benefício real,
+só reduzir a granularidade. <code>sentença_janela</code> gerou muito mais chunks (240, blocos de
+3 sentenças) e teve o 2º melhor NDCG@10, mas ficou atrás em Hit@5/Recall@5.</p>
+<p>Como o roteiro pede otimizar recuperação (cobertura) antes de geração, e Hit@5/Recall@5
+são as métricas de cobertura, <code>hierárquico</code> segue como chunking de referência para as
+próximas fases — mas <code>recursivo</code> fica marcado como candidato forte a reavaliar quando
+somarmos reranking (Fase 6), já que reranking tende a amplificar o benefício de um MRR
+melhor.</p>
+<p><em>(Índice restaurado para <code>hierárquico</code> ao final da fase, para a Fase 3 partir do
+mesmo estado do baseline.)</em></p>
+<h3 id="fase-3-modelo-de-embedding-exp07exp11">Fase 3 — Modelo de embedding (<code>exp07</code>–<code>exp11</code>)</h3>
+<p><strong>Hipótese:</strong> o modelo de embedding define o teto da busca densa.</p>
+<p><strong>Mudança:</strong> com extração (Docling) e chunking (<code>hierárquico</code>) fixos, testados todos
+os modelos de embedding baixados no Ollama local além do baseline
+(<code>nomic-embed-text</code>): <code>bge-m3</code>, <code>mxbai-embed-large</code> e as 3 variantes de tamanho do
+<code>qwen3-embedding</code> (0.6b/4b/8b). Dimensão de cada modelo medida em runtime — os Qwen3
+não estavam mapeados em <code>app/config.py::DIMENSAO_EMBEDDING</code>
+(<code>avaliacao/rodar_fase3_embedding.py</code>).</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Dim.</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nomic-embed-text (exp01, baseline)</td>
+<td>768</td>
+<td>0,633</td>
+<td>0,422</td>
+<td>0,351</td>
+<td>0,338</td>
+</tr>
+<tr>
+<td>bge-m3 (exp07)</td>
+<td>1024</td>
+<td>0,733</td>
+<td>0,572</td>
+<td>0,505</td>
+<td>0,618</td>
+</tr>
+<tr>
+<td>mxbai-embed-large (exp08)</td>
+<td>1024</td>
+<td>0,467</td>
+<td>0,328</td>
+<td>0,269</td>
+<td>0,253</td>
+</tr>
+<tr>
+<td>qwen3-embedding:0.6b (exp09)</td>
+<td>1024</td>
+<td>0,833</td>
+<td>0,639</td>
+<td>0,527</td>
+<td>0,618</td>
+</tr>
+<tr>
+<td>qwen3-embedding:4b (exp10)</td>
+<td>2560</td>
+<td><strong>0,933</strong></td>
+<td>0,700</td>
+<td><strong>0,661</strong></td>
+<td>0,775</td>
+</tr>
+<tr>
+<td>qwen3-embedding:8b "latest" (exp11)</td>
+<td>4096</td>
+<td><strong>0,933</strong></td>
+<td><strong>0,733</strong></td>
+<td>0,615</td>
+<td><strong>0,775</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> de longe a fase com maior ganho da jornada até aqui. A família
+Qwen3-Embedding varre o baseline em todas as métricas, mesmo na menor variante
+(0.6b): Hit@5 salta de 0,633 para 0,833–0,933, e o MRR praticamente dobra. Dentro da
+família Qwen3, o ganho de 0.6b → 4b é grande (MRR 0,527 → 0,661), mas de 4b → 8b o
+ganho é marginal e misto (8b vence em Recall@5, mas <em>perde</em> em MRR para o 4b) — mais
+que dobrar a dimensão (2560 → 4096) e o tamanho do modelo não se traduziu em ganho
+proporcional. Custo-benefício: <strong>qwen3-embedding:4b</strong> parece o melhor equilíbrio
+(dimensão bem menor que o 8b, latência parecida, métricas equivalentes ou melhores).</p>
+<p><code>bge-m3</code> também superou o baseline com folga (2º melhor colocado no geral) — resultado
+esperado, é um modelo multilíngue forte e mais recente que o <code>nomic-embed-text</code>.
+<code>mxbai-embed-large</code>, por outro lado, ficou <strong>abaixo do baseline</strong> em todas as
+métricas — resultado negativo relevante: nem todo modelo "maior"/mais recente
+supera o <code>nomic-embed-text</code> neste corpus; dimensão (1024) não é garantia de
+qualidade — vale registrar como contraexemplo no relatório final.</p>
+<p><code>qwen3-embedding:4b</code> é o forte candidato a entrar na configuração final (Seção 7);
+a decisão de <strong>quando</strong> passar a usá-lo como base fixa das próximas fases (em vez de
+seguir isolando tudo contra o <code>nomic-embed-text</code> do exp01) está registrada em
+"8.1 Decisões técnicas relevantes já tomadas".</p>
+<p><em>(Nota técnica: <code>qwen3-embedding:0.6b</code> falhou na primeira tentativa por um erro de
+conexão com o Ollama local — resolvido rodando o script de novo, que é resumível e
+tentou de novo só esse modelo.)</em></p>
+<h3 id="fase-4-recuperacao-base-top_k-e-busca-hibrida-exp12exp16">Fase 4 — Recuperação base (top_k e busca híbrida) (<code>exp12</code>–<code>exp16</code>)</h3>
+<p><strong>Hipótese:</strong> combinar busca lexical (BM25) com a densa deveria aumentar a cobertura
+(vestígios de termos exatos da lei que a busca puramente semântica pode não priorizar);
+variar <code>top_k</code> também deveria afetar o ranking fino medido pelo NDCG@10.</p>
+<p><strong>Mudança:</strong> a partir desta fase, a base fixa passa a ser Docling + <code>hierárquico</code> +
+<code>qwen3-embedding:4b</code> (jornada progressiva, ver Seção 8.1). Testada a nova técnica
+<code>hibrida</code> (BM25 + densa via RRF, <code>OpenSearchHybridRetriever</code> — novidade em
+<code>app/busca_avancada.py</code>) contra a busca densa pura, em <code>top_k</code> 5/10/20
+(<code>avaliacao/rodar_fase4_hibrida_topk.py</code>). <code>densa/top_k=10</code> não foi remedido: é
+exatamente o <code>exp10</code> da Fase 3, já na mesma base.</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Combinação</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>densa top_k=5 (exp12)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,657</td>
+<td>0,674</td>
+</tr>
+<tr>
+<td>densa top_k=10 (exp10, referência)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+</tr>
+<tr>
+<td>densa top_k=20 (exp13)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+</tr>
+<tr>
+<td>híbrida top_k=5 (exp14)</td>
+<td>0,800</td>
+<td>0,633</td>
+<td>0,548</td>
+<td>0,599</td>
+</tr>
+<tr>
+<td>híbrida top_k=10 (exp15)</td>
+<td>0,900</td>
+<td>0,683</td>
+<td>0,587</td>
+<td>0,682</td>
+</tr>
+<tr>
+<td>híbrida top_k=20 (exp16)</td>
+<td>0,800</td>
+<td>0,600</td>
+<td>0,569</td>
+<td>0,660</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> resultado contraintuitivo de novo — a busca híbrida (BM25+densa via RRF)
+ficou <strong>abaixo</strong> da busca densa pura em todas as métricas, em qualquer <code>top_k</code> testado.
+A hipótese mais provável: com <code>qwen3-embedding:4b</code> a busca densa já está muito forte
+neste corpus (Hit@5=0,933), então o BM25 tem pouco a contribuir de complementar — ao
+contrário, ele traz para o ranking fundido chunks lexicamente parecidos mas
+semanticamente menos relevantes (termos jurídicos repetidos em várias seções do
+artigo), e o RRF acaba empurrando para baixo alguns acertos fortes da busca densa.
+Dentro da própria família híbrida, <code>top_k=10</code> (exp15) foi consistentemente o melhor
+dos três, sugerindo que <code>top_k</code> muito baixo (5) corta cedo demais um ranking já mais
+ruidoso, e <code>top_k</code> muito alto (20) dilui ainda mais com chunks de cauda longa do BM25 —
+mas mesmo o melhor ponto da híbrida não alcançou a densa pura.</p>
+<p>Sobre <code>top_k</code> isolado (mantendo densa): <code>top_k=5</code> já mantém Hit@5/Recall@5 idênticos a
+<code>top_k=10/20</code> (o relevante já está garantido nas top-5 posições, se está), mas o
+NDCG@10 despenca (0,674 vs 0,775) — efeito mecânico, não de qualidade de busca: com
+<code>top_k=5</code> só existem 5 documentos para calcular um NDCG que olha até a posição 10, o
+que já penaliza o score independente da real relevância. <code>top_k=10</code> e <code>top_k=20</code> deram
+resultado idêntico em todas as métricas — ampliar a janela além de 10 não trouxe nem
+tirou nada do ranking dentro das primeiras 10 posições, ou seja, não há chunk relevante
+"escondido" entre as posições 11-20 nesta base. Conclusão prática: <code>top_k=10</code> segue
+sendo o ponto de equilíbrio (não perde nada de <code>top_k=20</code> e evita o corte artificial de
+<code>top_k=5</code>), e a busca densa pura segue como configuração de recuperação de referência
+até aqui — a híbrida fica descartada nesta base, mas registrada como resultado negativo
+relevante para a análise crítica (Seção 8).</p>
+<p><em>(Nota técnica: a primeira tentativa desta fase teve o OpenSearch caindo por ~8s no
+meio da rodada do <code>exp15_hibrida_top10</code> — 23 das 30 perguntas falharam por erro de
+conexão. A linha malformada (<code>n_queries=7</code>) foi removida do <code>resultados.csv</code> e o
+script foi rodado de novo — resumível, então só refez o <code>exp15</code>; os demais
+experimentos (que já tinham completado 30/30) foram pulados.)</em></p>
+<p><em>(Índice </em><em>não</em><em> foi restaurado ao final desta fase — fica na base
+Docling+hierárquico+qwen3-embedding:4b para a Fase 5 em diante, por causa da mudança
+de metodologia isolada→progressiva, ver Seção 8.1.)</em></p>
+<h3 id="fase-5-query-enhancement-exp17exp19">Fase 5 — Query enhancement (<code>exp17</code>–<code>exp19</code>)</h3>
+<p><strong>Hipótese:</strong> reescrever a pergunta original (gerar variações ou uma versão mais
+genérica) deveria ajudar a recuperar trechos que a formulação original, sozinha, não
+acha — sobretudo nas perguntas <code>reformulável</code> (linguagem coloquial) e <code>multihop</code>
+(Seção 2).</p>
+<p><strong>Mudança:</strong> testadas as 3 técnicas de query enhancement já implementadas em
+<code>app/busca_avancada.py</code> — <code>multi_query</code> (LLM gera variações, funde por dedup),
+<code>rag_fusion</code> (mesma ideia, funde por RRF) e <code>step_back</code> (LLM gera uma pergunta mais
+geral, busca [específica + geral]) — contra a busca densa pura (<code>exp10</code>), todas em
+<code>top_k=10</code> (ponto de equilíbrio confirmado na Fase 4). Nenhuma reindexação: a base
+segue Docling + <code>hierárquico</code> + <code>qwen3-embedding:4b</code>, herdada da Fase 4
+(<code>avaliacao/rodar_fase5_query_enhancement.py</code>).</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Combinação</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>densa top_k=10 (exp10, referência)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+</tr>
+<tr>
+<td>multi_query (exp17)</td>
+<td>0,933</td>
+<td>0,722</td>
+<td>0,616</td>
+<td>0,705</td>
+</tr>
+<tr>
+<td>rag_fusion (exp18)</td>
+<td>0,933</td>
+<td>0,706</td>
+<td>0,579</td>
+<td>0,723</td>
+</tr>
+<tr>
+<td>step_back (exp19)</td>
+<td>0,900</td>
+<td>0,706</td>
+<td>0,624</td>
+<td>0,756</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> o padrão da Fase 4 se repete nas 3 técnicas — todas ficaram <strong>abaixo</strong>
+da busca densa pura no MRR, e 2 das 3 (<code>multi_query</code>, <code>rag_fusion</code>) também ficaram
+abaixo no NDCG@10, com ganho só marginal em Recall@5 (entre +0,006 e +0,022).
+Hipótese: com a busca densa já tão forte (<code>qwen3-embedding:4b</code>), somar consultas
+extras (variações do <code>multi_query</code>/<code>rag_fusion</code>, a pergunta genérica do <code>step_back</code>)
+traz para o ranking documentos mais diversos mas em média menos precisos, diluindo a
+posição dos acertos certeiros da consulta original — o mesmo mecanismo observado na
+busca híbrida (Fase 4). Confirma-se também a leitura de que "mais consultas fundidas
+dilui mais o ranking": <code>step_back</code> (2 consultas, dedup) teve o melhor MRR e NDCG@10
+das 3 técnicas; <code>multi_query</code> (5 consultas, dedup) teve o melhor Recall@5 mas o pior
+NDCG@10; <code>rag_fusion</code> (5 consultas, RRF) ficou no meio em Recall@5/NDCG@10 mas teve o
+pior MRR de todos — a fusão por RRF, apesar de teoricamente mais robusta que dedup,
+não superou o dedup simples neste corpus pequeno e coeso.</p>
+<p>Conclusão da fase: nenhuma das 3 técnicas de query enhancement superou a busca densa
+pura de referência no ranking fino (MRR/NDCG@10) — mesmo padrão da Fase 4 (busca
+híbrida também perdeu para a densa pura). A busca densa pura com <code>qwen3-embedding:4b</code>
+segue como configuração de recuperação de referência até aqui.</p>
+<p><em>(Nota técnica: <code>multi_query</code> (<code>exp17</code>) falhou duas vezes antes de completar 30/30 —
+1ª tentativa esgotou a cota diária de tokens do Groq (TPD) no meio da rodada (11/30
+antes de travar); numa 2ª tentativa, já com uma chave de API nova, só 2/30 perguntas
+passaram (latência média de 30s sugeria timeout/retentativas). Ambas as linhas
+malformadas foram descartadas do <code>resultados.csv</code> antes da rodada final, que
+completou 30/30 sem falhas — a causa exata das 2 tentativas anteriores não foi
+diagnosticada a fundo, mas não se repetiu na rodada final.)</em></p>
+<h3 id="fase-6-reranking-exp20exp21">Fase 6 — Reranking (<code>exp20</code>–<code>exp21</code>)</h3>
+<p><strong>Hipótese:</strong> reordenar os top-N candidatos com um cross-encoder (que vê pergunta e
+chunk juntos, ao contrário do bi-encoder da busca densa) deveria subir o relevante
+para posições mais altas do ranking — o MRR e o NDCG@10 são as métricas que mais
+devem se beneficiar.</p>
+<p><strong>Mudança:</strong> nova técnica <code>rerank</code> em <code>app/busca_avancada.py</code>/<code>avaliar_recuperacao.py</code>
+— a busca densa recupera um pool maior de candidatos (<code>top_k_inicial</code>), um
+cross-encoder (<code>TransformersSimilarityRanker</code>, modelo <code>BAAI/bge-reranker-v2-m3</code>,
+Aula 3) reordena esse pool e corta no <code>top_k=10</code> final — testada contra a busca densa
+pura (<code>exp10</code>, mesma base), em 2 tamanhos de pool (20 e 40), para medir sensibilidade
+ao tamanho do pool antes do corte. O Roteiro sugere "recupere top-20 → reranqueie →
+top-5"; aqui o corte final ficou em <code>top_k=10</code> (em vez de 5) para manter
+comparabilidade direta com a referência <code>exp10</code> e com as Fases 4/5 (todas medidas em
+<code>top_k=10</code>). Nenhuma reindexação: mesma base da Fase 4/5
+(<code>avaliacao/rodar_fase6_reranking.py</code>).</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Combinação</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>densa top_k=10 (exp10, referência)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+</tr>
+<tr>
+<td>rerank pool=20 (exp20)</td>
+<td>0,767</td>
+<td>0,617</td>
+<td>0,487</td>
+<td>0,637</td>
+</tr>
+<tr>
+<td>rerank pool=40 (exp21)</td>
+<td>0,733</td>
+<td>0,617</td>
+<td>0,473</td>
+<td>0,607</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> o resultado negativo mais forte da jornada até aqui. Diferente da busca
+híbrida (Fase 4) e do query enhancement (Fase 5), que perdiam só no MRR/NDCG@10 mas
+mantinham Hit@5/Recall@5 praticamente intactos, o reranking piorou em <strong>todas</strong> as
+métricas, inclusive cobertura (Hit@5 caiu de 0,933 para 0,767/0,733). Isso é
+significativo: os candidatos relevantes já estavam no pool recuperado pela busca
+densa (senão o <code>exp10</code> não teria Hit@5=0,933) — então o cross-encoder está ativamente
+empurrando chunks relevantes pra fora do top-10 final, substituindo-os por candidatos
+que ele julga mais parecidos com a pergunta mas que não são, de fato, relevantes pelo
+gabarito. Hipótese principal: descasamento de domínio/idioma — o
+<code>BAAI/bge-reranker-v2-m3</code> é multilíngue mas treinado majoritariamente em dados
+gerais de ranking de passagens (tipo mMARCO), não em texto jurídico-pericial em
+português; combinado com a marcação markdown do Docling nos chunks (mesma hipótese
+usada para explicar o resultado da Fase 1, onde o markdown também prejudicou a
+similaridade do embedder), o cross-encoder pode estar julgando mal a relevância
+desse vocabulário específico.</p>
+<p>Confirma-se de novo o padrão desta jornada (visto na híbrida da Fase 4 e no
+rag_fusion/multi_query da Fase 5): pool <strong>maior</strong> piora, não melhora — <code>pool=40</code>
+(exp21) ficou pior que <code>pool=20</code> (exp20) em quase todas as métricas (só empatou em
+Recall@5). Mais candidatos dão ao reranker mais chances de errar.</p>
+<p>Conclusão da fase: o cross-encoder não ajudou neste corpus — a busca densa pura com
+<code>qwen3-embedding:4b</code> segue, de longe, a melhor configuração de recuperação medida
+até agora em todas as fases.</p>
+<p><em>(Nota técnica: esta rodada foi executada na CPU do laptop — o torch instalado por
+padrão via <code>requirements.txt</code> não tem suporte CUDA (build <code>+cpu</code>), então o
+cross-encoder (2,27GB, <code>BAAI/bge-reranker-v2-m3</code>) rodou sem aceleração de GPU, com
+throttling térmico visível ao longo da rodada (latência por pergunta subindo de ~14s
+para ~50s) — daí a latência média alta registrada (25-33s, vs ~3s da busca densa
+pura). Reinstalação do torch com build CUDA
+(<code>--index-url https://download.pytorch.org/whl/cu126</code>) foi iniciada em paralelo,
+para acelerar fases futuras que dependam de modelos locais pesados.)</em></p>
+<h3 id="fase-7-tecnica-avancada-hyde-exp22">Fase 7 — Técnica avançada: HyDE (<code>exp22</code>)</h3>
+<p><strong>Hipótese:</strong> o descasamento de vocabulário entre a pergunta (curta, em linguagem
+natural) e o chunk (trecho de texto jurídico-acadêmico) limita a busca densa pura —
+gerar um "documento hipotético" (um trecho que já se parece com a resposta, no
+estilo do corpus) e embedar ESSE trecho, em vez da pergunta, deveria aproximar o
+vetor de busca do espaço semântico onde os chunks relevantes realmente estão.</p>
+<p><strong>Mudança:</strong> nova técnica <code>hyde</code> em <code>app/busca_avancada.py</code>/<code>avaliar_recuperacao.py</code>
+(HyDE — Hypothetical Document Embeddings, Aula 6) — o LLM (Groq) gera um trecho
+hipotético de 2-4 frases respondendo a pergunta no estilo do artigo, esse trecho é
+embedado com <code>qwen3-embedding:4b</code> (não a pergunta original) e usado numa única busca
+densa — sem fusão de múltiplas consultas, ao contrário de <code>multi_query</code>/<code>rag_fusion</code>
+(Fase 5). Testada contra a busca densa pura (<code>exp10</code>, mesma base), em <code>top_k=10</code>.
+Nenhuma reindexação: mesma base da Fase 4/5/6 (<code>avaliacao/rodar_fase7_hyde.py</code>).</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Combinação</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>densa top_k=10 (exp10, referência)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+</tr>
+<tr>
+<td>hyde (exp22)</td>
+<td>0,800</td>
+<td>0,650</td>
+<td>0,598</td>
+<td>0,747</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> mesmo padrão de todas as fases anteriores — o HyDE também ficou
+<strong>abaixo</strong> da busca densa pura em todas as métricas —, mas com a menor perda
+relativa da jornada até aqui, exceto pelo query enhancement da Fase 5. Em
+Hit@5/Recall@5, o HyDE (0,800/0,650) foi pior que o <code>step_back</code> (0,900/0,706), mas
+melhor que o reranking (0,767–0,733/0,617 nas duas rodadas da Fase 6). O dado mais
+importante é o NDCG@10 (0,747): muito mais próximo da referência (0,775) do que
+qualquer técnica das Fases 4-6 — reranking caiu para 0,637/0,607 e a busca híbrida
+para 0,599-0,682 —, ou seja, quando o HyDE erra a cobertura, ele ainda mantém um
+ranking fino relativamente bom nos acertos. Hipótese: ao contrário do reranking
+(que reordena candidatos já recuperados pela query original) e do multi_query/
+rag_fusion (que fundem várias buscas), o HyDE substitui a query por um único
+documento hipotético gerado pelo LLM — se esse documento se afasta do vocabulário
+real do corpus (alucinação de detalhes plausíveis mas não exatamente os do
+artigo), a busca densa erra a recuperação logo na largada, sem chance de
+recuperação por uma segunda consulta ou por reordenação.</p>
+<p>Vale notar a diferença de custo: o HyDE rodou em ~4,8s/pergunta (1 chamada de LLM
+curta + 1 busca densa), muito mais rápido que o reranking (25-33s/pergunta, modelo
+local pesado) e comparável ao <code>step_back</code> (4,8s) — mais barato que <code>multi_query</code>/
+<code>rag_fusion</code> (~7,4-7,5s, 5 consultas cada).</p>
+<p>Conclusão da fase: HyDE não superou a busca densa pura de referência, confirmando
+pela sétima vez (Fases 4-7) que nenhuma técnica testada bate a busca densa simples
+com <code>qwen3-embedding:4b</code> neste corpus — mas HyDE tem o segundo melhor NDCG@10 entre
+todas as técnicas alternativas testadas (atrás só do <code>step_back</code>), o que o torna a
+técnica avançada mais competitiva da jornada, mesmo perdendo para a referência.</p>
+<h3 id="fase-8-ragas-avaliacao-da-geracao-exp23exp24">Fase 8 — RAGAS (avaliação da geração) (<code>exp23</code>–<code>exp24</code>)</h3>
+<p><strong>Hipótese:</strong> melhor contexto recuperado deveria se traduzir em resposta mais fiel e
+relevante — a Fase 3 já mostrou que <code>qwen3-embedding:4b</code> recupera muito melhor que
+<code>nomic-embed-text</code> (Hit@5 0,933 vs 0,633); a Fase 8 testa se esse ganho de
+<em>recuperação</em> também aparece nas métricas de <em>geração</em>.</p>
+<p><strong>Mudança:</strong> novo script <code>avaliacao/rodar_fase8_ragas.py</code> — roda o RAG completo
+(busca + geração, via <code>app/busca_avancada.py::construir</code>, técnica <code>baseline</code>/densa,
+<code>top_k=10</code>) e mede 4 métricas RAGAS com juiz Groq (padrão das Aulas 5/8):
+<code>Faithfulness</code>, <code>ResponseRelevancy(strictness=1)</code>, <code>LLMContextPrecisionWithReference</code>,
+<code>LLMContextRecall</code>. Diferente das Fases 4-7 (que reaproveitavam o índice sem
+reindexar), esta fase reindexa DUAS vezes: <code>exp23_ragas_baseline</code> reproduz a Fase 0
+exata (Docling + hierárquico + <code>nomic-embed-text</code>) e <code>exp24_ragas_melhor</code> usa a
+melhor configuração confirmada em toda a jornada (Docling + hierárquico +
+<code>qwen3-embedding:4b</code>) — ao final o índice é restaurado para esta última, estado
+final do projeto. <code>context_precision</code> não tem coluna própria em <code>resultados.csv</code>
+(o template da Seção 7 do Roteiro só prevê <code>ragas_faith</code>/<code>ragas_ans_rel</code>/
+<code>ragas_ctx_recall</code>); fica registrado no campo <code>observacao</code> de cada linha.</p>
+<p><strong>Resultado:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica RAGAS</th>
+<th>exp23 (baseline, nomic-embed-text)</th>
+<th>exp24 (melhor, qwen3-embedding:4b)</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faithfulness</td>
+<td>0,8465</td>
+<td>0,9410</td>
+<td>+0,0945</td>
+</tr>
+<tr>
+<td>Answer Relevancy</td>
+<td>0,5938</td>
+<td>0,7211</td>
+<td>+0,1273</td>
+</tr>
+<tr>
+<td>Context Precision</td>
+<td>0,6374</td>
+<td>0,7990</td>
+<td>+0,1616</td>
+</tr>
+<tr>
+<td>Context Recall</td>
+<td>0,7389</td>
+<td>1,0000</td>
+<td>+0,2611</td>
+</tr>
+<tr>
+<td>Latência média (s)</td>
+<td>9,40</td>
+<td>11,07</td>
+<td>+1,67</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise:</strong> a hipótese se confirma com folga — o ganho de recuperação medido na Fase 3
+(Hit@5 0,633→0,933 trocando <code>nomic-embed-text</code> por <code>qwen3-embedding:4b</code>) se traduz em
+ganho de geração nas <strong>4 métricas RAGAS</strong>, não só nas de recuperação. Context Recall
+chegou a 1,000 na melhor configuração: para as 30 perguntas do gabarito, tudo que a
+resposta de referência exigia estava presente em algum lugar dos 10 chunks recuperados —
+nenhuma lacuna de cobertura. Context Precision também subiu bastante (+0,162): além de
+presente, o conteúdo relevante veio mais concentrado no topo do ranking, coerente com o
+Hit@5 muito maior medido na Fase 3.</p>
+<p>Faithfulness e Answer Relevancy melhoraram de forma mais moderada, e Answer Relevancy
+segue sendo a métrica mais baixa das quatro em ambas as configurações (0,594/0,721) —
+olhando <code>avaliacao/detalhe_exp23_ragas_baseline.json</code> e <code>detalhe_exp24_ragas_melhor.json</code>,
+parte da penalização vem de um comportamento específico do RAGAS: perguntas cuja resposta
+é "Não consta" (o LLM admite honestamente que o contexto não trouxe a informação, ex.:
+Q21 em ambas as configs) recebem <code>answer_relevancy=0,0</code> mesmo quando a resposta está
+certa em recusar-se a inventar — a métrica gera perguntas sintéticas a partir da resposta
+e compara com a original, o que não funciona bem para respostas que negam ter a
+informação. Um exemplo concreto do ganho real de conteúdo: em <strong>Q02</strong> ("quando começa
+oficialmente a cadeia de custódia, segundo a lei?"), o <code>exp23</code> (baseline) não recuperou o
+trecho certo e respondeu "Não consta" (<code>context_recall=0,0</code>), enquanto o <code>exp24</code> (melhor
+config) recuperou o artigo 158-B e respondeu corretamente (<code>context_recall=1,0</code>,
+<code>faithfulness=0,8</code>) — ilustra na prática como a melhora de embedding vira resposta
+utilizável para o usuário final.</p>
+<p><em>(Nota técnica 1: em ambas as rodadas, uma pequena fração das ~120 chamadas de juiz RAGAS
+por config (4-5 de 120) falhou isoladamente com <code>LLMDidNotFinishException</code> (saída cortada
+do juiz) — o executor do RAGAS trata cada chamada de forma independente, então essas
+falhas pontuais só geram <code>NaN</code> no job específico e não impedem o cálculo das médias
+finais com os demais ~115 jobs válidos. Nota técnica 2: por causa do limite diário de
+tokens (TPD) do tier gratuito da Groq — cada configuração desta fase sozinha já consome
+quase toda a cota de 100k tokens/dia, entre a geração das 30 respostas e as ~120 chamadas
+de juiz —, o provedor de LLM foi trocado para OpenRouter (pago, sem limite diário) só
+para esta fase, mantendo o mesmo modelo Llama 3.3 70B Instruct
+(<code>meta-llama/llama-3.3-70b-instruct</code>); a troca não exigiu mudar a geração do RAG, já que
+<code>app/config.py::config_llm()</code> é agnóstico a provedor — só o juiz do RAGAS precisou trocar
+de <code>ChatGroq</code> para <code>ChatOpenAI</code> (genérico), pois o <code>ChatGroq</code> do LangChain ignora
+<code>LLM_BASE_URL</code> e sempre fala com a própria API da Groq.)</em></p>
+<p>Conclusão da fase: a configuração final do projeto (Docling + hierárquico +
+<code>qwen3-embedding:4b</code> + busca <code>baseline</code>/densa, <code>top_k=10</code>) não é só a melhor em
+recuperação (Fases 3-7) — é também mensuravelmente melhor em geração, fechando o ciclo
+completo da jornada.</p>
+<h2 id="6-tabela-consolidada">6. Tabela consolidada</h2>
+<table>
+<thead>
+<tr>
+<th>exp</th>
+<th>fase</th>
+<th>mudança</th>
+<th>Hit@5</th>
+<th>Recall@5</th>
+<th>MRR</th>
+<th>NDCG@10</th>
+<th>latência(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exp01_baseline</td>
+<td>Fase 0</td>
+<td>baseline (Docling, hierárquico, nomic-embed-text, busca=baseline)</td>
+<td>0,633</td>
+<td>0,422</td>
+<td>0,351</td>
+<td>0,338</td>
+<td>2,72</td>
+</tr>
+<tr>
+<td>exp02_extracao_pymupdf</td>
+<td>Fase 1</td>
+<td>extração=PyMuPDF (vs Docling), chunking fixo=hierárquico</td>
+<td>0,700</td>
+<td>0,489</td>
+<td>0,436</td>
+<td>0,415</td>
+<td>2,58</td>
+</tr>
+<tr>
+<td>exp03_chunk_fixo</td>
+<td>Fase 2</td>
+<td>chunking=fixo (vs hierárquico)</td>
+<td>0,467</td>
+<td>0,306</td>
+<td>0,287</td>
+<td>0,312</td>
+<td>2,57</td>
+</tr>
+<tr>
+<td>exp04_chunk_recursivo</td>
+<td>Fase 2</td>
+<td>chunking=recursivo (vs hierárquico)</td>
+<td>0,600</td>
+<td>0,372</td>
+<td>0,418</td>
+<td>0,426</td>
+<td>2,90</td>
+</tr>
+<tr>
+<td>exp05_chunk_sentenca_janela</td>
+<td>Fase 2</td>
+<td>chunking=sentença_janela (vs hierárquico)</td>
+<td>0,533</td>
+<td>0,383</td>
+<td>0,338</td>
+<td>0,416</td>
+<td>2,58</td>
+</tr>
+<tr>
+<td>exp06_chunk_semantico</td>
+<td>Fase 2</td>
+<td>chunking=semântico (vs hierárquico)</td>
+<td>0,400</td>
+<td>0,317</td>
+<td>0,336</td>
+<td>0,358</td>
+<td>2,57</td>
+</tr>
+<tr>
+<td>exp07_embed_bge_m3</td>
+<td>Fase 3</td>
+<td>embedding=bge-m3 (vs nomic-embed-text)</td>
+<td>0,733</td>
+<td>0,572</td>
+<td>0,505</td>
+<td>0,618</td>
+<td>3,44</td>
+</tr>
+<tr>
+<td>exp08_embed_mxbai_embed_large</td>
+<td>Fase 3</td>
+<td>embedding=mxbai-embed-large (vs nomic-embed-text)</td>
+<td>0,467</td>
+<td>0,328</td>
+<td>0,269</td>
+<td>0,253</td>
+<td>2,60</td>
+</tr>
+<tr>
+<td>exp09_embed_qwen3_embedding_0.6b</td>
+<td>Fase 3</td>
+<td>embedding=qwen3-embedding:0.6b (vs nomic-embed-text)</td>
+<td>0,833</td>
+<td>0,639</td>
+<td>0,527</td>
+<td>0,618</td>
+<td>3,15</td>
+</tr>
+<tr>
+<td>exp10_embed_qwen3_embedding_4b</td>
+<td>Fase 3</td>
+<td>embedding=qwen3-embedding:4b (vs nomic-embed-text)</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+<td>3,17</td>
+</tr>
+<tr>
+<td>exp11_embed_qwen3_embedding_8b</td>
+<td>Fase 3</td>
+<td>embedding=qwen3-embedding:8b "latest" (vs nomic-embed-text)</td>
+<td>0,933</td>
+<td>0,733</td>
+<td>0,615</td>
+<td>0,770</td>
+<td>3,42</td>
+</tr>
+<tr>
+<td>exp12_densa_top5</td>
+<td>Fase 4</td>
+<td>tecnica=baseline (densa), top_k=5, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,657</td>
+<td>0,674</td>
+<td>3,50</td>
+</tr>
+<tr>
+<td>exp13_densa_top20</td>
+<td>Fase 4</td>
+<td>tecnica=baseline (densa), top_k=20, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,933</td>
+<td>0,700</td>
+<td>0,661</td>
+<td>0,775</td>
+<td>3,20</td>
+</tr>
+<tr>
+<td>exp14_hibrida_top5</td>
+<td>Fase 4</td>
+<td>tecnica=híbrida (BM25+densa/RRF), top_k=5, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,800</td>
+<td>0,633</td>
+<td>0,548</td>
+<td>0,599</td>
+<td>3,25</td>
+</tr>
+<tr>
+<td>exp15_hibrida_top10</td>
+<td>Fase 4</td>
+<td>tecnica=híbrida (BM25+densa/RRF), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,900</td>
+<td>0,683</td>
+<td>0,587</td>
+<td>0,682</td>
+<td>3,27</td>
+</tr>
+<tr>
+<td>exp16_hibrida_top20</td>
+<td>Fase 4</td>
+<td>tecnica=híbrida (BM25+densa/RRF), top_k=20, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,800</td>
+<td>0,600</td>
+<td>0,569</td>
+<td>0,660</td>
+<td>3,27</td>
+</tr>
+<tr>
+<td>exp17_multi_query</td>
+<td>Fase 5</td>
+<td>tecnica=multi_query (5 consultas, dedup), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,933</td>
+<td>0,722</td>
+<td>0,616</td>
+<td>0,705</td>
+<td>7,49</td>
+</tr>
+<tr>
+<td>exp18_rag_fusion</td>
+<td>Fase 5</td>
+<td>tecnica=rag_fusion (5 consultas, RRF), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,933</td>
+<td>0,706</td>
+<td>0,579</td>
+<td>0,723</td>
+<td>7,40</td>
+</tr>
+<tr>
+<td>exp19_step_back</td>
+<td>Fase 5</td>
+<td>tecnica=step_back (2 consultas, dedup), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,900</td>
+<td>0,706</td>
+<td>0,624</td>
+<td>0,756</td>
+<td>4,81</td>
+</tr>
+<tr>
+<td>exp20_rerank_pool20</td>
+<td>Fase 6</td>
+<td>tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=20, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,767</td>
+<td>0,617</td>
+<td>0,487</td>
+<td>0,637</td>
+<td>25,28</td>
+</tr>
+<tr>
+<td>exp21_rerank_pool40</td>
+<td>Fase 6</td>
+<td>tecnica=rerank (cross-encoder BAAI/bge-reranker-v2-m3), top_k_inicial=40, top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,733</td>
+<td>0,617</td>
+<td>0,473</td>
+<td>0,607</td>
+<td>32,53</td>
+</tr>
+<tr>
+<td>exp22_hyde</td>
+<td>Fase 7</td>
+<td>tecnica=hyde (documento hipotético via Groq), top_k=10, base=Docling+hierárquico+qwen3-embedding:4b</td>
+<td>0,800</td>
+<td>0,650</td>
+<td>0,598</td>
+<td>0,747</td>
+<td>4,78</td>
+</tr>
+</tbody>
+</table>
+<p><em>(tabela restrita às métricas de recuperação, Fases 0-7 — as métricas de geração RAGAS
+de <code>exp23</code>/<code>exp24</code> (Fase 8) estão na Seção 5 e na Seção 7.)</em></p>
+<h2 id="7-melhor-configuracao-final">7. Melhor configuração final</h2>
+<p>A configuração final confirmada ao longo de toda a jornada (Fases 0-8) é:</p>
+<p><strong>Extração:</strong> Docling · <strong>Chunking:</strong> hierárquico · <strong>Embedding:</strong> <code>qwen3-embedding:4b</code>
+(2560d) · <strong>Busca:</strong> densa pura (<code>baseline</code>, sem técnica alternativa) · <strong>top_k:</strong> 10.</p>
+<p>Nenhuma das 8 variações de técnica de recuperação testadas nas Fases 4-7 (híbrida
+top_k=5/10/20, multi_query, rag_fusion, step_back, rerank pool=20/40, HyDE) superou essa
+configuração em nenhuma das 4 métricas de recuperação — resultado repetido em 4 fases
+diferentes.</p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Recuperação (<code>exp10</code>)</th>
+<th>Geração (<code>exp24</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hit@5</td>
+<td>0,933</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Recall@5</td>
+<td>0,700</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MRR</td>
+<td>0,661</td>
+<td>—</td>
+</tr>
+<tr>
+<td>NDCG@10</td>
+<td>0,775</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>—</td>
+<td>0,941</td>
+</tr>
+<tr>
+<td>Answer Relevancy</td>
+<td>—</td>
+<td>0,721</td>
+</tr>
+<tr>
+<td>Context Precision</td>
+<td>—</td>
+<td>0,799</td>
+</tr>
+<tr>
+<td>Context Recall</td>
+<td>—</td>
+<td>1,000</td>
+</tr>
+<tr>
+<td>Latência média</td>
+<td>3,17s</td>
+<td>11,07s</td>
+</tr>
+</tbody>
+</table>
+<p>É também, de longe, a configuração mais rápida entre as testadas nas Fases 4-7 (reranking
+chegou a 25-33s/pergunta; multi_query/rag_fusion a ~7,5s) — melhor qualidade e menor custo
+computacional ao mesmo tempo, um resultado incomum e que vale destacar.</p>
+<h2 id="8-analise-critica">8. Análise crítica</h2>
+<p>Alguns achados atravessam a jornada inteira e merecem destaque antes das decisões
+técnicas pontuais (8.1):</p>
+<p><strong>O modelo de embedding foi, de longe, a maior alavanca de qualidade do projeto</strong> (Fase
+3): trocar <code>nomic-embed-text</code> por <code>qwen3-embedding:4b</code> levou o Hit@5 de 0,633 para
+0,933 — um salto maior que o efeito de todas as outras técnicas testadas depois (busca
+híbrida, query enhancement, reranking, HyDE) somadas, e nenhuma delas chegou perto de
+repetir esse ganho.</p>
+<p><strong>Toda técnica "avançada" de recuperação testada piorou o resultado, uma vez que o
+embedding forte já estava em uso</strong> — busca híbrida (Fase 4), multi_query/rag_fusion/
+step_back (Fase 5), reranking (Fase 6) e HyDE (Fase 7) perderam para a busca densa pura
+em praticamente todas as métricas, em 4 fases seguidas. Leitura mais provável: neste
+corpus pequeno (143 chunks, um único artigo curto e coeso), a busca densa com um
+embedding forte já opera perto do teto de cobertura possível (Hit@5=0,933) — sobra pouco
+espaço para essas técnicas adicionarem sinal, enquanto cada uma introduz alguma fonte de
+ruído (variação do LLM na reescrita de consultas, fusão de rankings, ou um cross-encoder
+de domínio genérico julgando mal vocabulário jurídico específico). É um contraponto à
+literatura de RAG, que costuma apresentar essas técnicas como melhorias quase universais —
+aqui, o achado prático é "compare sempre contra uma baseline densa forte antes de assumir
+que a técnica mais sofisticada compensa a complexidade adicional".</p>
+<p><strong>A extração "mais simples" (PyMuPDF) bateu o Docling</strong> (Fase 1) neste PDF específico
+(acadêmico, coluna única, bem formatado) — hipótese de que a marcação markdown do Docling
+introduz ruído lexical que não aparece nas perguntas dos usuários. Reforça que o Docling
+tende a valer mais em documentos complexos (múltiplas colunas, tabelas, PDFs escaneados)
+do que em PDFs simples já bem extraíveis por um método mais direto.</p>
+<p><strong>A Fase 8 fechou o ciclo</strong>, mostrando que a melhoria medida em recuperação (Fase 3) de
+fato se propaga para a geração — algo que não podia ser dado como certo sem medir: seria
+possível, em tese, que um contexto melhor não mudasse a qualidade da resposta final se o
+LLM já "se virasse" igualmente bem com um contexto pior. Não foi o caso aqui: as 4
+métricas RAGAS melhoraram.</p>
+<p><strong>Restrições operacionais também moldaram a metodologia</strong>: o limite diário de tokens do
+tier gratuito da Groq foi um gargalo real em toda fase com muitas chamadas de LLM (query
+enhancement, HyDE, e principalmente a Fase 8, cujas ~120 chamadas de juiz RAGAS por
+configuração quase esgotam sozinhas a cota diária). A resposta prática foi tornar os
+scripts resumíveis (pulam experimentos já registrados em <code>resultados.csv</code>) e, na Fase 8,
+somar um cache de respostas geradas por pergunta — permitindo recuperar de interrupções
+sem regastar tokens — e, por fim, trocar de provedor (OpenRouter, pago) só para essa fase.</p>
+<h3 id="81-decisoes-tecnicas-relevantes-ja-tomadas">8.1 Decisões técnicas relevantes já tomadas</h3>
+<ul>
+<li><strong>Destino de indexação forçado para <code>opensearch</code> na ingestão (Fase 0):</strong> a
+  heurística automática do projeto (<code>app/indexacao.py::decidir_destino</code>) roteou o
+  PDF para o grafo (LightRAG) por ter ≥30 entidades nomeadas distintas — isso gerou
+  muitas chamadas de LLM em paralelo para extração de entidades e estourou o limite
+  de tokens do Groq. Como a Fase 0 do roteiro pede a baseline em OpenSearch (o grafo
+  é uma técnica avançada opcional da Fase 7), forçamos <code>estrategia=opensearch</code>.</li>
+<li><strong>Avaliação de recuperação sem chamadas de LLM (técnica baseline):</strong>
+  <code>avaliar_recuperacao.py</code> foi escrito para não rodar a etapa de geração de resposta
+  (desnecessária para medir apenas retrieval) — evita gasto de tokens do Groq e o
+  risco de estourar o limite diário no meio de uma rodada de 30 perguntas.</li>
+<li><strong>A partir da Fase 4, a jornada passou de "isolada" para "progressiva"
+  (decisão do autor, confirmada explicitamente):</strong> as Fases 1-3 testaram cada
+  variável isolada contra o baseline original (exp01, <code>nomic-embed-text</code>). A
+  Fase 3 achou um ganho grande (<code>qwen3-embedding:4b</code>). Da Fase 4 em diante, a
+  base fixa de cada fase passa a ser a melhor combinação confirmada até ali
+  (Docling + <code>hierárquico</code> + <code>qwen3-embedding:4b</code>), em vez de continuar
+  isolando contra <code>nomic-embed-text</code>. Trade-off consciente: ganhos das
+  próximas fases podem não ser diretamente comparáveis aos ganhos das Fases
+  1-3 (bases diferentes) — por isso cada tabela de fase deixa explícito
+  contra qual base o <code>Δ</code> foi medido.</li>
+</ul>
+<h2 id="9-conclusao">9. Conclusão</h2>
+<p>A jornada partiu de uma baseline "out of the box" (Hit@5=0,633, Faithfulness=0,847) e
+chegou, ao final de 8 fases de experimentação controlada, a uma configuração final
+(Docling + hierárquico + <code>qwen3-embedding:4b</code> + busca densa pura, <code>top_k=10</code>) melhor em
+recuperação (Hit@5=0,933, +47%), melhor em geração (Faithfulness=0,941, Context
+Recall=1,000) e mais rápida que qualquer alternativa testada nas Fases 4-7. Praticamente
+todo o ganho veio de uma única mudança — o modelo de embedding (Fase 3) —, enquanto
+nenhuma das técnicas de recuperação mais sofisticadas testadas depois (híbrida, query
+enhancement, reranking, HyDE) justificou sua complexidade adicional neste corpus.</p>
+<p>Para o caso de uso que motivou este trabalho — apoiar peritos criminais e operadores do
+direito a consultar rapidamente legislação e doutrina sobre cadeia de custódia —, a lição
+prática mais importante é: antes de investir em técnicas de RAG mais sofisticadas, vale
+medir se um embedding melhor já não resolve a maior parte do problema, e sempre comparar
+qualquer técnica nova contra uma baseline densa forte, não contra a baseline fraca
+original — foi o único jeito de perceber que busca híbrida, reranking e HyDE estavam
+piorando, não melhorando, os resultados aqui.</p>
+<p>Como generalização cautelosa: os resultados negativos das Fases 4-7 são específicos deste
+corpus (pequeno, coeso, um único documento) — corpora maiores, mais heterogêneos ou com
+mais ruído lexical provavelmente mudariam esse equilíbrio a favor de técnicas como busca
+híbrida ou reranking. O valor do experimento não é "essas técnicas não funcionam", é
+"meça antes de assumir".</p>
+<h2 id="10-anexos">10. Anexos</h2>
+<ul>
+<li><code>avaliacao/dataset.json</code> — gabarito completo (18 documentos D01-D18, 30 perguntas com
+  tipo e resposta de referência).</li>
+<li><code>avaliacao/resultados.csv</code> — todas as linhas de experimento (Fases 0-8), métricas
+  brutas.</li>
+<li><code>avaliacao/detalhe_&lt;exp&gt;.json</code> — por experimento, os chunks recuperados (ou, a partir
+  da Fase 8, também a resposta gerada e as 4 métricas RAGAS) pergunta a pergunta, para
+  auditoria.</li>
+<li><code>avaliacao/README.md</code> — como rodar cada script de fase.</li>
+<li>Exemplo de "antes/depois" (recuperação fraca → forte, mudando só o embedding):
+  pergunta Q02 ("quando começa oficialmente a cadeia de custódia, segundo a lei?") —
+  <code>exp23</code> (nomic-embed-text) não recuperou o trecho certo e respondeu "Não consta"
+  (<code>context_recall=0,0</code>); <code>exp24</code> (qwen3-embedding:4b) recuperou o artigo 158-B e
+  respondeu corretamente (<code>context_recall=1,0</code>, <code>faithfulness=0,8</code>).</li>
+<li>Traces detalhados de cada chamada de busca ficam disponíveis no LangFuse quando as
+  chaves em <code>.env</code> (<code>LANGFUSE_*</code>) estão configuradas — não habilitado nesta rodada de
+  avaliação, mas suportado pelo pipeline (<code>app/busca_avancada.py</code>, <code>LangfuseConnector</code>).</li>
+</ul>
+    </div>
+    <footer class="report-footer">
+      Gerado a partir de <code>ProjetoF/Relatorio.md</code> — MBA RAG &amp; CAG Aplicados a Direito e Segurança Pública (IBMEC).
+    </footer>
+  </main>
+</div>
+</body>
+</html>
