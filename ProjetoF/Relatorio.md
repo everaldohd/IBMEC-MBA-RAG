@@ -552,6 +552,39 @@ A configuração final confirmada ao longo de toda a jornada (Fases 0-8) é:
 **Extração:** Docling · **Chunking:** hierárquico · **Embedding:** `qwen3-embedding:4b`
 (2560d) · **Busca:** densa pura (`baseline`, sem técnica alternativa) · **top_k:** 10.
 
+**Por que Docling, e não PyMuPDF, mesmo a Fase 1 tendo mostrado o PyMuPDF vencendo em
+todas as métricas de recuperação (Hit@5 +0,067, Recall@5 +0,067, MRR +0,085, NDCG@10
++0,077)?** Três motivos, registrados aqui conforme prometido na Fase 1:
+
+1. **Ganho de escala diferente.** O ganho do PyMuPDF (Δ máximo de +0,085 no MRR) é
+   pequeno perto do ganho que efetivamente disparou a mudança de base progressiva na
+   Fase 3 (Δ de +0,300 no Hit@5 trocando o embedding, de 0,633 para 0,933). A
+   metodologia (Seção 3) testa uma variável por vez a partir de uma base fixa, e só
+   promove um achado a "nova base" quando o ganho é grande e inequívoco o bastante
+   para justificar refazer as fases seguintes em cima dele — o achado da Fase 3
+   cruzou esse limiar; o da Fase 1, isoladamente, não.
+2. **Custo de reprocessar tudo.** Como a extração muda os limites de chunk (o mesmo
+   chunking `hierárquico` gerou 143 chunks com Docling e 134 com PyMuPDF, para o
+   mesmo texto-fonte), nenhum resultado das Fases 2-8 pode ser reaproveitado numa
+   base PyMuPDF — seria preciso refazer as 7 fases seguintes do zero, incluindo
+   etapas computacionalmente caras (reranking rodou 25-33s/pergunta, com throttling
+   térmico) e financeiramente custosas (a Fase 8/RAGAS já esgotou 3 chaves de API da
+   Groq e exigiu trocar para um provedor pago). Isso ficou fora do escopo de tempo
+   do grupo.
+3. **Generalização além deste artigo específico.** O vocabulário markdown do Docling
+   (apontado na Fase 1 como provável causa do PyMuPDF ganhar) tende a atrapalhar mais
+   em PDFs simples, de coluna única e já bem extraíveis — exatamente o perfil do
+   nosso artigo-fonte. Em documentos mais complexos (múltiplas colunas, tabelas,
+   PDFs escaneados que exigem OCR), que são o alvo real do pipeline
+   (`app/indexacao.py` usa Docling como extrator padrão do projeto), o Docling
+   tende a valer mais. Manter Docling como base evita que a configuração final
+   fique especializada demais neste único documento fácil.
+
+**Fica como trabalho futuro:** repetir as Fases 2-8 inteiras com PyMuPDF como
+extração de base é um experimento natural para validar se o ganho da Fase 1 se
+sustenta (ou até se amplifica) ao longo da jornada completa — não foi feito aqui por
+restrição de tempo, e fica registrado como limitação explícita, não como omissão.
+
 Nenhuma das 8 variações de técnica de recuperação testadas nas Fases 4-7 (híbrida
 top_k=5/10/20, multi_query, rag_fusion, step_back, rerank pool=20/40, HyDE) superou essa
 configuração em nenhuma das 4 métricas de recuperação — resultado repetido em 4 fases
