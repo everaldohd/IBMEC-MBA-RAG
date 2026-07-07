@@ -545,6 +545,25 @@ completo da jornada.
 *(tabela restrita às métricas de recuperação, Fases 0-7 — as métricas de geração RAGAS
 de `exp23`/`exp24` (Fase 8) estão na Seção 5 e na Seção 7.)*
 
+### Gráficos
+
+**Hit@5, Recall@5, MRR e NDCG@10 por experimento**, coloridos por fase — visão completa
+dos 23 experimentos de recuperação (Fases 0-7):
+
+![Métricas de recuperação por experimento, Fases 0-7](graficos/grafico_barras_recuperacao.png)
+
+**Evolução da melhor configuração confirmada, fase a fase** — mostra que a jornada é,
+na prática, um degrau único: a troca de embedding na Fase 3 (`nomic-embed-text` →
+`qwen3-embedding:4b`) é o único ponto em que as 4 métricas sobem; nenhuma fase seguinte
+(4-7) desloca a linha:
+
+![Evolução da melhor configuração confirmada por fase](graficos/grafico_evolucao_fases.png)
+
+**Métricas RAGAS (Fase 8), baseline vs. melhor configuração** — o mesmo padrão de ganho
+se repete nas métricas de geração:
+
+![Métricas RAGAS, exp23 (baseline) vs exp24 (melhor)](graficos/grafico_ragas_fase8.png)
+
 ## 7. Melhor configuração final
 
 A configuração final confirmada ao longo de toda a jornada (Fases 0-8) é:
@@ -692,15 +711,4 @@ híbrida ou reranking. O valor do experimento não é "essas técnicas não func
   tipo e resposta de referência).
 - `avaliacao/resultados.csv` — todas as linhas de experimento (Fases 0-8), métricas
   brutas.
-- `avaliacao/detalhe_<exp>.json` — por experimento, os chunks recuperados (ou, a partir
-  da Fase 8, também a resposta gerada e as 4 métricas RAGAS) pergunta a pergunta, para
-  auditoria.
-- `avaliacao/README.md` — como rodar cada script de fase.
-- Exemplo de "antes/depois" (recuperação fraca → forte, mudando só o embedding):
-  pergunta Q02 ("quando começa oficialmente a cadeia de custódia, segundo a lei?") —
-  `exp23` (nomic-embed-text) não recuperou o trecho certo e respondeu "Não consta"
-  (`context_recall=0,0`); `exp24` (qwen3-embedding:4b) recuperou o artigo 158-B e
-  respondeu corretamente (`context_recall=1,0`, `faithfulness=0,8`).
-- Traces detalhados de cada chamada de busca ficam disponíveis no LangFuse quando as
-  chaves em `.env` (`LANGFUSE_*`) estão configuradas — não habilitado nesta rodada de
-  avaliação, mas suportado pelo pipeline (`app/busca_avancada.py`, `LangfuseConnector`).
+- `avaliacao/detalhe_<exp>.json` — por experimento, os chu

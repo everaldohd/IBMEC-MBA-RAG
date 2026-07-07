@@ -165,6 +165,15 @@ strong { color: var(--navy-dark); }
 em { color: var(--text-light); }
 ul, ol { padding-left: 24px; }
 li { margin: 6px 0; text-align: justify; hyphens: auto; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 22px auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
 code {
   background: #eef1ec;
   color: #3a4a3f;
@@ -262,7 +271,10 @@ footer.report-footer {
 <li><a href="#fase-8-ragas-avaliacao-da-geracao-exp23exp24">Fase 8 — RAGAS (avaliação da geração) (exp23–exp24)</a></li>
 </ul>
 </li>
-<li><a href="#6-tabela-consolidada">6. Tabela consolidada</a></li>
+<li><a href="#6-tabela-consolidada">6. Tabela consolidada</a><ul>
+<li><a href="#graficos">Gráficos</a></li>
+</ul>
+</li>
 <li><a href="#7-melhor-configuracao-final">7. Melhor configuração final</a></li>
 <li><a href="#8-analise-critica">8. Análise crítica</a><ul>
 <li><a href="#81-decisoes-tecnicas-relevantes-ja-tomadas">8.1 Decisões técnicas relevantes já tomadas</a></li>
@@ -1284,6 +1296,18 @@ completo da jornada.</p>
 </table>
 <p><em>(tabela restrita às métricas de recuperação, Fases 0-7 — as métricas de geração RAGAS
 de <code>exp23</code>/<code>exp24</code> (Fase 8) estão na Seção 5 e na Seção 7.)</em></p>
+<h3 id="graficos">Gráficos</h3>
+<p><strong>Hit@5, Recall@5, MRR e NDCG@10 por experimento</strong>, coloridos por fase — visão completa
+dos 23 experimentos de recuperação (Fases 0-7):</p>
+<p><img alt="Métricas de recuperação por experimento, Fases 0-7" src="graficos/grafico_barras_recuperacao.png" /></p>
+<p><strong>Evolução da melhor configuração confirmada, fase a fase</strong> — mostra que a jornada é,
+na prática, um degrau único: a troca de embedding na Fase 3 (<code>nomic-embed-text</code> →
+<code>qwen3-embedding:4b</code>) é o único ponto em que as 4 métricas sobem; nenhuma fase seguinte
+(4-7) desloca a linha:</p>
+<p><img alt="Evolução da melhor configuração confirmada por fase" src="graficos/grafico_evolucao_fases.png" /></p>
+<p><strong>Métricas RAGAS (Fase 8), baseline vs. melhor configuração</strong> — o mesmo padrão de ganho
+se repete nas métricas de geração:</p>
+<p><img alt="Métricas RAGAS, exp23 (baseline) vs exp24 (melhor)" src="graficos/grafico_ragas_fase8.png" /></p>
 <h2 id="7-melhor-configuracao-final">7. Melhor configuração final</h2>
 <p>A configuração final confirmada ao longo de toda a jornada (Fases 0-8) é:</p>
 <p><strong>Extração:</strong> Docling · <strong>Chunking:</strong> hierárquico · <strong>Embedding:</strong> <code>qwen3-embedding:4b</code>
@@ -1458,18 +1482,7 @@ híbrida ou reranking. O valor do experimento não é "essas técnicas não func
   tipo e resposta de referência).</li>
 <li><code>avaliacao/resultados.csv</code> — todas as linhas de experimento (Fases 0-8), métricas
   brutas.</li>
-<li><code>avaliacao/detalhe_&lt;exp&gt;.json</code> — por experimento, os chunks recuperados (ou, a partir
-  da Fase 8, também a resposta gerada e as 4 métricas RAGAS) pergunta a pergunta, para
-  auditoria.</li>
-<li><code>avaliacao/README.md</code> — como rodar cada script de fase.</li>
-<li>Exemplo de "antes/depois" (recuperação fraca → forte, mudando só o embedding):
-  pergunta Q02 ("quando começa oficialmente a cadeia de custódia, segundo a lei?") —
-  <code>exp23</code> (nomic-embed-text) não recuperou o trecho certo e respondeu "Não consta"
-  (<code>context_recall=0,0</code>); <code>exp24</code> (qwen3-embedding:4b) recuperou o artigo 158-B e
-  respondeu corretamente (<code>context_recall=1,0</code>, <code>faithfulness=0,8</code>).</li>
-<li>Traces detalhados de cada chamada de busca ficam disponíveis no LangFuse quando as
-  chaves em <code>.env</code> (<code>LANGFUSE_*</code>) estão configuradas — não habilitado nesta rodada de
-  avaliação, mas suportado pelo pipeline (<code>app/busca_avancada.py</code>, <code>LangfuseConnector</code>).</li>
+<li><code>avaliacao/detalhe_&lt;exp&gt;.json</code> — por experimento, os chu</li>
 </ul>
     </div>
     <footer class="report-footer">

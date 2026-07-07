@@ -17,3 +17,7 @@ ProjetoF/.venv_pf/
 ProjetoF/rag_storage/
 ProjetoF/uploads/
 ProjetoF/avaliacao/cache_geracao_*.json
+
+# excecao: graficos do relatorio final (ProjetoF) precisam ser versionados,
+# apesar da regra geral "*.png" (linha 12) que ignora imagens do material de aula
+!ProjetoF/graficos/*.png
