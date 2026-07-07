@@ -206,6 +206,30 @@ tbody td {
 }
 tbody tr:nth-child(even) td { background: #fbfaf7; }
 tbody tr:hover td { background: #f1ecdf; }
+.tabela-consolidada-wrap {
+  overflow-x: auto;
+  margin: 20px 0 28px;
+}
+.tabela-consolidada-wrap table {
+  table-layout: fixed;
+  font-size: 11px;
+  margin: 0;
+  box-shadow: none;
+}
+.tabela-consolidada-wrap th, .tabela-consolidada-wrap td {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  padding: 6px 7px;
+  line-height: 1.3;
+}
+.tabela-consolidada-wrap th:nth-child(1), .tabela-consolidada-wrap td:nth-child(1) { width: 9%; }
+.tabela-consolidada-wrap th:nth-child(2), .tabela-consolidada-wrap td:nth-child(2) { width: 6%; }
+.tabela-consolidada-wrap th:nth-child(3), .tabela-consolidada-wrap td:nth-child(3) { width: 43%; }
+.tabela-consolidada-wrap th:nth-child(4), .tabela-consolidada-wrap td:nth-child(4) { width: 8%; }
+.tabela-consolidada-wrap th:nth-child(5), .tabela-consolidada-wrap td:nth-child(5) { width: 8.5%; }
+.tabela-consolidada-wrap th:nth-child(6), .tabela-consolidada-wrap td:nth-child(6) { width: 7%; }
+.tabela-consolidada-wrap th:nth-child(7), .tabela-consolidada-wrap td:nth-child(7) { width: 9.5%; }
+.tabela-consolidada-wrap th:nth-child(8), .tabela-consolidada-wrap td:nth-child(8) { width: 9%; }
 blockquote {
   border-left: 4px solid var(--accent);
   background: #fdf6e8;
@@ -1058,7 +1082,7 @@ de <code>ChatGroq</code> para <code>ChatOpenAI</code> (genérico), pois o <code>
 recuperação (Fases 3-7) — é também mensuravelmente melhor em geração, fechando o ciclo
 completo da jornada.</p>
 <h2 id="6-tabela-consolidada">6. Tabela consolidada</h2>
-<table>
+<div class="tabela-consolidada-wrap"><table>
 <thead>
 <tr>
 <th>exp</th>
@@ -1293,7 +1317,7 @@ completo da jornada.</p>
 <td>4,78</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><em>(tabela restrita às métricas de recuperação, Fases 0-7 — as métricas de geração RAGAS
 de <code>exp23</code>/<code>exp24</code> (Fase 8) estão na Seção 5 e na Seção 7.)</em></p>
 <h3 id="graficos">Gráficos</h3>
